@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+	android:id="@+id/rootLayout"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:padding="10px"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:stretchColumns="1"
+	>
+		<TableRow
+			android:layout_width="fill_parent"
+		>
+			<TextView
+			android:id="@+id/nameLabel"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:text="Username:"
+			android:textSize="20px"
+			/>
+		</TableRow>
+		<TableRow>
+			<EditText
+			android:id="@+id/nameField"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:textSize="18sp"
+			/>
+		</TableRow>
+		<TableRow>
+			<TextView
+			android:id="@+id/passLabel"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="Password:"
+			android:textSize="20px"
+			/>
+		</TableRow>
+		<TableRow>
+			<EditText
+			android:id="@+id/passField"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:textSize="18sp"
+			/>
+		</TableRow>
+		<TableRow>
+			<Button
+			android:id="@+id/loginButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="30px"
+			android:text="Login"
+			/>
+		</TableRow>
+</TableLayout>
+
