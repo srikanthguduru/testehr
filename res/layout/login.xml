@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-	android:id="@+id/rootLayout"
+	android:id="@+id/loginRootLayout"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:padding="10px"
@@ -44,6 +44,14 @@
 		android:textSize="18sp"
 		android:text="Login"
 		android:onClick="login"
+		/>
+		<Button
+		android:id="@+id/goToDoctorView"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:padding="30px"
+		android:textSize="18sp"
+		android:text="Go to Doctor View"
 		/>
 </LinearLayout>
 
