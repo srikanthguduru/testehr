@@ -2,4 +2,5 @@
 <resources>
     <string name="hello">Hello World, HealthFoundation!</string>
     <string name="app_name">HealthFoundation</string>
+<string name="ok">Click on OK to dismiss this message.</string>
 </resources>
