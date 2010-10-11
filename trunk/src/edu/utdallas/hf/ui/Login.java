@@ -15,6 +15,7 @@ public class Login extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
 	private Button loginButton;
 	private Button doctorViewButton;
+	private Button patientViewButton;
 	private EditText username;
 	private EditText password;
 	
@@ -28,17 +29,22 @@ public class Login extends Activity implements OnClickListener{
     private void initControls(){
     	loginButton = (Button)findViewById(R.id.loginButton);
     	doctorViewButton = (Button)findViewById(R.id.goToDoctorView);
+    	patientViewButton = (Button)findViewById(R.id.goToPatientView);
     	username = (EditText)findViewById(R.id.nameField);
     	password = (EditText)findViewById(R.id.passField);
     	loginButton.setOnClickListener(this);
     	doctorViewButton.setOnClickListener(this);
+    	patientViewButton.setOnClickListener(this);
     }
 
 	@Override
 	public void onClick(View v) {
 		if(v.getId() == R.id.goToDoctorView){
-			Intent myIntent = new Intent(Login.this, DoctorView.class);
-			Login.this.startActivity(myIntent);
+			Intent doctorViewIntent = new Intent(Login.this, DoctorView.class);
+			Login.this.startActivity(doctorViewIntent);
+		}else if(v.getId() == R.id.goToPatientView){
+			Intent patientViewIntent = new Intent(Login.this, PatientView.class);
+			Login.this.startActivity(patientViewIntent);
 		}else{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage("Username: "+username.getText()+"\nPassword: "+password.getText())
