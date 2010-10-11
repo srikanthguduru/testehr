@@ -24,7 +24,7 @@
 			android:textSize="18sp"
 			android:text="Lab Reviews"		/>
 			<Button
-			android:id="@+id/medicationList"
+			android:id="@+id/doctorMedicationList"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:padding="20px"
@@ -46,6 +46,14 @@
 			android:padding="20px"
 			android:textSize="18sp"
 			android:text="Schedule List"
+			/>
+			<Button
+			android:id="@+id/doctorLogout"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:padding="20px"
+			android:textSize="18sp"
+			android:text="Log Out"
 			/>
 </LinearLayout>
 

@@ -16,6 +16,7 @@ public class DoctorView extends Activity implements OnClickListener{
 	private Button medicationList;
 	private Button notes;
 	private Button scheduleList;
+	private Button logout;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,29 +28,35 @@ public class DoctorView extends Activity implements OnClickListener{
     private void initControls(){
     	patientList = (Button)findViewById(R.id.patientList);
     	labReviews = (Button)findViewById(R.id.labReviews);
-    	medicationList = (Button)findViewById(R.id.medicationList);
+    	medicationList = (Button)findViewById(R.id.doctorMedicationList);
     	notes = (Button)findViewById(R.id.doctorNotes);
     	scheduleList = (Button)findViewById(R.id.doctorScheduleList);
+    	logout = (Button)findViewById(R.id.doctorLogout);
     	
     	patientList.setOnClickListener(this);
     	labReviews.setOnClickListener(this);
     	medicationList.setOnClickListener(this);
     	notes.setOnClickListener(this);
     	scheduleList.setOnClickListener(this);
+    	logout.setOnClickListener(this);
     }
 
 	@Override
 	public void onClick(View v) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(v.toString())
-		       .setCancelable(false)
-		       .setNegativeButton("OK", new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-		                dialog.dismiss();
-		           }
-		       });
-		AlertDialog alert = builder.create();
-		alert.show();
+		if(v.getId() == R.id.doctorLogout){
+			 setResult(RESULT_OK);
+	         finish();
+		}else{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(v.toString())
+			       .setCancelable(false)
+			       .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			                dialog.dismiss();
+			           }
+			       });
+			AlertDialog alert = builder.create();
+			alert.show();
+		}
 	}
-    
 }
