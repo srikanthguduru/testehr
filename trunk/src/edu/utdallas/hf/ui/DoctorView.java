@@ -17,7 +17,7 @@ public class DoctorView extends Activity implements OnClickListener{
 	private Button notes;
 	private Button scheduleList;
 	private Button logout;
-	
+	private View doctorScrollView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +32,8 @@ public class DoctorView extends Activity implements OnClickListener{
     	notes = (Button)findViewById(R.id.doctorNotes);
     	scheduleList = (Button)findViewById(R.id.doctorScheduleList);
     	logout = (Button)findViewById(R.id.doctorLogout);
+    	doctorScrollView = (View)findViewById(R.id.doctorViewScrollView);
+    	
     	
     	patientList.setOnClickListener(this);
     	labReviews.setOnClickListener(this);
@@ -39,6 +41,7 @@ public class DoctorView extends Activity implements OnClickListener{
     	notes.setOnClickListener(this);
     	scheduleList.setOnClickListener(this);
     	logout.setOnClickListener(this);
+    	doctorScrollView.setScrollbarFadingEnabled(true);
     }
 
 	@Override
