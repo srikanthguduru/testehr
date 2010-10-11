@@ -1,59 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	android:id="@+id/doctorViewRootLayout"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:padding="10px"
+
+<ScrollView 
+	android:id="@+id/doctorViewScrollView"
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
-	android:stretchColumns="1"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical"
 	>
-			<Button
-			android:id="@+id/patientList"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:padding="20px"
-			android:textSize="18sp"
-			android:text="Patient List"
-			/>
-			<Button
-			android:id="@+id/labReviews"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:padding="20px"
-			android:textSize="18sp"
-			android:text="Lab Reviews"		/>
-			<Button
-			android:id="@+id/doctorMedicationList"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:padding="20px"
-			android:textSize="18sp"
-			android:text="Medication List"
-			/>
-			<Button
-			android:id="@+id/doctorNotes"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:padding="20px"
-			android:textSize="18sp"
-			android:text="Notes"
-			/>
-			<Button
-			android:id="@+id/doctorScheduleList"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:padding="20px"
-			android:textSize="18sp"
-			android:text="Schedule List"
-			/>
-			<Button
-			android:id="@+id/doctorLogout"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:padding="20px"
-			android:textSize="18sp"
-			android:text="Log Out"
-			/>
-</LinearLayout>
+	<LinearLayout
+		android:id="@+id/doctorViewRootLayout"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:padding="10px"
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical"
+		android:stretchColumns="1"
+		>
+				<Button
+				android:id="@+id/patientList"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:padding="20px"
+				android:textSize="18sp"
+				android:text="Patient List"
+				/>
+				<Button
+				android:id="@+id/labReviews"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:padding="20px"
+				android:textSize="18sp"
+				android:text="Lab Reviews"		/>
+				<Button
+				android:id="@+id/doctorMedicationList"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:padding="20px"
+				android:textSize="18sp"
+				android:text="Medication List"
+				/>
+				<Button
+				android:id="@+id/doctorNotes"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:padding="20px"
+				android:textSize="18sp"
+				android:text="Notes"
+				/>
+				<Button
+				android:id="@+id/doctorScheduleList"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:padding="20px"
+				android:textSize="18sp"
+				android:text="Schedule List"
+				/>
+				<Button
+				android:id="@+id/doctorLogout"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:padding="20px"
+				android:textSize="18sp"
+				android:text="Log Out"
+				/>
+	</LinearLayout>
+</ScrollView>
 
