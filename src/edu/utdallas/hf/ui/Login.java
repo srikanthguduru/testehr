@@ -32,12 +32,12 @@ public class Login extends Activity implements OnClickListener{
     	patientViewButton = (Button)findViewById(R.id.goToPatientView);
     	username = (EditText)findViewById(R.id.nameField);
     	password = (EditText)findViewById(R.id.passField);
+    	
     	loginButton.setOnClickListener(this);
     	doctorViewButton.setOnClickListener(this);
     	patientViewButton.setOnClickListener(this);
     }
 
-	@Override
 	public void onClick(View v) {
 		if(v.getId() == R.id.goToDoctorView){
 			Intent doctorViewIntent = new Intent(Login.this, DoctorView.class);
@@ -47,7 +47,7 @@ public class Login extends Activity implements OnClickListener{
 			Login.this.startActivity(patientViewIntent);
 		}else{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage("Username: "+username.getText()+"\nPassword: "+password.getText())
+			builder.setMessage("Username +__+: "+username.getText()+"\nPassword: "+password.getText())
 			       .setCancelable(false)
 			       .setNegativeButton("OK", new DialogInterface.OnClickListener() {
 			           public void onClick(DialogInterface dialog, int id) {

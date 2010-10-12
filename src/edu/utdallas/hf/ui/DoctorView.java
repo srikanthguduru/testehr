@@ -44,7 +44,6 @@ public class DoctorView extends Activity implements OnClickListener{
     	doctorScrollView.setScrollbarFadingEnabled(true);
     }
 
-	@Override
 	public void onClick(View v) {
 		if(v.getId() == R.id.doctorLogout){
 			 setResult(RESULT_OK);
