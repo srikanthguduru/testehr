@@ -4,6 +4,7 @@ import edu.utdallas.hf.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,6 +49,9 @@ public class DoctorView extends Activity implements OnClickListener{
 		if(v.getId() == R.id.doctorLogout){
 			 setResult(RESULT_OK);
 	         finish();
+		}else if(v.getId() == R.id.labReviews){
+			Intent labReviewIntent = new Intent(DoctorView.this, LabReview.class);
+			DoctorView.this.startActivity(labReviewIntent);
 		}else{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(v.toString())
