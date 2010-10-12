@@ -1,9 +1,13 @@
 package edu.utdallas.hf.ui;
 
+/**
+ * @author Jerry Arnold - jxa074000
+ */
+
 import edu.utdallas.hf.R;
+import edu.utdallas.hf.commons.AlertUtil;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -46,15 +50,11 @@ public class Login extends Activity implements OnClickListener{
 			Intent patientViewIntent = new Intent(Login.this, PatientView.class);
 			Login.this.startActivity(patientViewIntent);
 		}else{
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage("Username +__+: "+username.getText()+"\nPassword: "+password.getText())
-			       .setCancelable(false)
-			       .setNegativeButton("OK", new DialogInterface.OnClickListener() {
-			           public void onClick(DialogInterface dialog, int id) {
-			                dialog.dismiss();
-			           }
-			       });
-			AlertDialog alert = builder.create();
+			AlertDialog alert = AlertUtil.createAlertMessage(
+					this, 
+					"Username: "+username.getText()+"\nPassword: "+password.getText(), 
+					"OK"
+					);
 			alert.show();
 		}
 	}

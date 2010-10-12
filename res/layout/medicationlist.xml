@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView 
-	android:id="@+id/labReviewScrollView"
+	android:id="@+id/medicationListScrollView"
 	xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:scrollbars="vertical"
 	>
 	<TableLayout
-		android:id="@+id/labReviewRootLayout"
+		android:id="@+id/medicationListRootLayout"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
 		android:padding="0px"
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:orientation="vertical"
-		android:stretchColumns="5"
+		android:stretchColumns="3"
 		>
 		<TableRow>
 				<TextView
-				android:id="@+id/listLabel"
-				android:layout_weight=".33"
+				android:id="@+id/medicienListLabel"
+				android:layout_weight=".50"
 				android:layout_height="wrap_content"
 				android:paddingTop="5px"
-				android:textSize="18sp"
+				android:textSize="20sp"
 				android:gravity="center"
-				android:text="List"
+				android:text="Medicine List"
 				/>
 				<TextView
-				android:id="@+id/emptyBorder1"
+				android:id="@+id/emptyBorder3"
 				android:background="#333333"
 				android:layout_width="1px"
 				android:layout_height="wrap_content"
@@ -34,30 +34,13 @@
 				android:gravity="center"
 				/>
 				<TextView
-				android:id="@+id/dateLabel"
-				android:layout_weight=".33"
+				android:id="@+id/statusLabel"
+				android:layout_weight=".50"
 				android:layout_height="wrap_content"
 				android:paddingTop="5px"
-				android:textSize="18sp"
+				android:textSize="20sp"
 				android:gravity="center"
-				android:text="Date"		
-				/>
-				<TextView
-				android:id="@+id/emptyBorder2"
-				android:background="#333333"
-				android:layout_width="1px"
-				android:layout_height="wrap_content"
-				android:paddingTop="5px"
-				android:gravity="center"
-				/>
-				<TextView
-				android:id="@+id/codeLabel"
-				android:layout_weight=".33"
-				android:layout_height="wrap_content"
-				android:paddingTop="5px"
-				android:textSize="18sp"
-				android:gravity="center"
-				android:text="Code"
+				android:text="Status"		
 				/>
 			</TableRow>
 	</TableLayout>

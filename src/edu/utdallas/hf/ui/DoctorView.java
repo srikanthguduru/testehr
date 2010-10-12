@@ -1,9 +1,13 @@
 package edu.utdallas.hf.ui;
 
+/**
+ * @author Jerry Arnold - jxa074000
+ */
+
 import edu.utdallas.hf.R;
+import edu.utdallas.hf.commons.AlertUtil;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -47,21 +51,16 @@ public class DoctorView extends Activity implements OnClickListener{
 
 	public void onClick(View v) {
 		if(v.getId() == R.id.doctorLogout){
-			 setResult(RESULT_OK);
-	         finish();
+			 AlertDialog confirm = AlertUtil.createLogoutMessage(this, this, "Are you sure you want to log out?");
+			 confirm.show();
 		}else if(v.getId() == R.id.labReviews){
 			Intent labReviewIntent = new Intent(DoctorView.this, LabReview.class);
 			DoctorView.this.startActivity(labReviewIntent);
+		}else if(v.getId() == R.id.doctorMedicationList){
+			Intent medicationListIntent = new Intent(DoctorView.this, MedicationList.class);
+			DoctorView.this.startActivity(medicationListIntent);
 		}else{
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage(v.toString())
-			       .setCancelable(false)
-			       .setNegativeButton("OK", new DialogInterface.OnClickListener() {
-			           public void onClick(DialogInterface dialog, int id) {
-			                dialog.dismiss();
-			           }
-			       });
-			AlertDialog alert = builder.create();
+			AlertDialog alert = AlertUtil.createAlertMessage(this, v.toString(), "OK");
 			alert.show();
 		}
 	}
