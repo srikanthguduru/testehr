@@ -1,5 +1,9 @@
 package edu.utdallas.hf.ui;
 
+/**
+ * @author Jerry Arnold - jxa074000
+ */
+
 import edu.utdallas.hf.R;
 import android.app.Activity;
 import android.os.Bundle;
