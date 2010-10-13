@@ -37,12 +37,19 @@ public class MedicationList extends Activity implements OnClickListener{
     	table = (TableLayout)findViewById(R.id.medicationListRootLayout);
     	for(int i =0; i < 20; i++){
     		row = new TableRow(this);
+    		if(i%2 == 0){
+    			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
+    		}
     		for(int j=0; j<3; j++){
     			medications[i][j] = j+":"+i;
     			if(j==1){
     				TextView border = new TextView(this);
     				border.setWidth(1);
-    				border.setBackgroundColor(getResources().getColor(R.color.borderColor));
+    				if(i%2==0)
+    					border.setBackgroundColor(getResources().getColor(R.color.blackBorder));
+    				else
+    					border.setBackgroundColor(getResources().getColor(R.color.borderColor));
+    				border.setPadding(0, 0, 0, 0);
     				border.setGravity(Gravity.CENTER);
     				row.addView(border);
     			}else{
