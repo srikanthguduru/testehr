@@ -51,7 +51,8 @@ public class DoctorView extends Activity implements OnClickListener{
 
 	public void onClick(View v) {
 		if(v.getId() == R.id.doctorLogout){
-			 AlertDialog confirm = AlertUtil.createLogoutMessage(this, this, "Are you sure you want to log out?");
+			 AlertDialog confirm = AlertUtil.createLogoutMessage(
+					 this, this, "Are you sure you want to log out?");
 			 confirm.show();
 		}else if(v.getId() == R.id.labReviews){
 			Intent labReviewIntent = new Intent(DoctorView.this, LabReview.class);

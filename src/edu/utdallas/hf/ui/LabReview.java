@@ -5,6 +5,7 @@ package edu.utdallas.hf.ui;
  */
 
 import edu.utdallas.hf.R;
+import edu.utdallas.hf.commons.ViewUtil;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,7 +13,6 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
@@ -42,8 +42,6 @@ public class LabReview extends Activity implements OnClickListener{
     	exImage = BitmapFactory.decodeResource(getResources(),R.drawable.ex);
     	table = (TableLayout)findViewById(R.id.labReviewRootLayout);
     	scroll.setScrollbarFadingEnabled(true);
-    	imageWidth = checkImage.getWidth();
-    	imageHeight = checkImage.getHeight();
     	for(int i = 0; i < 20; i++){
     		TableRow row = new TableRow(this);
     		if(i%2 == 0){
@@ -62,30 +60,15 @@ public class LabReview extends Activity implements OnClickListener{
     				border.setGravity(Gravity.CENTER);
     				row.addView(border);
     			}else if(j==1 || j==3 || j==5){
-    				TextView text = new TextView(this);
-        			text.setText(labReviews[i][j]);
-        			text.setTextSize(18);
-        			text.setGravity(Gravity.CENTER);
-        			text.setLayoutParams(
-        					new TableRow.LayoutParams(
-        							LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, (float).32
-        							)
-        					);
-        			text.setId(j*100+i);
-        			text.setOnClickListener(this);
+    				TextView text = ViewUtil.createTextView(
+    						this, labReviews[i][j], (float).32, j*100+i);
         			row.addView(text);
     			}else{
-    				ImageView image = new ImageView(this);
+    				ImageView image;
     				if(i%2==0)
-    					image.setBackgroundResource(R.drawable.check);
+    					image = ViewUtil.createImageView(this, R.drawable.check, checkImage);
     				else
-    					image.setBackgroundResource(R.drawable.ex);
-    				image.setLayoutParams(
-    						new TableRow.LayoutParams(
-    								LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-    				image.setAdjustViewBounds(true);
-    				image.setMaxHeight(imageHeight);
-    				image.setMaxWidth(imageWidth);
+    					image = ViewUtil.createImageView(this, R.drawable.ex, exImage);
     				row.setGravity(Gravity.CENTER_VERTICAL);
     				row.addView(image);
     			}

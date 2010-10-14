@@ -6,13 +6,12 @@ package edu.utdallas.hf.ui;
 
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.AlertUtil;
+import edu.utdallas.hf.commons.ViewUtil;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -43,27 +42,15 @@ public class MedicationList extends Activity implements OnClickListener{
     		for(int j=0; j<3; j++){
     			medications[i][j] = j+":"+i;
     			if(j==1){
-    				TextView border = new TextView(this);
-    				border.setWidth(1);
+    				TextView border;
     				if(i%2==0)
-    					border.setBackgroundColor(getResources().getColor(R.color.blackBorder));
+    					border = ViewUtil.createTableBorder(this, R.color.blackBorder);
     				else
-    					border.setBackgroundColor(getResources().getColor(R.color.borderColor));
-    				border.setPadding(0, 0, 0, 0);
-    				border.setGravity(Gravity.CENTER);
+    					border = ViewUtil.createTableBorder(this, R.color.borderColor);
     				row.addView(border);
     			}else{
-    				TextView text = new TextView(this);
-        			text.setText(medications[i][j]);
-        			text.setTextSize(18);
-        			text.setGravity(Gravity.CENTER);
-        			text.setLayoutParams(
-        					new TableRow.LayoutParams(
-        							LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, (float).5
-        							)
-        					);
-        			text.setId(j*100+i);
-        			text.setOnClickListener(this);
+    				TextView text = ViewUtil.createTextView(
+    						this, medications[i][j], (float).5, j*100+i, this);
         			row.addView(text);
     			}
     		}
