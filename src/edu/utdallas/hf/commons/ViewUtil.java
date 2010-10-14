@@ -93,7 +93,7 @@ public class ViewUtil {
 		border.setWidth(1);
 		border.setPadding(0, 0, 0, 0);
 		border.setGravity(Gravity.CENTER);
-		border.setBackgroundColor(col);
+		border.setBackgroundColor(con.getResources().getColor(col));
 		return border;
 	}
 }

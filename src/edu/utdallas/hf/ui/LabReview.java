@@ -51,17 +51,22 @@ public class LabReview extends Activity implements OnClickListener{
     			labReviews[i][j] = j+":"+i;
     			if(j==2 || j==4 ){
     				TextView border = new TextView(this);
-    				border.setWidth(1);
     				if(i%2==0)
-    					border.setBackgroundColor(getResources().getColor(R.color.blackBorder));
+    					border = ViewUtil.createTableBorder(this, R.color.blackBorder);
     				else
-    					border.setBackgroundColor(getResources().getColor(R.color.borderColor));
-    				border.setPadding(0, 0, 0, 0);
-    				border.setGravity(Gravity.CENTER);
+    					border = ViewUtil.createTableBorder(this, R.color.borderColor);
     				row.addView(border);
-    			}else if(j==1 || j==3 || j==5){
+    			}else if(j==1){
     				TextView text = ViewUtil.createTextView(
-    						this, labReviews[i][j], (float).32, j*100+i);
+    						this, labReviews[i][j], (float).48, j*100+i);
+        			row.addView(text);
+    			}else if(j==3){
+    				TextView text = ViewUtil.createTextView(
+    						this, labReviews[i][j], (float).28, j*100+i);
+        			row.addView(text);
+    			}else if(j==5){
+    				TextView text = ViewUtil.createTextView(
+    						this, labReviews[i][j], (float).20, j*100+i);
         			row.addView(text);
     			}else{
     				ImageView image;
