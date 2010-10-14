@@ -50,7 +50,8 @@ public class PatientView extends Activity implements OnClickListener{
 
 	public void onClick(View v) {
 		if(v.getId()==R.id.patientLogout){
-			AlertDialog confirm = AlertUtil.createLogoutMessage(this, this, "Are you sure you want to log out?");
+			AlertDialog confirm = AlertUtil.createLogoutMessage(
+					this, this, "Are you sure you want to log out?");
 			confirm.show();
 		}else{
 			AlertDialog alert = AlertUtil.createAlertMessage(this, v.toString(), "OK");
