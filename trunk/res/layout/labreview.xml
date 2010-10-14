@@ -25,7 +25,7 @@
 				/>
 				<TextView
 				android:id="@+id/listLabel"
-				android:layout_weight=".32"
+				android:layout_weight=".48"
 				android:layout_height="wrap_content"
 				android:paddingTop="5px"
 				android:textSize="25sp"
@@ -42,7 +42,7 @@
 				/>
 				<TextView
 				android:id="@+id/dateLabel"
-				android:layout_weight=".32"
+				android:layout_weight=".28"
 				android:layout_height="wrap_content"
 				android:paddingTop="5px"
 				android:textSize="25sp"
@@ -59,7 +59,7 @@
 				/>
 				<TextView
 				android:id="@+id/codeLabel"
-				android:layout_weight=".32"
+				android:layout_weight=".20"
 				android:layout_height="wrap_content"
 				android:paddingTop="5px"
 				android:textSize="25sp"
