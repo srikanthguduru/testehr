@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/doctorNotesScrollView"><TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/doctorNotesRootLayout"><TableRow>
+				<TextView
+				android:id="@+id/emptyBorder1"
+				android:layout_width="16px"
+				android:layout_height="wrap_content"
+				android:paddingTop="5px"
+				android:gravity="center"
+				/>
+				<TextView
+				android:id="@+id/listLabel"
+				android:layout_weight=".48"
+				android:layout_height="wrap_content"
+				android:paddingTop="5px"
+				android:textSize="25sp"
+				android:gravity="center" android:text="Subject"/>
+				<TextView
+				android:id="@+id/emptyBorder1"
+				android:background="@color/borderColor"
+				android:layout_width="1px"
+				android:layout_height="wrap_content"
+				android:paddingTop="5px"
+				android:gravity="center"
+				/>
+				<TextView
+				android:id="@+id/dateLabel"
+				android:layout_weight=".28"
+				android:layout_height="wrap_content"
+				android:paddingTop="5px"
+				android:textSize="25sp"
+				android:gravity="center"
+				android:text="Date"		
+				/>
+				<TextView
+				android:id="@+id/emptyBorder2"
+				android:background="#333333"
+				android:layout_width="1px"
+				android:layout_height="wrap_content"
+				android:paddingTop="5px"
+				android:gravity="center"
+				/>
+				<TextView
+				android:id="@+id/codeLabel"
+				android:layout_weight=".20"
+				android:layout_height="wrap_content"
+				android:paddingTop="5px"
+				android:textSize="25sp"
+				android:gravity="center"
+				android:text="Code"
+				/>
+			</TableRow></TableLayout>
+
+
+</ScrollView>

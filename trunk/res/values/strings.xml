@@ -13,4 +13,5 @@
     <string name="medicalRecordsTitle">Health Foundation - Medical Records</string>
     <string name="appointmentsTitle">Health Foundation - Appointments</string>
 <string name="ok">Click on OK to dismiss this message.</string>
+<string name="doctorNotesTitle">Health Foundation - Doctor Notes</string>
 </resources>
