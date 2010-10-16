@@ -60,7 +60,11 @@ public class DoctorView extends Activity implements OnClickListener{
 		}else if(v.getId() == R.id.doctorMedicationList){
 			Intent medicationListIntent = new Intent(DoctorView.this, MedicationList.class);
 			DoctorView.this.startActivity(medicationListIntent);
-		}else{
+		}else if(v.getId() == R.id.doctorNotes){
+			Intent doctorNotesIntent = new Intent(DoctorView.this, DoctorNotes.class);
+			DoctorView.this.startActivity(doctorNotesIntent);
+		}
+		else{
 			AlertDialog alert = AlertUtil.createAlertMessage(this, v.toString(), "OK");
 			alert.show();
 		}

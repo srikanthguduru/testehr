@@ -30,10 +30,15 @@ public class Login extends Activity implements OnClickListener{
         initControls();
     }
     
+    
+    
     private void initControls(){
-    	loginButton = (Button)findViewById(R.id.loginButton);
+    	//when database end complete remove this subset of buttons----------------------
     	doctorViewButton = (Button)findViewById(R.id.goToDoctorView);
     	patientViewButton = (Button)findViewById(R.id.goToPatientView);
+    	//------------------------------------------------------------------------------
+    	
+    	loginButton = (Button)findViewById(R.id.loginButton);
     	username = (EditText)findViewById(R.id.nameField);
     	password = (EditText)findViewById(R.id.passField);
     	
