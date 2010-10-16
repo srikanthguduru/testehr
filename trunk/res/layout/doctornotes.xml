@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/doctorNotesScrollView"><TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/doctorNotesRootLayout"><TableRow>
+
+<ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/doctorNotesScrollView"><TableLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:padding="0px"
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical"
+		android:stretchColumns="6"
+		android:id="@+id/doctorNotesRootLayout">
+		<TableRow>
 				<TextView
 				android:id="@+id/emptyBorder1"
 				android:layout_width="16px"
@@ -14,7 +23,7 @@
 				android:layout_height="wrap_content"
 				android:paddingTop="5px"
 				android:textSize="25sp"
-				android:gravity="center" android:text="Subject"/>
+				android:gravity="center" android:text="Title"/>
 				<TextView
 				android:id="@+id/emptyBorder1"
 				android:background="@color/borderColor"
@@ -46,10 +55,6 @@
 				android:layout_height="wrap_content"
 				android:paddingTop="5px"
 				android:textSize="25sp"
-				android:gravity="center"
-				android:text="Code"
-				/>
-			</TableRow></TableLayout>
-
-
-</ScrollView>
+				android:gravity="center" android:text="Priority"/>
+			</TableRow>
+	</TableLayout></ScrollView>
