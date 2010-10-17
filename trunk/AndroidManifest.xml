@@ -26,6 +26,9 @@
         <activity android:name=".ui.DoctorNotes"
                   android:label="@string/doctorNotesTitle">
         </activity>
+        <activity android:name=".ui.Notes"
+                  android:label="@string/NotesTitle">
+        </activity>
 
     </application>
     <uses-sdk android:minSdkVersion="7" />

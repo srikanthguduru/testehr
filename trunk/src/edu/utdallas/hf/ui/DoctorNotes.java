@@ -6,6 +6,7 @@ package edu.utdallas.hf.ui;
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.ViewUtil;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ public class DoctorNotes extends Activity implements OnClickListener {
 	
 	
 	/** Called when the activity is first created. */
-	String[][] labReviews = new String[20][6];
+	String[][] doctorNotes = new String[20][6];
 	Bitmap checkImage;
 	int imageWidth;
 	int imageHeight;
@@ -48,33 +49,48 @@ public class DoctorNotes extends Activity implements OnClickListener {
     	exImage = BitmapFactory.decodeResource(getResources(),R.drawable.ex);
     	table = (TableLayout)findViewById(R.id.doctorNotesRootLayout);
     	scroll.setScrollbarFadingEnabled(true);
-    	for(int i = 0; i < 20; i++){
+    	
+    	
+    	for(int i = 0; i < 20; i++)
+    	{
     		TableRow row = new TableRow(this);
-    		if(i%2 == 0){
+    		if(i%2 == 0)
+    		{
     			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
     		}
-    		for(int j = 0; j < 6; j++){
-    			labReviews[i][j] = j+":"+i;
-    			if(j==2 || j==4 ){
+    		for(int j = 0; j < 6; j++)
+    		{
+    			doctorNotes[i][j] = j+":"+i;
+    			
+    			if(j==2 || j==4 )
+    			{
     				TextView border = new TextView(this);
     				if(i%2==0)
     					border = ViewUtil.createTableBorder(this, R.color.blackBorder);
     				else
     					border = ViewUtil.createTableBorder(this, R.color.borderColor);
     				row.addView(border);
-    			}else if(j==1){
+    			}
+    			else if(j==1)
+    			{
     				TextView text = ViewUtil.createTextView(
-    						this, labReviews[i][j], (float).48, j*100+i);
+    						this, doctorNotes[i][j], (float).48, j*100+i);
         			row.addView(text);
-    			}else if(j==3){
+    			}
+    			else if(j==3)
+    			{
     				TextView text = ViewUtil.createTextView(
-    						this, labReviews[i][j], (float).28, j*100+i);
+    						this, doctorNotes[i][j], (float).28, j*100+i);
         			row.addView(text);
-    			}else if(j==5){
+    			}
+    			else if(j==5)
+    			{
     				TextView text = ViewUtil.createTextView(
-    						this, labReviews[i][j], (float).20, j*100+i);
+    						this, doctorNotes[i][j], (float).20, j*100+i);
         			row.addView(text);
-    			}else{
+    			}
+    			else
+    			{
     				ImageView image;
     				if(i%2==0)
     					image = ViewUtil.createImageView(this, R.drawable.check, checkImage);
@@ -84,17 +100,22 @@ public class DoctorNotes extends Activity implements OnClickListener {
     				row.addView(image);
     			}
     		}
+    		row.setOnClickListener(this);
     		table.addView(row);
 		}
+    	
+    	
 	}
 	
 	
 	
 	
-
+//Based on what row is clicked, different data will be loaded into Note.class
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		
+		// TODO Auto-generated method stub
+		Intent doctorNotesIntent = new Intent(DoctorNotes.this, Note.class);
+		DoctorNotes.this.startActivity(doctorNotesIntent);
 	}
 
 }
