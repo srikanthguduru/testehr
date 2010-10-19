@@ -58,11 +58,11 @@ public class DoctorNotes extends Activity implements OnClickListener {
     		{
     			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
     		}
-    		for(int j = 0; j < 6; j++)
+    		for(int j = 0; j < 4; j++)
     		{
     			doctorNotes[i][j] = j+":"+i;
     			
-    			if(j==2 || j==4 )
+    			if(j==2)
     			{
     				TextView border = new TextView(this);
     				if(i%2==0)
@@ -74,19 +74,13 @@ public class DoctorNotes extends Activity implements OnClickListener {
     			else if(j==1)
     			{
     				TextView text = ViewUtil.createTextView(
-    						this, doctorNotes[i][j], (float).48, j*100+i);
+    						this, doctorNotes[i][j], (float).60, j*100+i);
         			row.addView(text);
     			}
     			else if(j==3)
     			{
     				TextView text = ViewUtil.createTextView(
-    						this, doctorNotes[i][j], (float).28, j*100+i);
-        			row.addView(text);
-    			}
-    			else if(j==5)
-    			{
-    				TextView text = ViewUtil.createTextView(
-    						this, doctorNotes[i][j], (float).20, j*100+i);
+    						this, doctorNotes[i][j], (float).38, j*100+i);
         			row.addView(text);
     			}
     			else
