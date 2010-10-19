@@ -9,6 +9,7 @@ package edu.utdallas.hf.db;
  */
 
 import java.net.*;
+import java.util.Hashtable;
 import java.io.*;
 import android.util.Log;
 
@@ -91,5 +92,11 @@ public class Connection
 
     }
 
-
+    public Hashtable labView(int id)
+    {
+    	Hashtable<String, Integer> testThing = new Hashtable<String, Integer>();
+    	
+    	
+    	return testThing;
+    }
 }
