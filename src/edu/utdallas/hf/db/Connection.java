@@ -20,11 +20,13 @@ public class Connection
 
     public void connect()
     {
+    	//Establish a connection to the database's php page
     	try
     	{
     		
 	    	url = new URL("http://66.207.167.195/androidtest.php");
 			urlConnection = url.openConnection();
+			//Tell the php page we're sending "POST" messages
 			((HttpURLConnection)urlConnection).setRequestMethod("POST");
 			urlConnection.setDoInput(true);
 	        urlConnection.setDoOutput(true);
@@ -48,7 +50,7 @@ public class Connection
 		{
 			connect();
 			Log.i("Connection", "Encoding message: Username was: " + username + " and password was: " + password);
-			
+			//Encode the string combination into a url to send to the php page
 			String data = URLEncoder.encode("username", "UTF-8") + "=" +
 				URLEncoder.encode(username, "UTF-8") + "&" +
 				URLEncoder.encode("password", "UTF-8") + "=" +
@@ -82,6 +84,7 @@ public class Connection
 		}
 		catch (Exception ex)
 		{
+			Log.i("Connection", "Exception: " + ex);
 			//System.out.println(ex.toString());
 		}
 		return output;
