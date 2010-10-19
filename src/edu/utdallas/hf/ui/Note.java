@@ -4,19 +4,11 @@ package edu.utdallas.hf.ui;
  */
 
 import edu.utdallas.hf.R;
-import edu.utdallas.hf.commons.ViewUtil;
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ScrollView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 /*
