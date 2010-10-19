@@ -101,9 +101,6 @@ public class DoctorNotes extends Activity implements OnClickListener {
     	
 	}
 	
-	
-	
-	
 //Based on what row is clicked, different data will be loaded into Note.class
 	public void onClick(View v) {
 		
