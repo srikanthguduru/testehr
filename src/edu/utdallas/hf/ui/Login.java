@@ -6,6 +6,7 @@ package edu.utdallas.hf.ui;
 
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.AlertUtil;
+import edu.utdallas.hf.db.Connection;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -54,13 +55,20 @@ public class Login extends Activity implements OnClickListener{
 		}else if(v.getId() == R.id.goToPatientView){
 			Intent patientViewIntent = new Intent(Login.this, PatientView.class);
 			Login.this.startActivity(patientViewIntent);
-		}else{
-			AlertDialog alert = AlertUtil.createAlertMessage(
-					this, 
-					"Username: "+username.getText()+"\nPassword: "+password.getText(), 
-					"OK"
-					);
-			alert.show();
+		}else if(v.getId() == R.id.loginButton){
+			Connection con = new Connection();
+			String message = con.sendMessage(username.getText().toString(), password.getText().toString());
+			if(message.equals("success")){
+				Intent doctorViewIntent = new Intent(Login.this, DoctorView.class);
+				Login.this.startActivity(doctorViewIntent);
+			}else if (message.equals("fail")){
+				AlertDialog alert = AlertUtil.createAlertMessage(
+						this, 
+						"Login Failed", 
+						"OK"
+						);
+				alert.show();
+			}
 		}
 	}
     
