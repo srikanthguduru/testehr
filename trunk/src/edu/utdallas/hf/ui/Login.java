@@ -52,20 +52,24 @@ public class Login extends Activity implements OnClickListener{
 			Login.this.startActivity(doctorViewIntent);
 		}else if(v.getId() == R.id.loginButton){
 			Connection con = new Connection();
-			String message = con.sendMessage(username.getText().toString(), password.getText().toString());
+			String message = con.sendMessage(
+					username.getText().toString().trim(), 
+					password.getText().toString().trim());
 			if(message.equals("success")){
 				Intent doctorViewIntent = new Intent(Login.this, DoctorView.class);
 				Login.this.startActivity(doctorViewIntent);
 			}else if (message.equals("fail")){
 				AlertDialog alert = AlertUtil.createAlertMessage(
 						this, 
-						"Login Failed", 
+						"Login failed, username or password incorrect.", 
 						"OK"
 						);
 				alert.show();
 			} else {
-				AlertDialog blargh = AlertUtil.createAlertMessage(this, 
-						"Login Failed", "OK");
+				AlertDialog blargh = AlertUtil.createAlertMessage(
+						this, 
+						"Login failed, check your network connection.", 
+						"OK");
 				blargh.show();
 			}
 		}

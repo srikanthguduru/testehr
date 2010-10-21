@@ -11,6 +11,7 @@ public class HealthFoundation extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //starts the login activity when the app first opens
         Intent login = new Intent(HealthFoundation.this, Login.class);
         HealthFoundation.this.startActivity(login);
     }
