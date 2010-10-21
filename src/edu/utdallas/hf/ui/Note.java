@@ -22,7 +22,6 @@ public class Note extends Activity implements OnClickListener {
 	/** Called when the activity is first created. */
 	String Note = "";
 	Button b1,b2;
-	TextView tv;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,10 +33,8 @@ public class Note extends Activity implements OnClickListener {
     public void initValues(){
     	b1 = (Button)findViewById(R.id.noteButton01);
     	b2 = (Button)findViewById(R.id.noteButton02);
-    	tv = (TextView)findViewById(R.id.noteTextView);
     	b1.setOnClickListener(this);
     	b2.setOnClickListener(this);
-    	tv.setText(Note);
     	//tv.setOnClickListener(this);
     	
 	}
