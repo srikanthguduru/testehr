@@ -7,13 +7,9 @@ import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.ViewUtil;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -28,11 +24,7 @@ public class PatientNotes extends Activity implements OnClickListener {
 	
 	
 	/** Called when the activity is first created. */
-	String[][] doctorNotes = new String[20][6];
-	Bitmap checkImage;
-	int imageWidth;
-	int imageHeight;
-	Bitmap exImage;
+	String[][] patientNotes = new String[20][6];
 	TableLayout table;
 	ScrollView scroll;
 	
@@ -45,8 +37,6 @@ public class PatientNotes extends Activity implements OnClickListener {
     
     public void initValues(){
     	scroll = (ScrollView)findViewById(R.id.patientNotesScrollView);
-    	checkImage =  BitmapFactory.decodeResource(getResources(),R.drawable.check);
-    	exImage = BitmapFactory.decodeResource(getResources(),R.drawable.ex);
     	table = (TableLayout)findViewById(R.id.patientNotesRootLayout);
     	scroll.setScrollbarFadingEnabled(true);
     	
@@ -58,11 +48,11 @@ public class PatientNotes extends Activity implements OnClickListener {
     		{
     			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
     		}
-    		for(int j = 0; j < 4; j++)
+    		for(int j = 0; j < 3; j++)
     		{
-    			doctorNotes[i][j] = j+":"+i;
+    			patientNotes[i][j] = j+":"+i;
     			
-    			if(j==2)
+    			if(j==1)
     			{
     				TextView border = new TextView(this);
     				if(i%2==0)
@@ -71,27 +61,17 @@ public class PatientNotes extends Activity implements OnClickListener {
     					border = ViewUtil.createTableBorder(this, R.color.borderColor);
     				row.addView(border);
     			}
-    			else if(j==1)
+    			else if(j==0)
     			{
     				TextView text = ViewUtil.createTextView(
-    						this, doctorNotes[i][j], (float).60, j*100+i);
+    						this, patientNotes[i][j], (float).70, j*100+i, this);
         			row.addView(text);
     			}
-    			else if(j==3)
+    			else if(j==2)
     			{
     				TextView text = ViewUtil.createTextView(
-    						this, doctorNotes[i][j], (float).38, j*100+i);
+    						this, patientNotes[i][j], (float).30, j*100+i);
         			row.addView(text);
-    			}
-    			else
-    			{
-    				ImageView image;
-    				if(i%2==0)
-    					image = ViewUtil.createImageView(this, R.drawable.check, checkImage);
-    				else
-    					image = ViewUtil.createImageView(this, R.drawable.ex, exImage);
-    				row.setGravity(Gravity.CENTER_VERTICAL);
-    				row.addView(image);
     			}
     		}
     		row.setOnClickListener(this);
@@ -104,9 +84,15 @@ public class PatientNotes extends Activity implements OnClickListener {
 //Based on what row is clicked, different data will be loaded into Note.class
 	public void onClick(View v) {
 		
-		// TODO Auto-generated method stub
-		Intent doctorNotesIntent = new Intent(PatientNotes.this, Note.class);
-		PatientNotes.this.startActivity(doctorNotesIntent);
+		for(int i =0; i < 20; i++){
+			for(int j=0; j<3; j++){
+				if(v.getId()==(j*100)+i){
+					Intent patientNotesIntent = new Intent(PatientNotes.this, Note.class);
+					patientNotesIntent.putExtra("noteId", v.getId());
+					PatientNotes.this.startActivity(patientNotesIntent);
+				}
+			}
+		}
 	}
 
 }

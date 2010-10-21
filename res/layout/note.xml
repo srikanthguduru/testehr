@@ -4,22 +4,22 @@
 <ScrollView 
 	xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:scrollbars="vertical" android:id="@+id/noteScrollView">
-	<TableLayout
+    android:layout_height="fill_parent"
+    android:scrollbars="vertical" 
+    android:id="@+id/noteScrollView"
+    android:padding="10px"
+    >
+	<LinearLayout
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
-		android:padding="0px"
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		android:orientation="vertical"
-		android:stretchColumns="3"
-		android:id="@+id/noteRootLayout">
-		<TableRow><EditText android:text="@+id/EditText01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/noteEditText" android:lines="8"></EditText>
-				
-			</TableRow><TableRow><Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/noteButton01" android:text="Save"></Button><Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/noteButton02" android:text="Delete"></Button>
-				
-			</TableRow>
-	</TableLayout>
-
-
+		>
+		<EditText android:id="@+id/noteTextView"
+		          android:layout_width="0dip"
+		          android:layout_height="wrap_content"
+		          android:layout_weight="1"
+		          android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
+		          android:maxLines="4"
+		          android:maxLength="2000"
+		       	/>
+	</LinearLayout>
 </ScrollView>

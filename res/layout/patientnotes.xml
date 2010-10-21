@@ -17,19 +17,13 @@
 		android:id="@+id/patientNotesRootLayout">
 		<TableRow>
 				<TextView
-				android:id="@+id/emptyBorder1"
-				android:layout_width="16px"
-				android:layout_height="wrap_content"
-				android:paddingTop="5px"
-				android:gravity="center"
-				/>
-				<TextView
-				android:id="@+id/listLabel"
-				android:layout_weight=".60"
+				android:id="@+id/noteTitleLabel"
+				android:layout_weight=".70"
 				android:layout_height="wrap_content"
 				android:paddingTop="5px"
 				android:textSize="25sp"
-				android:gravity="center" android:text="Title"/>
+				android:gravity="center" 
+				android:text="Title"/>
 				<TextView
 				android:id="@+id/emptyBorder1"
 				android:background="@color/borderColor"
@@ -39,8 +33,8 @@
 				android:gravity="center"
 				/>
 				<TextView
-				android:id="@+id/dateLabel"
-				android:layout_weight=".38"
+				android:id="@+id/noteDateLabel"
+				android:layout_weight=".30"
 				android:layout_height="wrap_content"
 				android:paddingTop="5px"
 				android:textSize="25sp"
