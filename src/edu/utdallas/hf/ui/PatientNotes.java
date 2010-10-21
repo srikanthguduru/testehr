@@ -39,15 +39,15 @@ public class PatientNotes extends Activity implements OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.doctornotes);
+        setContentView(R.layout.patientnotes);
         initValues();
     }
     
     public void initValues(){
-    	scroll = (ScrollView)findViewById(R.id.doctorNotesScrollView);
+    	scroll = (ScrollView)findViewById(R.id.patientNotesScrollView);
     	checkImage =  BitmapFactory.decodeResource(getResources(),R.drawable.check);
     	exImage = BitmapFactory.decodeResource(getResources(),R.drawable.ex);
-    	table = (TableLayout)findViewById(R.id.doctorNotesRootLayout);
+    	table = (TableLayout)findViewById(R.id.patientNotesRootLayout);
     	scroll.setScrollbarFadingEnabled(true);
     	
     	
