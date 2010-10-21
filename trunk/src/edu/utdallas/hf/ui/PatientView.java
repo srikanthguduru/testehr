@@ -8,6 +8,7 @@ import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.AlertUtil;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,12 +16,10 @@ import android.widget.Button;
 
 public class PatientView extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
-	private Button doctorList;
-	private Button medicalRecords;
+	private Button vitalSigns;
 	private Button medicationList;
 	private Button notes;
 	private Button appointments;
-	private Button logout;
 	private View patientScrollView;
 	
     @Override
@@ -31,31 +30,34 @@ public class PatientView extends Activity implements OnClickListener{
     }
     
     private void initControls(){
-    	doctorList = (Button)findViewById(R.id.doctorList);
-    	medicalRecords = (Button)findViewById(R.id.medicalRecords);
+    	vitalSigns = (Button)findViewById(R.id.vitalSigns);
     	medicationList = (Button)findViewById(R.id.patientMedicationList);
     	notes = (Button)findViewById(R.id.patientNotes);
     	appointments = (Button)findViewById(R.id.patientAppointments);
-    	logout = (Button)findViewById(R.id.patientLogout);
     	patientScrollView = (View)findViewById(R.id.patientViewScrollView);
     	
-    	doctorList.setOnClickListener(this);
-    	medicalRecords.setOnClickListener(this);
+    	vitalSigns.setOnClickListener(this);
     	medicationList.setOnClickListener(this);
     	notes.setOnClickListener(this);
     	appointments.setOnClickListener(this);
-    	logout.setOnClickListener(this);
     	patientScrollView.setScrollbarFadingEnabled(true);
     }
 
 	public void onClick(View v) {
-		if(v.getId()==R.id.patientLogout){
-			AlertDialog confirm = AlertUtil.createLogoutMessage(
-					this, this, "Are you sure you want to log out?");
-			confirm.show();
+		
+		if(v.getId()==R.id.vitalSigns){
+			Intent vitalSignsIntent = new Intent(PatientView.this, VitalSigns.class);
+			PatientView.this.startActivity(vitalSignsIntent);
+		}else if(v.getId() == R.id.patientMedicationList){
+			Intent medicationListIntent = new Intent(PatientView.this, MedicationList.class);
+			PatientView.this.startActivity(medicationListIntent);
+		}else if(v.getId() == R.id.patientNotes){
+			Intent patientNotesIntent = new Intent(PatientView.this, PatientNotes.class);
+			PatientView.this.startActivity(patientNotesIntent);
 		}else{
 			AlertDialog alert = AlertUtil.createAlertMessage(this, v.toString(), "OK");
 			alert.show();
 		}
+		
 	}
 }

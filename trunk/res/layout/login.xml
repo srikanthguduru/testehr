@@ -52,13 +52,5 @@
 		android:textSize="18sp"
 		android:text="Go to Doctor View"
 		/>
-		<Button
-		android:id="@+id/goToPatientView"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:padding="10px"
-		android:textSize="18sp"
-		android:text="Go to Patient View"
-		/>
 </LinearLayout>
 

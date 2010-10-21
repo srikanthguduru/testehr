@@ -30,7 +30,7 @@
 				android:layout_height="wrap_content"
 				android:padding="20px"
 				android:textSize="18sp"
-				android:text="Schedule List"
+				android:text="Schedule"
 				/>
 				<Button
 				android:id="@+id/doctorLogout"

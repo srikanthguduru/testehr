@@ -23,7 +23,7 @@ import android.widget.TextView;
  * This class is called from within Doctor View and will display a list of all notes taken by doctor.
  * A option to add new notes or delete old notes will be present through buttons.
  */
-public class DoctorNotes extends Activity implements OnClickListener {
+public class PatientNotes extends Activity implements OnClickListener {
 	
 	
 	
@@ -105,8 +105,8 @@ public class DoctorNotes extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		
 		// TODO Auto-generated method stub
-		Intent doctorNotesIntent = new Intent(DoctorNotes.this, Note.class);
-		DoctorNotes.this.startActivity(doctorNotesIntent);
+		Intent doctorNotesIntent = new Intent(PatientNotes.this, Note.class);
+		PatientNotes.this.startActivity(doctorNotesIntent);
 	}
 
 }
