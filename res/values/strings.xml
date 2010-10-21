@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, HealthFoundation!</string>
-    <string name="app_name">HealthFoundation</string>
+    <string name="app_name">Health Foundation</string>
     <string name="loginTitle">Health Foundation - Login</string>
     <string name="doctorViewTitle">Health Foundation - Welcome Doctor</string>
     <string name="patientViewTitle">Health Foundation - Welcome Patient</string>
@@ -12,7 +11,7 @@
     <string name="doctorListTitle">Health Foundation - Doctor List</string>
     <string name="medicalRecordsTitle">Health Foundation - Medical Records</string>
     <string name="appointmentsTitle">Health Foundation - Appointments</string>
-<string name="ok">Click on OK to dismiss this message.</string>
-<string name="doctorNotesTitle">Health Foundation - Doctor Notes</string>
-<string name="NotesTitle">Health Foundation - Notes</string>
+	<string name="ok">Click on OK to dismiss this message.</string>
+	<string name="doctorNotesTitle">Health Foundation - Doctor Notes</string>
+	<string name="scheduleTitle">Health Foundation - Schedule</string>
 </resources>

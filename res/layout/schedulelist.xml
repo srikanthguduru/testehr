@@ -14,14 +14,40 @@
 		android:orientation="vertical"
 		android:stretchColumns="3"
 		>
-		<TableRow
-			android:stretchColumns="3">
-			
-			<Button android:id="@+id/pickDate"
-            android:layout_width="wrap_content"
+		<TableRow>
+			<Button android:id="@+id/datePickerButton"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Change the date"/>
-		
+            android:textSize="30sp"
+            android:layout_span="3"
+            android:text=""/>
+		</TableRow>
+		<TableRow>
+			<TextView
+				android:id="@+id/timeLabel"
+				android:layout_weight=".30"
+				android:layout_height="wrap_content"
+				android:textSize="25sp"
+				android:gravity="center"
+				android:text="Time"
+				/>
+				<TextView
+				android:id="@+id/emptyBorder"
+				android:background="@color/borderColor"
+				android:padding="0px"
+				android:layout_width="1px"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				/>
+				<TextView
+				android:id="@+id/eventLabel"
+				android:layout_weight=".70"
+				android:layout_height="wrap_content"
+				android:textSize="25sp"
+				android:gravity="center"
+				android:text="Event"		
+				/>
 		</TableRow>
 	</TableLayout>
 </ScrollView>
