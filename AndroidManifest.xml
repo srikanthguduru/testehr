@@ -18,8 +18,8 @@
         <activity android:name=".ui.PatientView"
                   android:label="@string/patientViewTitle">
         </activity>
-        <activity android:name=".ui.LabReview"
-                  android:label="@string/labReviewsTitle">
+        <activity android:name=".ui.VitalSigns"
+                  android:label="@string/vitalSignsTitle">
         </activity>
          <activity android:name=".ui.MedicationList"
                   android:label="@string/medicationListTitle">

@@ -17,7 +17,7 @@ import android.widget.Button;
 public class DoctorView extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
 	private Button patientList;
-	private Button labReviews;
+	private Button vitalSigns;
 	private Button medicationList;
 	private Button notes;
 	private Button scheduleList;
@@ -32,7 +32,7 @@ public class DoctorView extends Activity implements OnClickListener{
     
     private void initControls(){
     	patientList = (Button)findViewById(R.id.patientList);
-    	labReviews = (Button)findViewById(R.id.labReviews);
+    	vitalSigns = (Button)findViewById(R.id.vitalSigns);
     	medicationList = (Button)findViewById(R.id.doctorMedicationList);
     	notes = (Button)findViewById(R.id.doctorNotes);
     	scheduleList = (Button)findViewById(R.id.doctorScheduleList);
@@ -41,7 +41,7 @@ public class DoctorView extends Activity implements OnClickListener{
     	
     	
     	patientList.setOnClickListener(this);
-    	labReviews.setOnClickListener(this);
+    	vitalSigns.setOnClickListener(this);
     	medicationList.setOnClickListener(this);
     	notes.setOnClickListener(this);
     	scheduleList.setOnClickListener(this);
@@ -54,9 +54,9 @@ public class DoctorView extends Activity implements OnClickListener{
 			 AlertDialog confirm = AlertUtil.createLogoutMessage(
 					 this, this, "Are you sure you want to log out?");
 			 confirm.show();
-		}else if(v.getId() == R.id.labReviews){
-			Intent labReviewIntent = new Intent(DoctorView.this, LabReview.class);
-			DoctorView.this.startActivity(labReviewIntent);
+		}else if(v.getId() == R.id.vitalSigns){
+			Intent vitalSignsIntent = new Intent(DoctorView.this, VitalSigns.class);
+			DoctorView.this.startActivity(vitalSignsIntent);
 		}else if(v.getId() == R.id.doctorMedicationList){
 			Intent medicationListIntent = new Intent(DoctorView.this, MedicationList.class);
 			DoctorView.this.startActivity(medicationListIntent);

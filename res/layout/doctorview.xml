@@ -25,12 +25,13 @@
 				android:text="Patient List"
 				/>
 				<Button
-				android:id="@+id/labReviews"
+				android:id="@+id/vitalSigns"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:padding="20px"
 				android:textSize="18sp"
-				android:text="Lab Reviews"		/>
+				android:text="Vital Signs"		
+				/>
 				<Button
 				android:id="@+id/doctorMedicationList"
 				android:layout_width="fill_parent"
