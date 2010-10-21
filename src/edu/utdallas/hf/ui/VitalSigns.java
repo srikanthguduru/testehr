@@ -19,9 +19,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class LabReview extends Activity implements OnClickListener{
+public class VitalSigns extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
-	String[][] labReviews = new String[20][6];
+	String[][] vitalSigns = new String[20][6];
 	Bitmap checkImage;
 	int imageWidth;
 	int imageHeight;
@@ -32,15 +32,15 @@ public class LabReview extends Activity implements OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.labreview);
+        setContentView(R.layout.vitalsigns);
         initValues();
     }
     
     public void initValues(){
-    	scroll = (ScrollView)findViewById(R.id.labReviewScrollView);
+    	scroll = (ScrollView)findViewById(R.id.vitalSignsScrollView);
     	checkImage =  BitmapFactory.decodeResource(getResources(),R.drawable.check);
     	exImage = BitmapFactory.decodeResource(getResources(),R.drawable.ex);
-    	table = (TableLayout)findViewById(R.id.labReviewRootLayout);
+    	table = (TableLayout)findViewById(R.id.vitalSignsRootLayout);
     	scroll.setScrollbarFadingEnabled(true);
     	for(int i = 0; i < 20; i++){
     		TableRow row = new TableRow(this);
@@ -48,7 +48,7 @@ public class LabReview extends Activity implements OnClickListener{
     			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
     		}
     		for(int j = 0; j < 6; j++){
-    			labReviews[i][j] = j+":"+i;
+    			vitalSigns[i][j] = j+":"+i;
     			if(j==2 || j==4 ){
     				TextView border = new TextView(this);
     				if(i%2==0)
@@ -58,15 +58,15 @@ public class LabReview extends Activity implements OnClickListener{
     				row.addView(border);
     			}else if(j==1){
     				TextView text = ViewUtil.createTextView(
-    						this, labReviews[i][j], (float).48, j*100+i);
+    						this, vitalSigns[i][j], (float).48, j*100+i);
         			row.addView(text);
     			}else if(j==3){
     				TextView text = ViewUtil.createTextView(
-    						this, labReviews[i][j], (float).28, j*100+i);
+    						this, vitalSigns[i][j], (float).28, j*100+i);
         			row.addView(text);
     			}else if(j==5){
     				TextView text = ViewUtil.createTextView(
-    						this, labReviews[i][j], (float).20, j*100+i);
+    						this, vitalSigns[i][j], (float).20, j*100+i);
         			row.addView(text);
     			}else{
     				ImageView image;
