@@ -69,6 +69,7 @@ public class PatientList extends Activity implements OnClickListener{
 			for(int j=0; j<3; j++){
 				if(v.getId()==(j*100)+i){
 					Intent patientViewIntent = new Intent(PatientList.this, PatientView.class);
+					patientViewIntent.putExtra("patientId", v.getId());
 					PatientList.this.startActivity(patientViewIntent);
 				}
 			}

@@ -5,12 +5,15 @@
       android:versionName="1.0">
       <uses-permission android:name="android.permission.INTERNET" />
     <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true">
-        <activity android:name=".ui.Login"
-                  android:label="@string/loginTitle">
+        <activity android:name=".HealthFoundation"
+                  android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.Login"
+                  android:label="@string/loginTitle">
         </activity>
         <activity android:name=".ui.DoctorView"
                   android:label="@string/doctorViewTitle">
