@@ -20,7 +20,6 @@ public class Login extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
 	private Button loginButton;
 	private Button doctorViewButton;
-	private Button patientViewButton;
 	private EditText username;
 	private EditText password;
 	
@@ -36,7 +35,6 @@ public class Login extends Activity implements OnClickListener{
     private void initControls(){
     	//when database end complete remove this subset of buttons----------------------
     	doctorViewButton = (Button)findViewById(R.id.goToDoctorView);
-    	patientViewButton = (Button)findViewById(R.id.goToPatientView);
     	//------------------------------------------------------------------------------
     	
     	loginButton = (Button)findViewById(R.id.loginButton);
@@ -45,16 +43,12 @@ public class Login extends Activity implements OnClickListener{
     	
     	loginButton.setOnClickListener(this);
     	doctorViewButton.setOnClickListener(this);
-    	patientViewButton.setOnClickListener(this);
     }
 
 	public void onClick(View v) {
 		if(v.getId() == R.id.goToDoctorView){
 			Intent doctorViewIntent = new Intent(Login.this, DoctorView.class);
 			Login.this.startActivity(doctorViewIntent);
-		}else if(v.getId() == R.id.goToPatientView){
-			Intent patientViewIntent = new Intent(Login.this, PatientView.class);
-			Login.this.startActivity(patientViewIntent);
 		}else if(v.getId() == R.id.loginButton){
 			Connection con = new Connection();
 			String message = con.sendMessage(username.getText().toString(), password.getText().toString());

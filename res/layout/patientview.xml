@@ -17,20 +17,13 @@
 		android:stretchColumns="1"
 		>
 				<Button
-				android:id="@+id/doctorList"
+				android:id="@+id/vitalSigns"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:padding="20px"
 				android:textSize="18sp"
-				android:text="Doctor List"
+				android:text="Vital Signs"
 				/>
-				<Button
-				android:id="@+id/medicalRecords"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:padding="20px"
-				android:textSize="18sp"
-				android:text="Medical Records"		/>
 				<Button
 				android:id="@+id/patientMedicationList"
 				android:layout_width="fill_parent"
@@ -54,14 +47,6 @@
 				android:padding="20px"
 				android:textSize="18sp"
 				android:text="Appointments"
-				/>
-				<Button
-				android:id="@+id/patientLogout"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:padding="20px"
-				android:textSize="18sp"
-				android:text="Log Out"
 				/>
 	</LinearLayout>
 </ScrollView>

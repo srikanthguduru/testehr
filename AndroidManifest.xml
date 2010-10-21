@@ -30,6 +30,9 @@
         <activity android:name=".ui.DoctorNotes"
                   android:label="@string/doctorNotesTitle">
         </activity>
+        <activity android:name=".ui.PatientNotes"
+                  android:label="@string/notesTitle">
+        </activity>
         <activity android:name=".ui.Notes"
                   android:label="@string/notesTitle">
         </activity>

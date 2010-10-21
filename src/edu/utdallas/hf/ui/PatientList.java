@@ -5,10 +5,9 @@ package edu.utdallas.hf.ui;
  */
 
 import edu.utdallas.hf.R;
-import edu.utdallas.hf.commons.AlertUtil;
 import edu.utdallas.hf.commons.ViewUtil;
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -50,12 +49,12 @@ public class PatientList extends Activity implements OnClickListener{
     				row.addView(border);
     			}else if(j==0){
     				TextView text = ViewUtil.createTextView(
-    						this, patients[i][j], (float).7, j*100+i, this);
+    						this, patients[i][j], (float).7, (j*100)+i, this);
     				text.setPadding(0, 5, 0, 5);
         			row.addView(text);
     			}else if(j==2){
     				TextView text = ViewUtil.createTextView(
-    						this, patients[i][j], (float).3, j*100+i);
+    						this, patients[i][j], (float).3, (j*100)+i);
     				text.setPadding(0, 5, 0, 5);
         			row.addView(text);
     			}
@@ -69,9 +68,8 @@ public class PatientList extends Activity implements OnClickListener{
 		for(int i =0; i < 20; i++){
 			for(int j=0; j<3; j++){
 				if(v.getId()==(j*100)+i){
-					AlertDialog msg = AlertUtil.createAlertMessage(
-							this, "You clicked on: "+j+":"+i, "OK");
-					msg.show();
+					Intent patientViewIntent = new Intent(PatientList.this, PatientView.class);
+					PatientList.this.startActivity(patientViewIntent);
 				}
 			}
 		}
