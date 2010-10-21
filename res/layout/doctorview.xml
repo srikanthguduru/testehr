@@ -25,30 +25,6 @@
 				android:text="Patient List"
 				/>
 				<Button
-				android:id="@+id/vitalSigns"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:padding="20px"
-				android:textSize="18sp"
-				android:text="Vital Signs"		
-				/>
-				<Button
-				android:id="@+id/doctorMedicationList"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:padding="20px"
-				android:textSize="18sp"
-				android:text="Medication List"
-				/>
-				<Button
-				android:id="@+id/doctorNotes"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:padding="20px"
-				android:textSize="18sp"
-				android:text="Notes"
-				/>
-				<Button
 				android:id="@+id/doctorScheduleList"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"

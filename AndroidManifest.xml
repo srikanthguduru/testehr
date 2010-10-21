@@ -15,6 +15,9 @@
         <activity android:name=".ui.DoctorView"
                   android:label="@string/doctorViewTitle">
         </activity>
+        <activity android:name=".ui.PatientList"
+                  android:label="@string/patientListTitle">
+        </activity>
         <activity android:name=".ui.PatientView"
                   android:label="@string/patientViewTitle">
         </activity>
