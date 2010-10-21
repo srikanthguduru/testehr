@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<TableLayout android:id="@+id/TableLayout01" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/noteTextView" android:text="@+id/noteTextView" android:lines="10"></TextView>
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@+id/noteButton01" android:id="@+id/noteButton01"></Button>
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/noteButton02" android:text="@+id/noteButton02"></Button>
-</TableLayout>
+
+<ScrollView 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical" android:id="@+id/noteScrollView">
+	<TableLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:padding="0px"
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical"
+		android:stretchColumns="3"
+		android:id="@+id/noteRootLayout">
+		<TableRow><EditText android:text="@+id/EditText01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/noteEditText" android:lines="8"></EditText>
+				
+			</TableRow><TableRow><Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/noteButton01" android:text="Save"></Button><Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/noteButton02" android:text="Delete"></Button>
+				
+			</TableRow>
+	</TableLayout>
+
+
+</ScrollView>
