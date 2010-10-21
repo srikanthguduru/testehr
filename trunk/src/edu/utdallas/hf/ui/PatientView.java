@@ -21,6 +21,7 @@ public class PatientView extends Activity implements OnClickListener{
 	private Button notes;
 	private Button appointments;
 	private View patientScrollView;
+	private int patientId;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,11 +37,22 @@ public class PatientView extends Activity implements OnClickListener{
     	appointments = (Button)findViewById(R.id.patientAppointments);
     	patientScrollView = (View)findViewById(R.id.patientViewScrollView);
     	
+    	Bundle extras = getIntent().getExtras(); 
+    	if(extras !=null)
+    	{
+    		patientId = extras.getInt("patientId");
+    	}
+    	
+    	
     	vitalSigns.setOnClickListener(this);
     	medicationList.setOnClickListener(this);
     	notes.setOnClickListener(this);
     	appointments.setOnClickListener(this);
     	patientScrollView.setScrollbarFadingEnabled(true);
+    	
+    	AlertDialog alert = AlertUtil.createAlertMessage(
+    			this, "You are viewing patient: "+patientId, "OK");
+		alert.show();
     }
 
 	public void onClick(View v) {

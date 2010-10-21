@@ -4,7 +4,7 @@
     <string name="loginTitle">Health Foundation - Login</string>
     <string name="doctorViewTitle">Health Foundation - Welcome Doctor</string>
     <string name="patientListTitle">Health Foundation - Patient List</string>
-    <string name="patientViewTitle">Health Foundation - Welcome Patient</string>
+    <string name="patientViewTitle">Health Foundation - Viewing Patient</string>
     <string name="vitalSignsTitle">Health Foundation - Vital Signs</string>
     <string name="medicationListTitle">Health Foundation - Medication List</string>
     <string name="notesTitle">Health Foundation - Notes</string>

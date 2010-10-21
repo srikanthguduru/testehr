@@ -23,6 +23,7 @@ public class Login extends Activity implements OnClickListener{
 	private EditText username;
 	private EditText password;
 	
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

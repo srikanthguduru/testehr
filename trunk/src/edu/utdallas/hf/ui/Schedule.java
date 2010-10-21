@@ -54,7 +54,7 @@ public class Schedule extends Activity implements OnClickListener{
     	year = c.get(Calendar.YEAR);
     	day = c.get(Calendar.DAY_OF_MONTH);
     	
-    	timeButton.setText(month+"/"+day+"/"+year);
+    	timeButton.setText(month+1+"/"+day+"/"+year);
     	for(int i =0; i < times.length; i++){
     		TableRow row = new TableRow(this);
     		if(i%2 == 0){
