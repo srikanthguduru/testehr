@@ -5,7 +5,7 @@
 	android:layout_width="fill_parent" 
 	android:layout_height="fill_parent" 
 	xmlns:android="http://schemas.android.com/apk/res/android" 
-	android:id="@+id/doctorNotesScrollView">
+	android:id="@+id/patientNotesScrollView">
 
 	<TableLayout
 		android:layout_width="fill_parent"
@@ -14,7 +14,7 @@
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:orientation="vertical"
 		android:stretchColumns="6"
-		android:id="@+id/doctorNotesRootLayout">
+		android:id="@+id/patientNotesRootLayout">
 		<TableRow>
 				<TextView
 				android:id="@+id/emptyBorder1"
