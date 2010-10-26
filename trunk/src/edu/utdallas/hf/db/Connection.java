@@ -9,9 +9,13 @@ package edu.utdallas.hf.db;
  */
 
 import java.net.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Hashtable;
 import java.io.*;
 import android.util.Log;
+import edu.utdallas.hf.core.*;
 
 
 public class Connection
@@ -40,9 +44,9 @@ public class Connection
     	}
     }
 
-    public String sendMessage(String username, String password)
+    public String login(String username, String password)
     {
-    	String cmd = "blah";
+    	String cmd = "login";
     	Log.i("Connection", "Sending message");
 		
     	String output = "";
@@ -89,6 +93,55 @@ public class Connection
 			//System.out.println(ex.toString());
 		}
 		return output;
+
+    }
+    
+    public ArrayList<Patient> getPatientList()
+    {
+    	ArrayList<Patient> patientList = new ArrayList<Patient>();
+    	Patient patient = new Patient();
+    	String cmd = "patientList";
+    	Log.i("Connection", "Sending message");
+    	
+		try
+		{
+			connect();
+			//Encode the string combination into a url to send to the php page
+			String data = 
+				URLEncoder.encode("cmd", "UTF-8") + "=" +
+				URLEncoder.encode(cmd, "UTF-8");
+			
+			Log.i("Connection", "Sending message: " + data);
+
+		    OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
+            wr.write(data);
+            wr.flush();
+            Log.i("Connection", "Sending message to web");
+			String buffer;
+			
+			BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+			while ((buffer = rd.readLine()) != null)
+			{
+				Log.i("Connection", "Retrieving message buffer is " + buffer);
+				String[] bufferString = buffer.split(",");
+				Log.i("Connection", "DOB: "+bufferString[2]);
+				String[] dob = bufferString[2].split("-");
+				Calendar patientDob = new GregorianCalendar();
+				patientDob.set(Integer.parseInt(dob[0]), Integer.parseInt(dob[1]), Integer.parseInt(dob[2]));
+				patient = new Patient(bufferString[0], bufferString[1], patientDob, Integer.parseInt(bufferString[3]));
+				patientList.add(patient);
+			}
+			
+			wr.close();
+			rd.close();
+			
+		}
+		catch (Exception ex)
+		{
+			Log.i("Connection", "Exception: " + ex);
+			//System.out.println(ex.toString());
+		}
+		return patientList;
 
     }
 

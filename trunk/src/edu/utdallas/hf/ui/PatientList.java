@@ -4,8 +4,13 @@ package edu.utdallas.hf.ui;
  * @author Jerry Arnold - jxa074000
  */
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.ViewUtil;
+import edu.utdallas.hf.core.*;
+import edu.utdallas.hf.db.Connection;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +27,8 @@ public class PatientList extends Activity implements OnClickListener{
 	TableLayout table;
 	ScrollView scrollView;
 	TableRow row;
+	ArrayList<Patient> patientList = new ArrayList<Patient>();
+	Connection con;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +39,10 @@ public class PatientList extends Activity implements OnClickListener{
     }
     
     public void initValues(){
+    	con = new Connection();
+    	patientList = con.getPatientList();
     	table = (TableLayout)findViewById(R.id.patientListRootLayout);
-    	for(int i =0; i < 20; i++){
+    	for(int i =0; i < patientList.size(); i++){
     		row = new TableRow(this);
     		if(i%2 == 0){
     			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
@@ -49,12 +58,19 @@ public class PatientList extends Activity implements OnClickListener{
     				row.addView(border);
     			}else if(j==0){
     				TextView text = ViewUtil.createTextView(
-    						this, patients[i][j], (float).7, (j*100)+i, this);
+    						this, 
+    						patientList.get(i).getFName()+ " "+patientList.get(i).getLName(), 
+    						(float).7, 
+    						(j*100)+i, 
+    						this);
     				text.setPadding(0, 5, 0, 5);
         			row.addView(text);
     			}else if(j==2){
     				TextView text = ViewUtil.createTextView(
-    						this, patients[i][j], (float).3, (j*100)+i);
+    						this,
+    						patientList.get(i).getDob().get(Calendar.MONTH)+"/"+
+    						patientList.get(i).getDob().get(Calendar.DAY_OF_MONTH)+"/"+
+    						patientList.get(i).getDob().get(Calendar.YEAR), (float).3, (j*100)+i);
     				text.setPadding(0, 5, 0, 5);
         			row.addView(text);
     			}
