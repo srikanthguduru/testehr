@@ -24,13 +24,13 @@
 				android:gravity="center"
 				/>
 				<TextView
-				android:id="@+id/listLabel"
+				android:id="@+id/vitalDate"
 				android:layout_weight=".48"
 				android:layout_height="wrap_content"
 				android:paddingTop="5px"
 				android:textSize="25sp"
 				android:gravity="center"
-				android:text="List"
+				android:text="Date"
 				/>
 				<TextView
 				android:id="@+id/emptyBorder1"
@@ -41,13 +41,13 @@
 				android:gravity="center"
 				/>
 				<TextView
-				android:id="@+id/dateLabel"
+				android:id="@+id/vitalBmi"
 				android:layout_weight=".28"
 				android:layout_height="wrap_content"
 				android:paddingTop="5px"
 				android:textSize="25sp"
 				android:gravity="center"
-				android:text="Date"		
+				android:text="BMI"		
 				/>
 				<TextView
 				android:id="@+id/emptyBorder2"
@@ -58,13 +58,13 @@
 				android:gravity="center"
 				/>
 				<TextView
-				android:id="@+id/codeLabel"
+				android:id="@+id/vitalTemp"
 				android:layout_weight=".20"
 				android:layout_height="wrap_content"
 				android:paddingTop="5px"
 				android:textSize="25sp"
 				android:gravity="center"
-				android:text="Code"
+				android:text="Temp"
 				/>
 			</TableRow>
 	</TableLayout>
