@@ -3,6 +3,7 @@ package edu.utdallas.hf.core;
 import java.util.Calendar;
 
 
+
 public class Patient {
 	private String fName; 
 	private String lName;
@@ -43,11 +44,12 @@ public class Patient {
 	public Calendar getDob(){
 		return dob;
 	}
+	public String getDobString(){
+		return dob.get(Calendar.MONTH)+"/"+dob.get(Calendar.DAY_OF_MONTH)+"/"+dob.get(Calendar.YEAR);
+	}
 	public Vitals getVitals(){
 		return vitals;
 	}
-	
-	
 	public String getfName() {
 		return fName;
 	}

@@ -50,9 +50,6 @@ public class PatientView extends Activity implements OnClickListener{
     	appointments.setOnClickListener(this);
     	patientScrollView.setScrollbarFadingEnabled(true);
     	
-    	AlertDialog alert = AlertUtil.createAlertMessage(
-    			this, "You are viewing patient: "+patientId, "OK");
-		alert.show();
     }
 
 	public void onClick(View v) {
