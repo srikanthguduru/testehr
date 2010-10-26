@@ -5,7 +5,6 @@ package edu.utdallas.hf.ui;
  */
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.ViewUtil;
@@ -61,16 +60,16 @@ public class PatientList extends Activity implements OnClickListener{
     						this, 
     						patientList.get(i).getFName()+ " "+patientList.get(i).getLName(), 
     						(float).7, 
-    						(j*100)+i, 
+    						patientList.get(i).getId(), 
     						this);
     				text.setPadding(0, 5, 0, 5);
         			row.addView(text);
     			}else if(j==2){
     				TextView text = ViewUtil.createTextView(
     						this,
-    						patientList.get(i).getDob().get(Calendar.MONTH)+"/"+
-    						patientList.get(i).getDob().get(Calendar.DAY_OF_MONTH)+"/"+
-    						patientList.get(i).getDob().get(Calendar.YEAR), (float).3, (j*100)+i);
+    						patientList.get(i).getDobString(), 
+    						(float).3, 
+    						patientList.get(i).getId());
     				text.setPadding(0, 5, 0, 5);
         			row.addView(text);
     			}
@@ -81,9 +80,9 @@ public class PatientList extends Activity implements OnClickListener{
     
 
 	public void onClick(View v) {
-		for(int i =0; i < 20; i++){
+		for(int i =0; i < patientList.size(); i++){
 			for(int j=0; j<3; j++){
-				if(v.getId()==(j*100)+i){
+				if(v.getId()==patientList.get(i).getId()){
 					Intent patientViewIntent = new Intent(PatientList.this, PatientView.class);
 					patientViewIntent.putExtra("patientId", v.getId());
 					PatientList.this.startActivity(patientViewIntent);
