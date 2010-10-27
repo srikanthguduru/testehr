@@ -28,6 +28,7 @@ public class PatientView extends Activity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patientview);
         initControls();
+        
     }
     
     private void initControls(){
@@ -40,7 +41,7 @@ public class PatientView extends Activity implements OnClickListener{
     	Bundle extras = getIntent().getExtras(); 
     	if(extras !=null)
     	{
-    		patientId = extras.getInt("patientId");
+    		setPatientId(extras.getInt("patientId"));
     	}
     	
     	
@@ -56,6 +57,7 @@ public class PatientView extends Activity implements OnClickListener{
 		
 		if(v.getId()==R.id.vitalSigns){
 			Intent vitalSignsIntent = new Intent(PatientView.this, VitalSigns.class);
+			vitalSignsIntent.putExtra("pid", patientId);//passes patient id
 			PatientView.this.startActivity(vitalSignsIntent);
 		}else if(v.getId() == R.id.patientMedicationList){
 			Intent medicationListIntent = new Intent(PatientView.this, MedicationList.class);
@@ -68,5 +70,13 @@ public class PatientView extends Activity implements OnClickListener{
 			alert.show();
 		}
 		
+	}
+
+	public void setPatientId(int patientId) {
+		this.patientId = patientId;
+	}
+
+	public int getPatientId() {
+		return patientId;
 	}
 }

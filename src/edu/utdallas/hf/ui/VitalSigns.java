@@ -4,9 +4,15 @@ package edu.utdallas.hf.ui;
  * @author Jerry Arnold - jxa074000
  */
 
+import java.util.ArrayList;
+
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.ViewUtil;
+import edu.utdallas.hf.core.Patient;
+import edu.utdallas.hf.core.Vitals;
+import edu.utdallas.hf.db.Connection;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -28,21 +34,33 @@ public class VitalSigns extends Activity implements OnClickListener{
 	Bitmap exImage;
 	TableLayout table;
 	ScrollView scroll;
+	//connection-----------
+	Connection con;
+	int pid = 0;//patient id, this is values should be passed from patientView
+	ArrayList<Vitals> patientVitals = new ArrayList<Vitals>();
+	//----------------------
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vitalsigns);
         initValues();
+        Intent bgIntent = getIntent();
+        pid = bgIntent.getIntExtra("pid",0 );
     }
     
     public void initValues(){
+    	//connection----------------------
+    	con = new Connection();
+    	patientVitals = con.getPatientVitals(pid);
+    	//--------------------------------
     	scroll = (ScrollView)findViewById(R.id.vitalSignsScrollView);
     	checkImage =  BitmapFactory.decodeResource(getResources(),R.drawable.check);
     	exImage = BitmapFactory.decodeResource(getResources(),R.drawable.ex);
     	table = (TableLayout)findViewById(R.id.vitalSignsRootLayout);
     	scroll.setScrollbarFadingEnabled(true);
-    	for(int i = 0; i < 20; i++){
+    	
+    	for(int i = 0; i < patientVitals.size(); i++){
     		TableRow row = new TableRow(this);
     		if(i%2 == 0){
     			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
