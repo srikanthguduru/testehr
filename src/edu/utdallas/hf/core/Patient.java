@@ -3,7 +3,6 @@ package edu.utdallas.hf.core;
 import java.util.Calendar;
 
 
-
 public class Patient {
 	private String fName; 
 	private String lName;
