@@ -4,9 +4,9 @@ public class Vitals {
 	private int patientID;
 	private int vitalsID;
 	private float temperature = 0.0f;
-	private float bmi = 0.0f;
-	private float height = 0.0f;
-	private float weight = 0.0f;
+	private double bmi = 0.0f;
+	private float height = 0.0f;//inches
+	private float weight = 0.0f;//pounds
 	
 	public Vitals(int id, int pid, float h, float w, float t)
 	{
@@ -30,6 +30,12 @@ public class Vitals {
 	}
 	
 	
+	public void calcBMI()//works only when height is in inches and weight in pounds
+	{
+		bmi = (double)(weight * 703.0) / (height * height);
+	}
+	
+	
 	
 	public void setTemperature(float temperature) {
 		this.temperature = temperature;
@@ -37,10 +43,10 @@ public class Vitals {
 	public float getTemperature() {
 		return temperature;
 	}
-	public void setBmi(float bmi) {
+	public void setBmi(double bmi) {
 		this.bmi = bmi;
 	}
-	public float getBmi() {
+	public double getBmi() {
 		return bmi;
 	}
 	public void setPatientID(int patientID) {
