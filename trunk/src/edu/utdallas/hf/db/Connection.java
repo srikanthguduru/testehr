@@ -1,12 +1,9 @@
 package edu.utdallas.hf.db;
 
-/**
- * @(#)Connection.java
- *
- *
- * @author : not by binh vu
- * @version 1.00 2010/10/16
- */
+/** 
+ * As part of the final documentation, Code Comments will be included, as specified by Razo
+ * 
+ * */
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -2,7 +2,10 @@ package edu.utdallas.hf.core;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
+/** 
+ * As part of the final documentation, Code Comments will be included, as specified by Razo
+ * 
+ * */
 public class Doctor {
 	private String fName;
 	private String lName;

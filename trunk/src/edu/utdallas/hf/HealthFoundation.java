@@ -6,7 +6,10 @@ import android.os.Bundle;
 
 
 public class HealthFoundation extends Activity{
-    /** Called when the activity is first created. */
+    /** 
+     * As part of the final documentation, Code Comments will be included, as specified by Razo
+     * 
+     * */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

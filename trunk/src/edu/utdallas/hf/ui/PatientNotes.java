@@ -1,7 +1,8 @@
 package edu.utdallas.hf.ui;
-/**
- * @author Joshua Reisenauer
- */
+/** 
+ * As part of the final documentation, Code Comments will be included, as specified by Razo
+ * 
+ * */
 
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.ViewUtil;
