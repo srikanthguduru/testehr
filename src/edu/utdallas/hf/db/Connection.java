@@ -17,6 +17,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import android.util.Log;
+import edu.utdallas.hf.commons.DateUtil;
 import edu.utdallas.hf.core.Patient;
 import edu.utdallas.hf.core.Vitals;
 
@@ -135,10 +136,14 @@ public class Connection
 				Log.i("Connection", "Retrieving message buffer is " + buffer);
 				String[] bufferString = buffer.split(",");
 				Log.i("Connection", "DOB: "+bufferString[2]);
-				String[] dob = bufferString[2].split("-");
 				Calendar patientDob = new GregorianCalendar();
-				patientDob.set(Integer.parseInt(dob[0]), Integer.parseInt(dob[1]), Integer.parseInt(dob[2]));
-				patient = new Patient(bufferString[0], bufferString[1], patientDob, Integer.parseInt(bufferString[3]));
+				//set the calendar from the date string from database
+				patientDob = DateUtil.parseDateString(bufferString[2]);
+				//create new patient with the date from database query
+				patient = new Patient(bufferString[0], 
+									  bufferString[1], 
+									  patientDob, 
+									  Integer.parseInt(bufferString[3]));
 				patientList.add(patient);
 			}
 			
@@ -186,11 +191,13 @@ public class Connection
 				
 				Log.i("Connection", "Retrieving message buffer is " + buffer);
 				String[] bufferString = buffer.split(",");
-				String[] date = bufferString[2].split("-");
 				Calendar vitalDate = new GregorianCalendar();
-				System.out.println("patient Vitals: "+bufferString[0]+ " "+bufferString[1]);
-				vitalDate.set(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
-				patientVitals = new Vitals(Integer.parseInt(bufferString[0]), pid, Float.parseFloat(bufferString[2]), Float.parseFloat(bufferString[3]));
+				vitalDate = DateUtil.parseDateString(bufferString[1]);
+				patientVitals = new Vitals(Integer.parseInt(bufferString[0]), 
+											pid, 
+											vitalDate, 
+											Float.parseFloat(bufferString[2]), 
+											Float.parseFloat(bufferString[3]));
 				vList.add(patientVitals);
 			}
 			
