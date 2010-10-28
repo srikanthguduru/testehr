@@ -31,11 +31,11 @@ if($_POST[cmd] == "login") {
 	
 }elseif($_POST[cmd] == "patientVitals") {
 
-	$sql = "SELECT id, pid, height, weight, temperature FROM openemr.form_vitals WHERE pid='" . $_POST[pid] . "'";
+	$sql = "SELECT id, bmi, temperature FROM openemr.form_vitals WHERE pid='" . $_POST[pid] . "'";
 	$sql_results = DoMysqlQuery("openemr", $sql);
 
 	foreach($sql_results as $res) {
-		print $res[id] . ',' . $res[pid] .','. $res[height] .','. $res[weight] .','. $res[temperature] . "\n";
+		print $res[id] . ',' . $res[bmi] .','. $res[temperature] . "\n";
 	}
 }else {
 	print "No.";
