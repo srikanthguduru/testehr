@@ -4,6 +4,8 @@ package edu.utdallas.hf.ui;
  * @author Jerry Arnold - jxa074000
  */
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -26,6 +28,7 @@ public class Login extends Activity implements OnClickListener{
 	private Button test;
 	private EditText username;
 	private EditText password;
+	NumberFormat formatter = new DecimalFormat("#00.##");
 	
 	
     @Override
@@ -83,8 +86,8 @@ public class Login extends Activity implements OnClickListener{
 			String testContent = "";
 			ArrayList<Vitals> patientList = con.getPatientVitals(1);
 			for(int i =0; i < patientList.size(); i++){
-				testContent += "BMI: "+patientList.get(i).getBmi()+"\n";
-				testContent += "Temp: "+patientList.get(i).getTemperature()+"\n";
+				testContent += "BMI: "+formatter.format(patientList.get(i).getBmi())+"\n";
+				testContent += "Temp: "+formatter.format(patientList.get(i).getTemperature())+"\n";
 			}
 			AlertDialog blargh = AlertUtil.createAlertMessage(
 					this, 

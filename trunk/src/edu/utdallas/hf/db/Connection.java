@@ -8,13 +8,20 @@ package edu.utdallas.hf.db;
  * @version 1.00 2010/10/16
  */
 
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.io.*;
+
 import android.util.Log;
-import edu.utdallas.hf.core.*;
+import edu.utdallas.hf.core.Patient;
+import edu.utdallas.hf.core.Vitals;
 
 
 public class Connection
@@ -27,8 +34,7 @@ public class Connection
     	//Establish a connection to the database's php page
     	try
     	{
-    		//
-    		//http://66.207.167.195/androidtest.php
+    		
 	    	url = new URL("http://66.207.167.195/androidtest.php");
 			urlConnection = url.openConnection();
 			//Tell the php page we're sending "POST" messages
