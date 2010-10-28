@@ -37,8 +37,21 @@ if($_POST[cmd] == "login") {
 	foreach($sql_results as $res) {
 		print $res[id] . ',' . $res[bmi] .','. $res[temperature] . "\n";
 	}
+	
+}elseif($_POST[cmd] == "medicationList") {
+
+	$sql = "SELECT id, patient_id, drug, dosage, unit, active FROM openemr.prescriptions WHERE pid='" . $_POST[pid] . "'";
+	$sql_results = DoMysqlQuery("openemr", $sql);
+
+	foreach($sql_results as $res) {
+		print $res[id] . ',' . $res[pid] .','. $res[drug] . ','. $res[dosage] .','. $res[unit] . ','. $res[active]"\n";
+	}
+	
+	
+	
 }else {
 	print "No.";
 }
+
 
 ?>

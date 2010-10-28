@@ -27,7 +27,8 @@ public class Connection
     	//Establish a connection to the database's php page
     	try
     	{
-    		
+    		//
+    		//http://66.207.167.195/androidtest.php
 	    	url = new URL("http://66.207.167.195/androidtest.php");
 			urlConnection = url.openConnection();
 			//Tell the php page we're sending "POST" messages

@@ -9,7 +9,6 @@ public class Doctor {
 	private Calendar dob;
 	private int id;
 	private ArrayList<Patient> patients;
-	
 	public Doctor(){
 		fName = "";
 		lName ="";
