@@ -2,7 +2,10 @@ package edu.utdallas.hf.core;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
+/** 
+ * As part of the final documentation, Code Comments will be included, as specified by Razo
+ * 
+ * */
 
 public class Vitals {
 	private int patientID;

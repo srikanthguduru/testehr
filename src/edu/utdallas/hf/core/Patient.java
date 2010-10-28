@@ -1,7 +1,11 @@
 package edu.utdallas.hf.core;
 
+import java.util.ArrayList;
 import java.util.Calendar;
-
+/** 
+ * As part of the final documentation, Code Comments will be included, as specified by Razo
+ * 
+ * */
 
 public class Patient {
 	private String fName; 
@@ -9,6 +13,7 @@ public class Patient {
 	private int id;
 	private Calendar dob;
 	private Vitals vitals;
+	private ArrayList<Note> notes;
 	
 	public Patient(){
 		fName = "";
@@ -69,5 +74,11 @@ public class Patient {
 	}
 	public void setId(int i){
 		id = i;
+	}
+	public void setNotes(ArrayList<Note> notes) {
+		this.notes = notes;
+	}
+	public ArrayList<Note> getNotes() {
+		return notes;
 	}
 }

@@ -1,9 +1,9 @@
 package edu.utdallas.hf.ui;
 
-/**
- * @author Jerry Arnold - jxa074000
- */
-
+/** 
+ * As part of the final documentation, Code Comments will be included, as specified by Razo
+ * 
+ * */
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.AlertUtil;
 import android.app.Activity;

@@ -9,9 +9,10 @@ import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-/**
- * @author Jerry Arnold - jxa074000
- */
+/** 
+ * As part of the final documentation, Code Comments will be included, as specified by Razo
+ * 
+ * */
 
 public class ViewUtil {
 	
