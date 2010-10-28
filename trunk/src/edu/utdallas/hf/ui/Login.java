@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.AlertUtil;
+import edu.utdallas.hf.commons.DateUtil;
 import edu.utdallas.hf.core.Vitals;
 import edu.utdallas.hf.db.Connection;
 
@@ -89,7 +90,12 @@ public class Login extends Activity implements OnClickListener{
 			for(int i =0; i < patientList.size(); i++){
 				testContent += "BMI: "+formatter.format(patientList.get(i).getBmi())+"\n";
 				testContent += "Temp: "+formatter.format(patientList.get(i).getTemperature())+"\n";
-				//testContent += "Date: "+patientList.get(i).getDate()+"\n";
+				testContent += "Date: "+DateUtil.getDateString(patientList.get(i).getDate())+"\n";
+				/*
+				testContent += "BMI: "+patientList.get(i).getfName()+"\n";
+				testContent += "Temp: "+patientList.get(i).getLName()+"\n";
+				testContent += "Date: "+patientList.get(i).getDobString()+"\n";
+				*/
 			}
 			AlertDialog blargh = AlertUtil.createAlertMessage(
 					this, 
