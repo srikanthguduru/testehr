@@ -88,6 +88,7 @@ public class Login extends Activity implements OnClickListener{
 			for(int i =0; i < patientList.size(); i++){
 				testContent += "BMI: "+formatter.format(patientList.get(i).getBmi())+"\n";
 				testContent += "Temp: "+formatter.format(patientList.get(i).getTemperature())+"\n";
+				//testContent += "Date: "+patientList.get(i).getDate()+"\n";
 			}
 			AlertDialog blargh = AlertUtil.createAlertMessage(
 					this, 
