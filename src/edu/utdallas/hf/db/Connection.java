@@ -12,7 +12,6 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Hashtable;
 import java.io.*;
 import android.util.Log;
 import edu.utdallas.hf.core.*;
@@ -200,14 +199,4 @@ public class Connection
 
     }
     
-    
-    
-    
-    public Hashtable labView(int id)
-    {
-    	Hashtable<String, Integer> testThing = new Hashtable<String, Integer>();
-    	
-    	
-    	return testThing;
-    }
 }
