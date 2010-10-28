@@ -189,8 +189,11 @@ public class Connection
 				
 				Log.i("Connection", "Retrieving message buffer is " + buffer);
 				String[] bufferString = buffer.split(",");
+				String[] date = bufferString[2].split("-");
+				Calendar vitalDate = new GregorianCalendar();
 				System.out.println("patient Vitals: "+bufferString[0]+ " "+bufferString[1]);
-				patientVitals = new Vitals(Integer.parseInt(bufferString[0]), pid, Float.parseFloat(bufferString[1]), Float.parseFloat(bufferString[2]));
+				vitalDate.set(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
+				patientVitals = new Vitals(Integer.parseInt(bufferString[0]), pid, Float.parseFloat(bufferString[2]), Float.parseFloat(bufferString[3]));
 				vList.add(patientVitals);
 			}
 			

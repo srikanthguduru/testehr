@@ -1,10 +1,14 @@
 package edu.utdallas.hf.core;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 
 public class Vitals {
 	private int patientID;
 	private int vitalsID;
 	private float temperature = 0.0f;
+	private Calendar date = new GregorianCalendar();
 	private double bmi = 0.0f;
 	private float height = 0.0f;//inches
 	private float weight = 0.0f;//pounds
@@ -38,7 +42,21 @@ public class Vitals {
 		temperature = temp;
 	}
 	
-
+	public Vitals(int id, int pid, Calendar date, float Bmi, float temp)
+	{
+		patientID = pid;
+		vitalsID = id;
+		this.bmi = Bmi;
+		this.date = date;
+		temperature = temp;
+	}
+	
+	public Calendar getDate() {
+		return date;
+	}
+	public void setDate(Calendar date) {
+		this.date = date;
+	}
 	public void setTemperature(float temperature) {
 		this.temperature = temperature;
 	}
