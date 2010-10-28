@@ -6,10 +6,6 @@ package edu.utdallas.hf.ui;
 
 import java.util.ArrayList;
 
-import edu.utdallas.hf.R;
-import edu.utdallas.hf.commons.AlertUtil;
-import edu.utdallas.hf.core.Patient;
-import edu.utdallas.hf.db.Connection;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -18,6 +14,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import edu.utdallas.hf.R;
+import edu.utdallas.hf.commons.AlertUtil;
+import edu.utdallas.hf.core.Vitals;
+import edu.utdallas.hf.db.Connection;
 
 public class Login extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
@@ -81,10 +81,10 @@ public class Login extends Activity implements OnClickListener{
 		}else if(v.getId() == R.id.test){
 			Connection con = new Connection();
 			String testContent = "";
-			ArrayList<Patient> patientList = con.getPatientList();
+			ArrayList<Vitals> patientList = con.getPatientVitals(1);
 			for(int i =0; i < patientList.size(); i++){
-				testContent += "First Name: "+patientList.get(i).getFName()+"\n";
-				testContent += "Last Name: "+patientList.get(i).getLName()+"\n";
+				testContent += "BMI: "+patientList.get(i).getBmi()+"\n";
+				testContent += "Temp: "+patientList.get(i).getTemperature()+"\n";
 			}
 			AlertDialog blargh = AlertUtil.createAlertMessage(
 					this, 
