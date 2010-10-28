@@ -58,7 +58,8 @@ public class PatientList extends Activity implements OnClickListener{
     			}else if(j==0){
     				TextView text = ViewUtil.createTextView(
     						this, 
-    						patientList.get(i).getFName()+ " "+patientList.get(i).getLName(), 
+    						patientList.get(i).getFName()+ " "+
+    						patientList.get(i).getLName(), 
     						(float).7, 
     						patientList.get(i).getId(), 
     						this);

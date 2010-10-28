@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.ViewUtil;
-import edu.utdallas.hf.core.Patient;
 import edu.utdallas.hf.core.Vitals;
 import edu.utdallas.hf.db.Connection;
 import android.app.Activity;

@@ -164,9 +164,8 @@ public class Connection
 		{
 			connect();
 			//Encode the string combination into a url to send to the php page
-			String data = 
-				URLEncoder.encode("pid", "UTF-8") + "=" +
-				URLEncoder.encode("" + pid, "UTF-8") + "&" +
+			String data = URLEncoder.encode("pid", "UTF-8") + "=" +
+				URLEncoder.encode(""+pid, "UTF-8") + "&" +
 				URLEncoder.encode("cmd", "UTF-8") + "=" +
 				URLEncoder.encode(cmd, "UTF-8");
 			
@@ -181,9 +180,11 @@ public class Connection
 			BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 			while ((buffer = rd.readLine()) != null)
 			{
+				
 				Log.i("Connection", "Retrieving message buffer is " + buffer);
 				String[] bufferString = buffer.split(",");
-				patientVitals = new Vitals(Integer.parseInt(bufferString[0]), Integer.parseInt(bufferString[1]), Float.parseFloat(bufferString[2]), Float.parseFloat(bufferString[3]), Float.parseFloat(bufferString[4]));
+				System.out.println("patient Vitals: "+bufferString[0]+ " "+bufferString[1]);
+				patientVitals = new Vitals(Integer.parseInt(bufferString[0]), pid, Float.parseFloat(bufferString[1]), Float.parseFloat(bufferString[2]));
 				vList.add(patientVitals);
 			}
 			

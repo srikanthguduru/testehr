@@ -23,20 +23,18 @@ public class Vitals {
 		vitalsID = id;
 		this.bmi = Bmi;
 	}
+	public Vitals(int id, int pid, float Bmi, float temp)
+	{
+		patientID = pid;
+		vitalsID = id;
+		this.bmi = Bmi;
+		temperature = temp;
+	}
 	
 	public Vitals()
 	{
 		
 	}
-	
-	
-	public void calcBMI()//works only when height is in inches and weight in pounds
-	{
-		bmi = (double)(weight * 703.0) / (height * height);
-	}
-	
-	
-	
 	public void setTemperature(float temperature) {
 		this.temperature = temperature;
 	}
