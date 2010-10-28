@@ -1,5 +1,6 @@
 package edu.utdallas.hf.core;
 
+
 public class Vitals {
 	private int patientID;
 	private int vitalsID;
@@ -8,6 +9,11 @@ public class Vitals {
 	private float height = 0.0f;//inches
 	private float weight = 0.0f;//pounds
 	
+	
+	public Vitals()
+	{
+		
+	}
 	public Vitals(int id, int pid, float h, float w, float t)
 	{
 		patientID = pid;
@@ -23,6 +29,7 @@ public class Vitals {
 		vitalsID = id;
 		this.bmi = Bmi;
 	}
+	
 	public Vitals(int id, int pid, float Bmi, float temp)
 	{
 		patientID = pid;
@@ -31,10 +38,7 @@ public class Vitals {
 		temperature = temp;
 	}
 	
-	public Vitals()
-	{
-		
-	}
+
 	public void setTemperature(float temperature) {
 		this.temperature = temperature;
 	}
