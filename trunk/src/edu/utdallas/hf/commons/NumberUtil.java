@@ -10,4 +10,11 @@ public class NumberUtil {
 		value = formatter.format(f);
 		return value;
 	}
+	
+	public static String getTwoDigits(double d){
+		String value = "";
+		NumberFormat formatter = new DecimalFormat("#00.##");
+		value = formatter.format(d);
+		return value;
+	}
 }
