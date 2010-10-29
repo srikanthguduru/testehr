@@ -12,7 +12,6 @@ import edu.utdallas.hf.commons.ViewUtil;
 import edu.utdallas.hf.core.Vitals;
 import edu.utdallas.hf.db.Connection;
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -27,7 +26,6 @@ import android.widget.TextView;
 
 public class VitalSigns extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
-	String[][] vitalSigns = new String[20][6];
 	Bitmap checkImage;
 	int imageWidth;
 	int imageHeight;
@@ -45,11 +43,13 @@ public class VitalSigns extends Activity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vitalsigns);
         initValues();
-        Intent bgIntent = getIntent();
-        pid = bgIntent.getIntExtra("pid",0 );
     }
     
     public void initValues(){
+    	Bundle extras = getIntent().getExtras(); 
+    	if(extras !=null){
+    		pid = extras.getInt("pid");
+    	}
     	//connection----------------------
     	con = new Connection();
     	patientVitals = con.getPatientVitals(pid);
@@ -66,7 +66,6 @@ public class VitalSigns extends Activity implements OnClickListener{
     			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
     		}
     		for(int j = 0; j < 6; j++){
-    			vitalSigns[i][j] = j+":"+i;
     			if(j==2 || j==4 ){
     				TextView border = new TextView(this);
     				if(i%2==0)
@@ -76,19 +75,19 @@ public class VitalSigns extends Activity implements OnClickListener{
     				row.addView(border);
     			}else if(j==1){
     				TextView text = ViewUtil.createTextView(
-    						this, vitalSigns[i][j], (float).48, j*100+i);
+    						this, patientVitals.get(i).getDateStirng(), (float).48, j*100+i);
         			row.addView(text);
     			}else if(j==3){
     				TextView text = ViewUtil.createTextView(
-    						this, vitalSigns[i][j], (float).28, j*100+i);
+    						this, patientVitals.get(i).getBmiString(), (float).28, j*100+i);
         			row.addView(text);
     			}else if(j==5){
     				TextView text = ViewUtil.createTextView(
-    						this, vitalSigns[i][j], (float).20, j*100+i);
+    						this, patientVitals.get(i).getTemperatureString(), (float).20, j*100+i);
         			row.addView(text);
     			}else{
     				ImageView image;
-    				if(i%2==0)
+    				if(patientVitals.get(i).getBmi() <= 24.9 && patientVitals.get(i).getBmi() >= 18.5)
     					image = ViewUtil.createImageView(this, R.drawable.check, checkImage);
     				else
     					image = ViewUtil.createImageView(this, R.drawable.ex, exImage);

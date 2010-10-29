@@ -2,6 +2,8 @@ package edu.utdallas.hf.core;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import edu.utdallas.hf.commons.DateUtil;
 /** 
  * As part of the final documentation, Code Comments will be included, as specified by Razo
  * 
@@ -49,7 +51,7 @@ public class Patient {
 		return dob;
 	}
 	public String getDobString(){
-		return dob.get(Calendar.MONTH)+"/"+dob.get(Calendar.DAY_OF_MONTH)+"/"+dob.get(Calendar.YEAR);
+		return DateUtil.getDateString(dob);
 	}
 	public Vitals getVitals(){
 		return vitals;

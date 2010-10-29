@@ -2,6 +2,9 @@ package edu.utdallas.hf.core;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import edu.utdallas.hf.commons.DateUtil;
+import edu.utdallas.hf.commons.NumberUtil;
 /** 
  * As part of the final documentation, Code Comments will be included, as specified by Razo
  * 
@@ -12,7 +15,7 @@ public class Vitals {
 	private int vitalsID;
 	private float temperature = 0.0f;
 	private Calendar date = new GregorianCalendar();
-	private double bmi = 0.0f;
+	private float bmi = 0.0f;
 	private float height = 0.0f;//inches
 	private float weight = 0.0f;//pounds
 	
@@ -57,6 +60,9 @@ public class Vitals {
 	public Calendar getDate() {
 		return date;
 	}
+	public String getDateStirng(){
+		return DateUtil.getDateString(date);
+	}
 	public void setDate(Calendar date) {
 		this.date = date;
 	}
@@ -66,11 +72,17 @@ public class Vitals {
 	public float getTemperature() {
 		return temperature;
 	}
-	public void setBmi(double bmi) {
+	public String getTemperatureString(){
+		return NumberUtil.getTwoDigits(temperature);
+	}
+	public void setBmi(float bmi) {
 		this.bmi = bmi;
 	}
-	public double getBmi() {
+	public float getBmi() {
 		return bmi;
+	}
+	public String getBmiString(){
+		return NumberUtil.getTwoDigits(bmi);
 	}
 	public void setPatientID(int patientID) {
 		this.patientID = patientID;
