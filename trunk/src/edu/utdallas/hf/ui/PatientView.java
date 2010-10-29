@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -56,6 +57,7 @@ public class PatientView extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		
 		if(v.getId()==R.id.vitalSigns){
+			Log.i("PatientView", "Sending pid to VitalSigns: "+patientId);
 			Intent vitalSignsIntent = new Intent(PatientView.this, VitalSigns.class);
 			vitalSignsIntent.putExtra("pid", patientId);//passes patient id
 			PatientView.this.startActivity(vitalSignsIntent);
