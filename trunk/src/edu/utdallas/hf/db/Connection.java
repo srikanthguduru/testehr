@@ -18,6 +18,7 @@ import java.util.GregorianCalendar;
 
 import android.util.Log;
 import edu.utdallas.hf.commons.DateUtil;
+import edu.utdallas.hf.core.Medication;
 import edu.utdallas.hf.core.Patient;
 import edu.utdallas.hf.core.Vitals;
 
@@ -211,6 +212,65 @@ public class Connection
 			//System.out.println(ex.toString());
 		}
 		return vList;
+
+    }
+    
+    public ArrayList<Medication> getPatientMedication(int pid)
+    {
+    	ArrayList<Medication> mList = new ArrayList<Medication>();
+    	Medication medication;
+    	String cmd = "medicationList";
+    	Log.i("Connection", "Sending message");
+    	
+		try
+		{
+			connect();
+			//Encode the string combination into a url to send to the php page
+			String data = URLEncoder.encode("pid", "UTF-8") + "=" +
+				URLEncoder.encode(""+pid, "UTF-8") + "&" +
+				URLEncoder.encode("cmd", "UTF-8") + "=" +
+				URLEncoder.encode(cmd, "UTF-8");
+			
+			Log.i("Connection", "Sending message: " + data);
+
+		    OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
+            wr.write(data);
+            wr.flush();
+            Log.i("Connection", "Sending message to web");
+			String buffer;
+			
+			BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+			while ((buffer = rd.readLine()) != null)
+			{
+				
+				Log.i("Connection", "Retrieving message buffer is " + buffer);
+				String[] bufferString = buffer.split(",");
+				
+				boolean active = false;
+				int act = Integer.parseInt(bufferString[5]);
+				if(act == 1) active = true;
+				else if (act == 0) active = false;
+				Log.e("Connection", "Drug: "+bufferString[2]);
+				medication = new Medication(
+						Integer.parseInt(bufferString[0]), 
+						Integer.parseInt(bufferString[1]), 
+						bufferString[2], 
+						Integer.parseInt(bufferString[3]), 
+						Integer.parseInt(bufferString[4]), 
+						active);
+				mList.add(medication);
+			}
+			
+			wr.close();
+			rd.close();
+			
+		}
+		catch (Exception ex)
+		{
+			Log.i("Connection", "Exception: " + ex);
+			//System.out.println(ex.toString());
+		}
+		return mList;
 
     }
     

@@ -19,9 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.AlertUtil;
-import edu.utdallas.hf.commons.DateUtil;
-import edu.utdallas.hf.commons.NumberUtil;
-import edu.utdallas.hf.core.Vitals;
+import edu.utdallas.hf.core.Medication;
 import edu.utdallas.hf.db.Connection;
 
 public class Login extends Activity implements OnClickListener{
@@ -87,11 +85,12 @@ public class Login extends Activity implements OnClickListener{
 		}else if(v.getId() == R.id.test){
 			Connection con = new Connection();
 			String testContent = "";
-			ArrayList<Vitals> patientList = con.getPatientVitals(1);
+			ArrayList<Medication> patientList = con.getPatientMedication(1);
 			for(int i =0; i < patientList.size(); i++){
-				testContent += "BMI: "+NumberUtil.getTwoDigits(patientList.get(i).getBmi())+"\n";
-				testContent += "Temp: "+NumberUtil.getTwoDigits(patientList.get(i).getTemperature())+"\n";
-				testContent += "Date: "+DateUtil.getDateString(patientList.get(i).getDate())+"\n";
+				testContent += "Drug: "+patientList.get(i).getDrug()+"\n";
+				testContent += "Dosage: "+patientList.get(i).getDosage()+"\n";
+				testContent += "Unit: "+patientList.get(i).getUnit()+"\n";
+				testContent += "Active: "+patientList.get(i).isActive()+"\n";
 			}
 			AlertDialog blargh = AlertUtil.createAlertMessage(
 					this, 
