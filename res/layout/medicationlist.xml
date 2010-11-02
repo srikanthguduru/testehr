@@ -22,7 +22,7 @@
 				android:layout_height="wrap_content"
 				android:textSize="25sp"
 				android:gravity="center"
-				android:text="Medicine List"
+				android:text="Drug/Dose/Units"
 				/>
 				<TextView
 				android:id="@+id/emptyBorder3"

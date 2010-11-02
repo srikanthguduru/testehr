@@ -63,6 +63,7 @@ public class PatientView extends Activity implements OnClickListener{
 			PatientView.this.startActivity(vitalSignsIntent);
 		}else if(v.getId() == R.id.patientMedicationList){
 			Intent medicationListIntent = new Intent(PatientView.this, MedicationList.class);
+			medicationListIntent.putExtra("pid", patientId);//passes patient id
 			PatientView.this.startActivity(medicationListIntent);
 		}else if(v.getId() == R.id.patientNotes){
 			Intent patientNotesIntent = new Intent(PatientView.this, PatientNotes.class);
