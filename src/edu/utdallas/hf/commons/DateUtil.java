@@ -5,6 +5,11 @@ import java.util.GregorianCalendar;
 
 public class DateUtil {
 	
+	/**
+	 * The Date as a string based on the calendar object
+	 * @param cal The calendar object
+	 * @return The String representation of the calendar object mm/dd/yyyy
+	 */
 	public static String getDateString(Calendar cal){
 		String dateString = "";
 		dateString+=cal.get(Calendar.MONTH)+1+"/"+
@@ -13,6 +18,11 @@ public class DateUtil {
 		return dateString;
 	}
 	
+	/**
+	 * The date as a Calendar object based on a date string
+	 * @param dateString The string representation of a date (yyyy-mm-dd)
+	 * @return the calendar obeject based on the dateString
+	 */
 	public static Calendar parseDateString(String dateString){
 		Calendar cal = null;
 		cal = new GregorianCalendar();

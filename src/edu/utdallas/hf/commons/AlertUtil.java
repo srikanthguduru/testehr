@@ -12,8 +12,13 @@ import android.content.DialogInterface;
 
 public class AlertUtil {
 	
-	//creates an alert message with one choice only
-	//when the button is clicked on, dismisses the message
+	/** creates an alert message with one choice only
+	 *  when the button is clicked on, dismisses the message
+	 *  @param con The contact that the alert message shows up in
+	 *  @param msg The message to display in the alert dialog
+	 *  @param btString the string on the button that the user clicks on 
+	 *  @return The Alert Dialog
+	 */
 	public static AlertDialog createAlertMessage(Context con, String msg, String btStr){
 		AlertDialog.Builder builder = new AlertDialog.Builder(con);
 		builder.setMessage(msg)
@@ -27,10 +32,16 @@ public class AlertUtil {
 		return alert;
 	}
 	
-	//creates an alert message with yes/no choices
-	//for when the user clicks on log out in either doctor view or patient view
-	//when clicked on 'yes', finishes the activity
-	//when clicked on 'no', dismisses the alert message
+	/**creates an alert message with yes/no choices
+	 * for when the user clicks on log out in either doctor view or patient view
+	 * when clicked on 'yes', finishes the activity
+	 * when clicked on 'no', dismisses the alert message
+	 * 
+	 * @param act The Activity that the user is on
+	 * @param con the context that the user is on
+	 * @param msg the message to show on the alert dialog
+	 * @return the Alert dialog
+	 */
 	public static AlertDialog createLogoutMessage(final Activity act, Context con, String msg){
 		AlertDialog.Builder builder = new AlertDialog.Builder(con);
 		builder.setMessage(msg)
