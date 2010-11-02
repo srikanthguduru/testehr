@@ -31,25 +31,32 @@ if($_POST[cmd] == "login") {
 	
 }elseif($_POST[cmd] == "patientVitals") {
 
-	$sql = "SELECT id, bmi, temperature FROM openemr.form_vitals WHERE pid='" . $_POST[pid] . "'";
+	$sql = "SELECT id, date, bmi, temperature FROM openemr.form_vitals WHERE pid='" . $_POST[pid] . "' order by date desc";
 	$sql_results = DoMysqlQuery("openemr", $sql);
 
 	foreach($sql_results as $res) {
-		print $res[id] . ',' . $res[bmi] .','. $res[temperature] . "\n";
+		print $res[id] . ',' . $res[date] .','. $res[bmi] .','. $res[temperature] ."\n";
 	}
 	
-}elseif($_POST[cmd] == "medicationList") {
+}
+elseif($_POST[cmd] == "medicationList") {
 
-	$sql = "SELECT id, patient_id, drug, dosage, unit, active FROM openemr.prescriptions WHERE pid='" . $_POST[pid] . "'";
+	$sql = "SELECT id, patient_id, drug, dosage, unit, active FROM openemr.prescriptions WHERE patient_id='" . $_POST[pid] . "'";
 	$sql_results = DoMysqlQuery("openemr", $sql);
 
 	foreach($sql_results as $res) {
-		print $res[id] . ',' . $res[pid] .','. $res[drug] . ','. $res[dosage] .','. $res[unit] . ','. $res[active]"\n";
+		print $res[id] . ',' . $res[patient_id] .','. $res[drug] . ','. $res[dosage] .','. $res[unit] . ','. $res[active] ."\n";
+	}	
+}
+elseif($_POST[cmd] == "doctorSchedule") {
+	$sql = "SELECT pc_aid, pc_title, pc_time FROM openemr.openemr_postcalendar_events where pc_aid = '" . $_POST[pc_aid] . "'";
+	$sql_results = DoMysqlQuery("openemr", $sql);
+	
+	foreach($sql_results as $res) {
+		print $res[pc_aid] . ',' . $res[pc_title] . ',' . $res[pc_time] . "\n";
 	}
-	
-	
-	
-}else {
+}
+else {
 	print "No.";
 }
 
