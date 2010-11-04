@@ -1,11 +1,57 @@
 package edu.utdallas.hf.core;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+import edu.utdallas.hf.commons.DateUtil;
+
 /** 
  * As part of the final documentation, Code Comments will be included, as specified by Razo
  * 
  * */
 public class Note {
+	private int id;
+	private String title;
+	private String text;
+	private Calendar date;
 
-	private String text = "";
+	public Note(){
+		id = 0;
+		title = "";
+		text = "";
+		date = new GregorianCalendar(); 
+	}
+	
+	public Note(int i, String t, String txt, Calendar d){
+		id = i;
+		title = t;
+		text = txt;
+		date = d;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Calendar getDate() {
+		return date;
+	}
+
+	public void setDate(Calendar date) {
+		this.date = date;
+	}
 
 	public void setText(String text) {
 		this.text = text;
@@ -13,6 +59,10 @@ public class Note {
 
 	public String getText() {
 		return text;
+	}
+	
+	public String getDateString(){
+		return DateUtil.getDateString(date);
 	}
 	
 }
