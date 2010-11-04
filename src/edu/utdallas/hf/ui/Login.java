@@ -66,7 +66,9 @@ public class Login extends Activity implements OnClickListener{
 					username.getText().toString().trim(), 
 					password.getText().toString().trim());
 			if(message.equals("success")){
+				int docId = con.getDoctorId(username.getText().toString().trim());
 				Intent doctorViewIntent = new Intent(Login.this, DoctorView.class);
+				doctorViewIntent.putExtra("did", docId);
 				Login.this.startActivity(doctorViewIntent);
 			}else if (message.equals("fail")){
 				AlertDialog alert = AlertUtil.createAlertMessage(
