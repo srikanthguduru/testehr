@@ -67,6 +67,7 @@ public class PatientView extends Activity implements OnClickListener{
 			PatientView.this.startActivity(medicationListIntent);
 		}else if(v.getId() == R.id.patientNotes){
 			Intent patientNotesIntent = new Intent(PatientView.this, PatientNotes.class);
+			patientNotesIntent.putExtra("pid", patientId);
 			PatientView.this.startActivity(patientNotesIntent);
 		}else{
 			AlertDialog alert = AlertUtil.createAlertMessage(this, v.toString(), "OK");

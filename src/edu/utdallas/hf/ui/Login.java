@@ -19,8 +19,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.AlertUtil;
-import edu.utdallas.hf.core.Medication;
 import edu.utdallas.hf.db.Connection;
+import edu.utdallas.hf.core.Note;
 
 public class Login extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
@@ -87,12 +87,10 @@ public class Login extends Activity implements OnClickListener{
 		}else if(v.getId() == R.id.test){
 			Connection con = new Connection();
 			String testContent = "";
-			ArrayList<Medication> patientList = con.getPatientMedication(1);
+			ArrayList<Note> patientList = con.getPatientNote(1);
 			for(int i =0; i < patientList.size(); i++){
-				testContent += "Drug: "+patientList.get(i).getDrug()+"\n";
-				testContent += "Dosage: "+patientList.get(i).getDosage()+"\n";
-				testContent += "Unit: "+patientList.get(i).getUnit()+"\n";
-				testContent += "Active: "+patientList.get(i).isActive()+"\n";
+				testContent += "Title: "+patientList.get(i).getTitle()+"\n";
+				testContent += "Text: "+patientList.get(i).getText()+"\n";
 			}
 			AlertDialog blargh = AlertUtil.createAlertMessage(
 					this, 
