@@ -22,6 +22,7 @@ import edu.utdallas.hf.core.Medication;
 import edu.utdallas.hf.core.Patient;
 import edu.utdallas.hf.core.Vitals;
 import edu.utdallas.hf.core.Note;
+//import edu.utdallas.hf.core.Doctor;
 
 
 public class Connection
@@ -51,7 +52,42 @@ public class Connection
     }
 
     
-    
+    public int getDoctorId(String username)
+    {
+    	int id = 0;
+    	String cmd = "hasLoggedIn";
+    	try
+    	{
+    		connect();
+    		String data = URLEncoder.encode("username", "UTF-8") + "=" +
+    				URLEncoder.encode(username, "UTF-8") + "&" +
+    				URLEncoder.encode("cmd", "UTF-8") + "=" +
+    				URLEncoder.encode(cmd, "UTF-8");
+    		
+    		OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
+            wr.write(data);
+            wr.flush();
+            Log.i("Connection", "Sending message to web");
+			String buffer;
+			
+			BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+			while ((buffer = rd.readLine()) != null)
+			{
+				Log.i("Connection", "Retrieving message buffer is " + buffer);
+				id = Integer.parseInt(buffer);
+			}
+			
+			wr.close();
+			rd.close();
+			
+		}
+		catch (Exception ex)
+		{
+			Log.i("Connection", "Exception: " + ex);
+			//System.out.println(ex.toString());
+		}
+    	return id;
+    }
     
     public String login(String username, String password)
     {
