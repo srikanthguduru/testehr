@@ -4,8 +4,8 @@ package edu.utdallas.hf.ui;
  * 
  * */
 
-import edu.utdallas.hf.R;
-import edu.utdallas.hf.commons.ViewUtil;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,10 @@ import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import edu.utdallas.hf.R;
+import edu.utdallas.hf.commons.ViewUtil;
+import edu.utdallas.hf.core.Note;
+import edu.utdallas.hf.db.Connection;
 
 /*
  * This class is called from within Doctor View and will display a list of all notes taken by doctor.
@@ -25,8 +29,10 @@ public class PatientNotes extends Activity implements OnClickListener {
 	
 	
 	/** Called when the activity is first created. */
-	String[][] patientNotes = new String[20][6];
+	ArrayList<Note> pNotes = new ArrayList<Note>();
 	TableLayout table;
+	Connection con;
+	int pid = 0;
 	ScrollView scroll;
 	
     @Override
@@ -41,8 +47,17 @@ public class PatientNotes extends Activity implements OnClickListener {
     	table = (TableLayout)findViewById(R.id.patientNotesRootLayout);
     	scroll.setScrollbarFadingEnabled(true);
     	
+    	Bundle extras = getIntent().getExtras(); 
+    	if(extras !=null)
+    	{
+    		pid = extras.getInt("pid");
+    	}
     	
-    	for(int i = 0; i < 20; i++)
+    	con = new Connection();
+    	
+    	pNotes = con.getPatientNote(1);
+    	
+    	for(int i = 0; i < pNotes.size(); i++)
     	{
     		TableRow row = new TableRow(this);
     		if(i%2 == 0)
@@ -50,9 +65,7 @@ public class PatientNotes extends Activity implements OnClickListener {
     			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
     		}
     		for(int j = 0; j < 3; j++)
-    		{
-    			patientNotes[i][j] = j+":"+i;
-    			
+    		{	
     			if(j==1)
     			{
     				TextView border = new TextView(this);
@@ -65,13 +78,17 @@ public class PatientNotes extends Activity implements OnClickListener {
     			else if(j==0)
     			{
     				TextView text = ViewUtil.createTextView(
-    						this, patientNotes[i][j], (float).70, j*100+i, this);
+    						this, 
+    						pNotes.get(i).getTitle(), 
+    						(float).70, 
+    						pNotes.get(i).getId(),
+    						this);
         			row.addView(text);
     			}
     			else if(j==2)
     			{
     				TextView text = ViewUtil.createTextView(
-    						this, patientNotes[i][j], (float).30, j*100+i);
+    						this, pNotes.get(i).getDateString(), (float).30, pNotes.get(i).getId());
         			row.addView(text);
     			}
     		}
@@ -85,13 +102,12 @@ public class PatientNotes extends Activity implements OnClickListener {
 //Based on what row is clicked, different data will be loaded into Note.class
 	public void onClick(View v) {
 		
-		for(int i =0; i < 20; i++){
-			for(int j=0; j<3; j++){
-				if(v.getId()==(j*100)+i){
-					Intent patientNotesIntent = new Intent(PatientNotes.this, Note.class);
-					patientNotesIntent.putExtra("noteId", v.getId());
-					PatientNotes.this.startActivity(patientNotesIntent);
-				}
+		for(int i = 0; i < pNotes.size(); i ++){
+			if(v.getId() == pNotes.get(i).getId()){
+				Intent patientNotesIntent = new Intent(PatientNotes.this, edu.utdallas.hf.ui.Note.class);
+				patientNotesIntent.putExtra("noteId", pNotes.get(i).getId());
+				patientNotesIntent.putExtra("text", pNotes.get(i).getText());
+				PatientNotes.this.startActivity(patientNotesIntent);
 			}
 		}
 	}

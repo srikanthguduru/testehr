@@ -4,13 +4,14 @@ package edu.utdallas.hf.ui;
  * 
  * */
 
-import edu.utdallas.hf.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
+import edu.utdallas.hf.R;
 
 /*
  * This class is called from within Doctor View and will display a list of all notes taken by doctor.
@@ -19,6 +20,7 @@ import android.widget.ScrollView;
 public class Note extends Activity implements OnClickListener {
 	String note = "";
 	EditText noteView;
+	Button saveButton;
 	ScrollView scroll;
 	int noteId;
 	
@@ -30,6 +32,7 @@ public class Note extends Activity implements OnClickListener {
     }
     
     public void initValues(){
+    	saveButton = (Button)findViewById(R.id.noteSaveButton);
     	noteView = (EditText)findViewById(R.id.noteTextView);
     	scroll = (ScrollView)findViewById(R.id.noteScrollView);
     	scroll.setScrollbarFadingEnabled(true);
@@ -38,14 +41,15 @@ public class Note extends Activity implements OnClickListener {
     	if(extras !=null)
     	{
     		noteId = extras.getInt("noteId");
+    		note = extras.getString("text");
     	}
-    	
-    	note = "this is a note for the id: "+noteId;
     	noteView.setText(note);
     	
 	}
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		if(v.getId() == R.id.noteSaveButton){
+			//do things when the save button is clicked
+		}
 		
 	}
 
