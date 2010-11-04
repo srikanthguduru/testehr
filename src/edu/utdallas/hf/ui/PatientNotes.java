@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ScrollView;
@@ -40,6 +43,30 @@ public class PatientNotes extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patientnotes);
         initValues();
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.notesmenu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+        case R.id.newNote:
+        	createNewNote();
+        	return true;
+        default:
+        	return super.onOptionsItemSelected(item);
+        }
+    }
+    
+    public void createNewNote(){
+    	Intent newPatientNotesIntent = new Intent(PatientNotes.this, NewNote.class);
+		PatientNotes.this.startActivity(newPatientNotesIntent);
     }
     
     public void initValues(){

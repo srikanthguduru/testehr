@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="vertical" 
+    android:id="@+id/noteScrollView"
+    android:padding="10px"
+    >
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:orientation="vertical"
+		>
+		<TextView android:id="@+id/newNoteTitleLabel"
+				  android:layout_width="wrap_content"
+				  android:layout_height="wrap_content"
+				  android:text="Title"
+				  />
+		<EditText android:id="@+id/newNoteTitle"
+		          android:layout_width="fill_parent"
+		          android:layout_height="wrap_content"
+		          android:maxLines="1"
+		          android:maxLength="100"
+		       	/>
+		<TextView android:id="@+id/newNoteBodyLabel"
+				  android:layout_width="wrap_content"
+				  android:layout_height="wrap_content"
+				  android:text="Body"
+				  />
+		<EditText android:id="@+id/newNoteBody"
+		          android:layout_width="fill_parent"
+		          android:layout_height="wrap_content"
+		          android:maxLength="255"
+		       	/>
+		       	
+		<Button android:id="@+id/newNoteSaveButton"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:textSize="18sp"
+				android:text="Save"
+				/>
+	</LinearLayout>
+</ScrollView>
