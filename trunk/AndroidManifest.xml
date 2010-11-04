@@ -39,6 +39,9 @@
         <activity android:name=".ui.Note"
                   android:label="@string/notesTitle">
         </activity>
+        <activity android:name=".ui.NewNote"
+                  android:label="@string/newNoteTitle">
+        </activity>
         <activity android:name=".ui.Schedule"
                   android:label="@string/scheduleTitle">
         </activity>
