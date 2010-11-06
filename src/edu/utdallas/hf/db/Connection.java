@@ -367,4 +367,87 @@ public class Connection
 		return pNotes;
    }
     
+   public String updatePatientNote(int id, String msg)
+   {
+	   String cmd = "updatePatientNote";
+	   String result = "";
+	   try
+	   {
+		   connect();
+		   String data = URLEncoder.encode("cmd", "UTF-8") + "=" +
+			URLEncoder.encode(cmd, "UTF-8") + "&" +
+			URLEncoder.encode("msg", "UTF-8") + "=" +
+			URLEncoder.encode(msg, "UTF-8");
+		   
+		   OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
+           wr.write(data);
+           wr.flush();
+           
+           
+           BufferedReader rd =  new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+           String buffer;
+           
+           while ((buffer = rd.readLine()) != null)
+		   {
+        	   if (buffer.equals("Success"))
+        	   		result = "Success";
+        	   else if (buffer.equals("Fail"))
+        		    result = "Fail";
+        	   else
+        		   ;
+		   }
+           
+           wr.close();
+           rd.close();
+           
+	   }
+	   catch (Exception blah)
+	   {
+	   		Log.i("Connection", "Exception: " + blah);
+	   }
+	   return result;
+   }
+   
+   public String createPatientNote(int pid, String msg)
+   {
+	   String cmd = "createPatientNote";
+	   String result = "";
+	   
+	   try
+	   {
+		   connect();
+		   String data = URLEncoder.encode("cmd", "UTF-8") + "=" +
+			URLEncoder.encode(cmd, "UTF-8") + "&" +
+			URLEncoder.encode("pid", "UTF-8") + "=" +
+			URLEncoder.encode(""+pid, "UTF-8") + "&" +
+		    URLEncoder.encode("msg", "UTF-8") + "=" +
+			URLEncoder.encode(""+msg, "UTF-8");
+		   
+		    OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
+            wr.write(data);
+            wr.flush();
+          
+          
+            BufferedReader rd =  new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            String buffer;
+          
+            while ((buffer = rd.readLine()) != null)
+		    {
+       	        if (buffer.equals("Success"))
+       	        	result = "Success";
+       	        else if (buffer.equals("Fail"))
+       	        	result = "Fail";
+       	        else
+       	        	;
+		   } 
+	   }
+	   catch (Exception blah)
+	   {
+		   Log.i("Connection", "Exception: " + blah);
+	   }
+	   
+	   return result;
+	   
+   }
+   
 }
