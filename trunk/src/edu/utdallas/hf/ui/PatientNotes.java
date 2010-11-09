@@ -66,6 +66,7 @@ public class PatientNotes extends Activity implements OnClickListener {
     
     public void createNewNote(){
     	Intent newPatientNotesIntent = new Intent(PatientNotes.this, NewNote.class);
+    	newPatientNotesIntent.putExtra("pid", pid);
 		PatientNotes.this.startActivity(newPatientNotesIntent);
     }
     
