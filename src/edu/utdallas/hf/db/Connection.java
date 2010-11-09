@@ -454,6 +454,57 @@ public class Connection
 
    }
 
+   public ArrayList getDoctorSchedule(int id, String date)
+   {
+   	   String cmd = "getDoctorSchedule";
+	   String result = "";
+	   ArrayList docSchedule = new ArrayList();
+
+	   try
+	   {
+		   connect();
+		   String data = URLEncoder.encode("cmd", "UTF-8") + "=" +
+			URLEncoder.encode(cmd, "UTF-8") + "&" +
+			URLEncoder.encode("aid", "UTF-8") + "=" +
+			URLEncoder.encode(""+id, "UTF-8") + "&" +
+		    URLEncoder.encode("date", "UTF-8") + "=" +
+			URLEncoder.encode(date+"%", "UTF-8");
+
+
+
+		    OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
+            wr.write(data);
+            wr.flush();
+
+
+            BufferedReader rd =  new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            String buffer;
+
+            while ((buffer = rd.readLine()) != null)
+		    {
+		    	//This arraylist holds a title or a name at every even index and a datetime at every odd index
+		    	Calendar date = new GregorianCalendar();
+		    	String[] bufferString = buffer.split(",");
+				date = DateUtil.parseDateString(bufferString[1]);
+				if (bufferString[0].equals("Office Visit"))
+				{
+					docSchedule.add(bufferString[2]+" "+bufferString[3]);
+				}
+				else
+				{
+					docSchedule.add(bufferString[0]);
+				}
+				docSchedule.add(bufferString[1]);
+		    }
+	   }
+	   catch (Exception blah)
+	   {
+		   Log.i("Connection", "Exception: " + blah);
+	   }
+
+	   return docSchedule;
+   }
+
 
 
 }
