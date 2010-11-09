@@ -391,10 +391,10 @@ public class Connection
 
            while ((buffer = rd.readLine()) != null)
 		   {
-        	   if (buffer.equals("Success"))
+        	   if (buffer.equals("Hi"))
         	   		result = "Success";
-        	   else if (buffer.equals("Fail"))
-        		    result = "Fail";
+        	   //else if (buffer.equals("Fail"))
+        		 //   result = "Fail";
         	   else
         		   ;
 		   }
