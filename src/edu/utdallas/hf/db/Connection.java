@@ -377,7 +377,9 @@ public class Connection
 		   String data = URLEncoder.encode("cmd", "UTF-8") + "=" +
 			URLEncoder.encode(cmd, "UTF-8") + "&" +
 			URLEncoder.encode("msg", "UTF-8") + "=" +
-			URLEncoder.encode(msg, "UTF-8");
+			URLEncoder.encode(msg, "UTF-8") + "&" +
+			URLEncoder.encode("id", "UTF-8") + "=" +
+			URLEncoder.encode(""+id, "UTF-8");
 
 		   OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
            wr.write(data);
