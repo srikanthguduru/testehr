@@ -83,7 +83,7 @@ elseif ($_POST[cmd] == "createPatientNote") {
 	$res = $sql_results;
 	$res = $res + 1;
 	$sql = "insert into pnotes values('" . $res . "', '" . NOW() . 
-	"', '" . $_POST[msg] . "', '1', 'admin', NULL, NULL, NULL, '" . $_POST[title] . "', NULL, '0'";
+	"', '" . $_POST[msg] . "', '1', 'admin', NULL, NULL, NULL, '" . $_POST[title] . "', NULL, '0')";
 	DoMysqlQuery("openemr", $sql);
 	
 	
