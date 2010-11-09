@@ -2,6 +2,7 @@ package edu.utdallas.hf.ui;
 /** 
  * As part of the final documentation, Code Comments will be included, as specified by Razo
  * 
+ * 
  * */
 
 import android.app.Activity;

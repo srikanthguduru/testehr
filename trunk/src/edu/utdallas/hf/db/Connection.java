@@ -410,6 +410,7 @@ public class Connection
 	   return result;
    }
 
+   //creates new patient in database
    public String createPatientNote(int pid, String title, String msg)
    {
 	   String cmd = "createPatientNote";
@@ -483,9 +484,9 @@ public class Connection
             while ((buffer = rd.readLine()) != null)
 		    {
 		    	//This arraylist holds a title or a name at every even index and a datetime at every odd index
-		    	Calendar date = new GregorianCalendar();
+		    	Calendar date1 = new GregorianCalendar();
 		    	String[] bufferString = buffer.split(",");
-				date = DateUtil.parseDateString(bufferString[1]);
+				date1 = DateUtil.parseDateString(bufferString[1]);
 				if (bufferString[0].equals("Office Visit"))
 				{
 					docSchedule.add(bufferString[2]+" "+bufferString[3]);
