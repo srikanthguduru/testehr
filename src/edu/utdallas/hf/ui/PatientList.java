@@ -40,8 +40,10 @@ public class PatientList extends Activity implements OnClickListener{
     
     public void initValues(){
     	con = new Connection();
-    	patientList = con.getPatientList();
+    	patientList = con.getPatientList();//obtain list of all patients
     	table = (TableLayout)findViewById(R.id.patientListRootLayout);
+    	
+    	//populate table with list entries
     	for(int i =0; i < patientList.size(); i++){
     		row = new TableRow(this);
     		if(i%2 == 0){
@@ -86,7 +88,7 @@ public class PatientList extends Activity implements OnClickListener{
 			for(int j=0; j<3; j++){
 				if(v.getId()==patientList.get(i).getId()){
 					Intent patientViewIntent = new Intent(PatientList.this, PatientView.class);
-					patientViewIntent.putExtra("patientId", v.getId());
+					patientViewIntent.putExtra("patientId", v.getId());//passes patient id through the intent.putExtra
 					PatientList.this.startActivity(patientViewIntent);
 					break;
 				}

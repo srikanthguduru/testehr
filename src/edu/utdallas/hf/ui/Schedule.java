@@ -5,10 +5,13 @@ package edu.utdallas.hf.ui;
  * 
  * */
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.ViewUtil;
+import edu.utdallas.hf.core.Patient;
+import edu.utdallas.hf.db.Connection;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -37,6 +40,11 @@ public class Schedule extends Activity implements OnClickListener{
 	int month, year, day;
 	static final int DATE_DIALOG_ID = 0;
 	final Calendar c = Calendar.getInstance();
+	
+	private int DoctorID = 0;
+	ArrayList<Object> scheduleList = new ArrayList<Object>();
+	Connection con;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,10 +59,23 @@ public class Schedule extends Activity implements OnClickListener{
     }
     
     public void initValues(){
+    	//pulls doctor id from intent
+    	Bundle extras = getIntent().getExtras();
+    	if(extras != null)
+    	{
+    		DoctorID = (extras.getInt("did"));
+    	}
+    	
+    	//init calender
     	month = c.get(Calendar.MONTH);
     	year = c.get(Calendar.YEAR);
     	day = c.get(Calendar.DAY_OF_MONTH);
     	
+    	//pull schedule list
+    	con = new Connection();
+    	scheduleList = con.getDoctorSchedule(DoctorID, "" + year + month + day);//obtain list of all schedules for date
+    	
+    	//fill table with list
     	timeButton.setText(month+1+"/"+day+"/"+year);
     	for(int i =0; i < times.length; i++){
     		TableRow row = new TableRow(this);
@@ -89,6 +110,8 @@ public class Schedule extends Activity implements OnClickListener{
 		if(v.getId() == R.id.datePickerButton){
 			showDialog(DATE_DIALOG_ID);
 		}
+		
+		//initValues();//calls init values again to re-fill a new table with new values
 	}
 	
 	// the callback received when the user "sets" the date in the dialog
