@@ -40,14 +40,6 @@
 				android:textSize="18sp"
 				android:text="Notes"
 				/>
-				<Button
-				android:id="@+id/patientAppointments"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:padding="20px"
-				android:textSize="18sp"
-				android:text="Appointments"
-				/>
 	</LinearLayout>
 </ScrollView>
 
