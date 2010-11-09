@@ -74,18 +74,33 @@ elseif($_POST[cmd] == "patientNotes") {
 }
 elseif ($_POST[cmd] == "updatePatientNote") {
 	$sql = "update pnotes set body = '" . $_POST[msg] . "' where id = '" . $_POST[id] . "'";
-	DoMysqlQuery("openemr", $sql);
+	DoMysqlInsert("openemr", $sql);
 	print "Hi";
 }
 elseif ($_POST[cmd] == "createPatientNote") {
-	$sql = "select count(*) from pnotes";
-	$sql_results = DoMysqlQuery("openemr", $sql);
-	$res = $sql_results;
-	$res = $res + 1;
-	$sql = "insert into pnotes values('" . $res . "', '" . NOW() . 
-	"', '" . $_POST[msg] . "', '1', 'admin', NULL, NULL, NULL, '" . $_POST[title] . "', NULL, '0')";
-	DoMysqlQuery("openemr", $sql);
+	#$sql = "select count(*) from pnotes";
+	#$sql_results = DoMysqlQuery("openemr", $sql);
+	#$res = $sql_results;
+	#$res = $res + 1;
+	$sql = "insert into pnotes (date, body, pid, user, title, deleted) values('" . date("Y-m-d h:i:s") . 
+	"', '" . $_POST[msg] . "', '1', 'admin', '" . $_POST[title] . "', '0')";
+	DoMysqlInsert("openemr", $sql);
+#	print $sql_results;
+#print $sql;
+#insert into pnotes (date, body, pid, user, title, deleted) 
+#values('2010-11-08 24:11:22', 'This is a test', '1', 'admin', 'Hello', '0')	
 	
+#	NOW()
+	
+}
+elseif ($_POST[cmd] == "getDoctorSchedule") {
+	$sql = "select openemr_postcalendar_events.pc_title, openemr_postcalendar_events.pc_time, patient_data.fname, patient_data.lname
+	from openemr_postcalendar_events LEFT JOIN patient_data ON openemr_postcalendar_events.pc_pid = patient_data.id where
+	openemr_postcalendar_events.pc_aid = '" . $_POST[aid] . "' and openemr_postcalendar_events.pc_time like '" . $_POST[date] . "'";
+	$sql_results = DoMysqlQuery("openemr", $sql);
+	foreach ($sql_results as $res) {
+		print $res[pc_title] . ',' . $res[pc_time] . ',' . $res[fname] . ',' . $res[lname] . "\n";
+	}
 	
 }
 else {
