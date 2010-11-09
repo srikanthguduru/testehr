@@ -82,7 +82,7 @@ public class PatientNotes extends Activity implements OnClickListener {
     	
     	con = new Connection();
     	
-    	pNotes = con.getPatientNote(1);
+    	pNotes = con.getPatientNote(pid);
     	
     	for(int i = 0; i < pNotes.size(); i++)
     	{

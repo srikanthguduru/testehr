@@ -20,7 +20,6 @@ public class PatientView extends Activity implements OnClickListener{
 	private Button vitalSigns;
 	private Button medicationList;
 	private Button notes;
-	private Button appointments;
 	private View patientScrollView;
 	private int patientId;
 	
@@ -36,7 +35,6 @@ public class PatientView extends Activity implements OnClickListener{
     	vitalSigns = (Button)findViewById(R.id.vitalSigns);
     	medicationList = (Button)findViewById(R.id.patientMedicationList);
     	notes = (Button)findViewById(R.id.patientNotes);
-    	appointments = (Button)findViewById(R.id.patientAppointments);
     	patientScrollView = (View)findViewById(R.id.patientViewScrollView);
     	
     	Bundle extras = getIntent().getExtras(); 
@@ -49,7 +47,6 @@ public class PatientView extends Activity implements OnClickListener{
     	vitalSigns.setOnClickListener(this);
     	medicationList.setOnClickListener(this);
     	notes.setOnClickListener(this);
-    	appointments.setOnClickListener(this);
     	patientScrollView.setScrollbarFadingEnabled(true);
     	
     }
