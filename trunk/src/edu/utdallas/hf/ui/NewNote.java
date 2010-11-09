@@ -57,8 +57,8 @@ public class NewNote extends Activity implements OnClickListener {
 			Connection con = new Connection();
 			String title = noteTitle.getText().toString();
 			String body = noteView.getText().toString();
-			AlertDialog alert = AlertUtil.createAlertMessage(this, "Title: "+title+"\nBody: "+body, "OK");
-			alert.show();
+			//AlertDialog alert = AlertUtil.createAlertMessage(this, "Title: "+title+"\nBody: "+body, "OK");
+			//alert.show();
 			con.createPatientNote(pid, title, body);
 			AlertDialog finish = AlertUtil.createFinishActivityMessage(this, this, "Note saved.");
 			finish.show();
