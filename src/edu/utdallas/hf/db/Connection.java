@@ -1,8 +1,8 @@
 package edu.utdallas.hf.db;
 
-/** 
+/**
  * As part of the final documentation, Code Comments will be included, as specified by Razo
- * 
+ *
  * */
 
 import java.io.BufferedReader;
@@ -35,7 +35,7 @@ public class Connection
     	//Establish a connection to the database's php page
     	try
     	{
-    		
+
 	    	url = new URL("http://66.207.167.195/androidtest.php");
 			urlConnection = url.openConnection();
 			//Tell the php page we're sending "POST" messages
@@ -43,7 +43,7 @@ public class Connection
 			urlConnection.setDoInput(true);
 	        urlConnection.setDoOutput(true);
 	        Log.i("Connection", "Connection Made");
-    	}    
+    	}
 	    catch (Exception ex)
     	{
     		Log.i("Connection", "Failed to connect");
@@ -51,7 +51,7 @@ public class Connection
     	}
     }
 
-    
+
     public int getDoctorId(String username)
     {
     	int id = 0;
@@ -63,23 +63,23 @@ public class Connection
     				URLEncoder.encode(username, "UTF-8") + "&" +
     				URLEncoder.encode("cmd", "UTF-8") + "=" +
     				URLEncoder.encode(cmd, "UTF-8");
-    		
+
     		OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
             wr.write(data);
             wr.flush();
             Log.i("Connection", "Sending message to web");
 			String buffer;
-			
+
 			BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 			while ((buffer = rd.readLine()) != null)
 			{
 				Log.i("Connection", "Retrieving message buffer is " + buffer);
 				id = Integer.parseInt(buffer);
 			}
-			
+
 			wr.close();
 			rd.close();
-			
+
 		}
 		catch (Exception ex)
 		{
@@ -88,14 +88,14 @@ public class Connection
 		}
     	return id;
     }
-    
+
     public String login(String username, String password)
     {
     	String cmd = "login";
     	Log.i("Connection", "Sending message");
-		
+
     	String output = "";
-    	
+
 		try
 		{
 			connect();
@@ -107,7 +107,7 @@ public class Connection
 				URLEncoder.encode(password, "UTF-8") + "&" +
 				URLEncoder.encode("cmd", "UTF-8") + "=" +
 				URLEncoder.encode(cmd, "UTF-8");
-			
+
 			Log.i("Connection", "Sending message: " + data);
 
 		    OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
@@ -115,7 +115,7 @@ public class Connection
             wr.flush();
             Log.i("Connection", "Sending message to web");
 			String buffer;
-			
+
 			BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 			while ((buffer = rd.readLine()) != null)
 			{
@@ -127,10 +127,10 @@ public class Connection
 				else
 					;
 			}
-			
+
 			wr.close();
 			rd.close();
-			
+
 		}
 		catch (Exception ex)
 		{
@@ -140,26 +140,26 @@ public class Connection
 		return output;
 
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     public ArrayList<Patient> getPatientList()
     {
     	ArrayList<Patient> patientList = new ArrayList<Patient>();
     	Patient patient = new Patient();
     	String cmd = "patientList";
     	Log.i("Connection", "Sending message");
-    	
+
 		try
 		{
 			connect();
 			//Encode the string combination into a url to send to the php page
-			String data = 
+			String data =
 				URLEncoder.encode("cmd", "UTF-8") + "=" +
 				URLEncoder.encode(cmd, "UTF-8");
-			
+
 			Log.i("Connection", "Sending message: " + data);
 
 		    OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
@@ -167,7 +167,7 @@ public class Connection
             wr.flush();
             Log.i("Connection", "Sending message to web");
 			String buffer;
-			
+
 			BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 			while ((buffer = rd.readLine()) != null)
 			{
@@ -178,16 +178,16 @@ public class Connection
 				//set the calendar from the date string from database
 				patientDob = DateUtil.parseDateString(bufferString[2]);
 				//create new patient with the date from database query
-				patient = new Patient(bufferString[0], 
-									  bufferString[1], 
-									  patientDob, 
+				patient = new Patient(bufferString[0],
+									  bufferString[1],
+									  patientDob,
 									  Integer.parseInt(bufferString[3]));
 				patientList.add(patient);
 			}
-			
+
 			wr.close();
 			rd.close();
-			
+
 		}
 		catch (Exception ex)
 		{
@@ -198,14 +198,14 @@ public class Connection
 
     }
 
-    
+
     public ArrayList<Vitals> getPatientVitals(int pid)
     {
     	ArrayList<Vitals> vList = new ArrayList<Vitals>();
     	Vitals patientVitals;
     	String cmd = "patientVitals";
     	Log.i("Connection", "Sending message");
-    	
+
 		try
 		{
 			connect();
@@ -214,7 +214,7 @@ public class Connection
 				URLEncoder.encode(""+pid, "UTF-8") + "&" +
 				URLEncoder.encode("cmd", "UTF-8") + "=" +
 				URLEncoder.encode(cmd, "UTF-8");
-			
+
 			Log.i("Connection", "Sending message: " + data);
 
 		    OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
@@ -222,26 +222,26 @@ public class Connection
             wr.flush();
             Log.i("Connection", "Sending message to web");
 			String buffer;
-			
+
 			BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 			while ((buffer = rd.readLine()) != null)
 			{
-				
+
 				Log.i("Connection", "Retrieving message buffer is " + buffer);
 				String[] bufferString = buffer.split(",");
 				Calendar vitalDate = new GregorianCalendar();
 				vitalDate = DateUtil.parseDateString(bufferString[1]);
-				patientVitals = new Vitals(Integer.parseInt(bufferString[0]), 
-											pid, 
-											vitalDate, 
-											Float.parseFloat(bufferString[2]), 
+				patientVitals = new Vitals(Integer.parseInt(bufferString[0]),
+											pid,
+											vitalDate,
+											Float.parseFloat(bufferString[2]),
 											Float.parseFloat(bufferString[3]));
 				vList.add(patientVitals);
 			}
-			
+
 			wr.close();
 			rd.close();
-			
+
 		}
 		catch (Exception ex)
 		{
@@ -251,14 +251,14 @@ public class Connection
 		return vList;
 
     }
-    
+
     public ArrayList<Medication> getPatientMedication(int pid)
     {
     	ArrayList<Medication> mList = new ArrayList<Medication>();
     	Medication medication;
     	String cmd = "medicationList";
     	Log.i("Connection", "Sending message");
-    	
+
 		try
 		{
 			connect();
@@ -267,7 +267,7 @@ public class Connection
 				URLEncoder.encode(""+pid, "UTF-8") + "&" +
 				URLEncoder.encode("cmd", "UTF-8") + "=" +
 				URLEncoder.encode(cmd, "UTF-8");
-			
+
 			Log.i("Connection", "Sending message: " + data);
 
 		    OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
@@ -275,32 +275,32 @@ public class Connection
             wr.flush();
             Log.i("Connection", "Sending message to web");
 			String buffer;
-			
+
 			BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 			while ((buffer = rd.readLine()) != null)
 			{
-				
+
 				Log.i("Connection", "Retrieving message buffer is " + buffer);
 				String[] bufferString = buffer.split(",");
-				
+
 				boolean active = false;
 				int act = Integer.parseInt(bufferString[5]);
 				if(act == 1) active = true;
 				else if (act == 0) active = false;
 				Log.e("Connection", "Drug: "+bufferString[2]);
 				medication = new Medication(
-						Integer.parseInt(bufferString[0]), 
-						Integer.parseInt(bufferString[1]), 
-						bufferString[2], 
-						Integer.parseInt(bufferString[3]), 
-						Integer.parseInt(bufferString[4]), 
+						Integer.parseInt(bufferString[0]),
+						Integer.parseInt(bufferString[1]),
+						bufferString[2],
+						Integer.parseInt(bufferString[3]),
+						Integer.parseInt(bufferString[4]),
 						active);
 				mList.add(medication);
 			}
-			
+
 			wr.close();
 			rd.close();
-			
+
 		}
 		catch (Exception ex)
 		{
@@ -310,15 +310,15 @@ public class Connection
 		return mList;
 
     }
-    
+
     public ArrayList<Note> getPatientNote(int pid)
     {
     	ArrayList<Note> pNotes = new ArrayList<Note>();
     	Note notes;
-    	
+
     	String cmd = "patientNotes";
     	Log.i("Connection", "Sending message");
-    	
+
 		try
 		{
 			connect();
@@ -327,7 +327,7 @@ public class Connection
 				URLEncoder.encode(""+pid, "UTF-8") + "&" +
 				URLEncoder.encode("cmd", "UTF-8") + "=" +
 				URLEncoder.encode(cmd, "UTF-8");
-			
+
 			Log.i("Connection", "Sending message: " + data);
 
 		    OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
@@ -335,30 +335,30 @@ public class Connection
             wr.flush();
             Log.i("Connection", "Sending message to web");
 			String buffer;
-			
+
 			BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 			while ((buffer = rd.readLine()) != null)
 			{
-				
+
 				Log.i("Connection", "Retrieving message buffer is " + buffer);
 				String[] bufferString = buffer.split(",");
-				
+
 				//0 >> 3
 				//Log.e("Connection", "Drug: "+bufferString[2]);
 				Calendar noteDate = new GregorianCalendar();
 				noteDate = DateUtil.parseDateString(bufferString[3]);
-				notes = new Note(Integer.parseInt(bufferString[0]), 
+				notes = new Note(Integer.parseInt(bufferString[0]),
 						bufferString[1],
 						bufferString[2],
 						noteDate
 						);
 				pNotes.add(notes);
 			}
-			
+
 			wr.close();
 			rd.close();
-    	
-    	
+
+
 		}
 		catch (Exception blah)
 		{
@@ -366,7 +366,7 @@ public class Connection
 		}
 		return pNotes;
    }
-    
+
    public String updatePatientNote(int id, String msg)
    {
 	   String cmd = "updatePatientNote";
@@ -378,15 +378,15 @@ public class Connection
 			URLEncoder.encode(cmd, "UTF-8") + "&" +
 			URLEncoder.encode("msg", "UTF-8") + "=" +
 			URLEncoder.encode(msg, "UTF-8");
-		   
+
 		   OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
            wr.write(data);
            wr.flush();
-           
-           
+
+
            BufferedReader rd =  new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
            String buffer;
-           
+
            while ((buffer = rd.readLine()) != null)
 		   {
         	   if (buffer.equals("Success"))
@@ -396,10 +396,10 @@ public class Connection
         	   else
         		   ;
 		   }
-           
+
            wr.close();
            rd.close();
-           
+
 	   }
 	   catch (Exception blah)
 	   {
@@ -407,12 +407,12 @@ public class Connection
 	   }
 	   return result;
    }
-   
-   public String createPatientNote(int pid, String msg)
+
+   public String createPatientNote(int pid, String title, String msg)
    {
 	   String cmd = "createPatientNote";
 	   String result = "";
-	   
+
 	   try
 	   {
 		   connect();
@@ -420,17 +420,19 @@ public class Connection
 			URLEncoder.encode(cmd, "UTF-8") + "&" +
 			URLEncoder.encode("pid", "UTF-8") + "=" +
 			URLEncoder.encode(""+pid, "UTF-8") + "&" +
-		    URLEncoder.encode("msg", "UTF-8") + "=" +
-			URLEncoder.encode(""+msg, "UTF-8");
-		   
+		    URLEncoder.encode("title", "UTF-8") + "=" +
+			URLEncoder.encode(title, "UTF-8") + "&" +
+			URLEncoder.encode("msg", "UTF-8") + "=" +
+			URLEncoder.encode(msg, "UTF-8");;
+
 		    OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
             wr.write(data);
             wr.flush();
-          
-          
+
+
             BufferedReader rd =  new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             String buffer;
-          
+
             while ((buffer = rd.readLine()) != null)
 		    {
        	        if (buffer.equals("Success"))
@@ -439,15 +441,15 @@ public class Connection
        	        	result = "Fail";
        	        else
        	        	;
-		   } 
+		   }
 	   }
 	   catch (Exception blah)
 	   {
 		   Log.i("Connection", "Exception: " + blah);
 	   }
-	   
+
 	   return result;
-	   
+
    }
-   
+
 }
