@@ -39,6 +39,8 @@ public class NewNote extends Activity implements OnClickListener {
     	scroll = (ScrollView)findViewById(R.id.noteScrollView);
     	scroll.setScrollbarFadingEnabled(true);
     	
+    	saveButton.setOnClickListener(this);
+    	
     	
 	}
 	public void onClick(View v) {

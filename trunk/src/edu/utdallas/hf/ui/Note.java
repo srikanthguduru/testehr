@@ -5,6 +5,7 @@ package edu.utdallas.hf.ui;
  * */
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import edu.utdallas.hf.R;
+import edu.utdallas.hf.commons.AlertUtil;
+import edu.utdallas.hf.db.Connection;
 
 /*
  * This class is called from within Doctor View and will display a list of all notes taken by doctor.
@@ -44,11 +47,16 @@ public class Note extends Activity implements OnClickListener {
     		note = extras.getString("text");
     	}
     	noteView.setText(note);
+    	saveButton.setOnClickListener(this);
     	
 	}
 	public void onClick(View v) {
 		if(v.getId() == R.id.noteSaveButton){
-			//do things when the save button is clicked
+			note = noteView.getText().toString();
+			Connection con = new Connection();
+			con.updatePatientNote(noteId, note);
+			AlertDialog alert = AlertUtil.createFinishActivityMessage(this, this, "Note Saved.");
+			alert.show();
 		}
 		
 	}

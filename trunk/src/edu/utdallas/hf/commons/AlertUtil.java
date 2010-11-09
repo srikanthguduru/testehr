@@ -60,4 +60,25 @@ public class AlertUtil {
 		AlertDialog alert = builder.create();
 		return alert;
 	}
+	
+	/**
+	 * Creates an message to show the user that the activity is going to finish
+	 * @param act The activity to finish
+	 * @param con the context
+	 * @param msg the message to show the user
+	 * @return the AlertDialog
+	 */
+	public static AlertDialog createFinishActivityMessage(final Activity act, Context con, String msg){
+		AlertDialog.Builder builder = new AlertDialog.Builder(con);
+		builder.setMessage(msg)
+			.setCancelable(false)
+			.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+				public void onClick(DialogInterface dialog, int id) {
+					act.setResult(Activity.RESULT_OK);
+					act.finish();
+				}
+			});
+		AlertDialog alert = builder.create();
+		return alert;
+	}
 }

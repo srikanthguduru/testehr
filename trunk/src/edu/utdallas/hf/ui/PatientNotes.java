@@ -128,7 +128,7 @@ public class PatientNotes extends Activity implements OnClickListener {
 	
 //Based on what row is clicked, different data will be loaded into Note.class
 	public void onClick(View v) {
-		
+		pNotes = con.getPatientNote(pid);
 		for(int i = 0; i < pNotes.size(); i ++){
 			if(v.getId() == pNotes.get(i).getId()){
 				Intent patientNotesIntent = new Intent(PatientNotes.this, edu.utdallas.hf.ui.Note.class);
