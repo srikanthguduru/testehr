@@ -23,7 +23,6 @@ import android.widget.TextView;
 
 public class PatientList extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
-	String[][] patients = new String[20][3];
 	TableLayout table;
 	ScrollView scrollView;
 	TableRow row;
@@ -50,7 +49,6 @@ public class PatientList extends Activity implements OnClickListener{
     			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
     		}
     		for(int j=0; j<3; j++){
-    			patients[i][j] = j+":"+i;
     			if(j==1){
     				TextView border;
     				if(i%2==0)
