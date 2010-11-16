@@ -288,6 +288,10 @@ public class Connection
 				if(act == 1) active = true;
 				else if (act == 0) active = false;
 				Log.e("Connection", "Drug: "+bufferString[2]);
+				
+				if (bufferString[3] == null)
+					bufferString[3] = "0";
+				
 				medication = new Medication(
 						Integer.parseInt(bufferString[0]),
 						Integer.parseInt(bufferString[1]),
