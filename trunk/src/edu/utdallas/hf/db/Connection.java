@@ -289,7 +289,7 @@ public class Connection
 				else if (act == 0) active = false;
 				Log.e("Connection", "Drug: "+bufferString[2]);
 				
-				if (bufferString[3] == null)
+				if (bufferString[3] == null || bufferString[3].equals(""))
 					bufferString[3] = "0";
 				
 				medication = new Medication(
