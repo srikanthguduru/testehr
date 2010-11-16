@@ -44,6 +44,7 @@
 		android:text="Login"
 		android:onClick="login"
 		/>
+		<!--  
 		<Button
 		android:id="@+id/goToDoctorView"
 		android:layout_width="fill_parent"
@@ -60,5 +61,6 @@
 		android:textSize="18sp"
 		android:text="test"
 		/>
+		-->
 </LinearLayout>
 

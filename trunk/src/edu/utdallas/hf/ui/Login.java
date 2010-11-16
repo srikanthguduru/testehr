@@ -7,7 +7,6 @@ package edu.utdallas.hf.ui;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -20,7 +19,6 @@ import android.widget.EditText;
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.AlertUtil;
 import edu.utdallas.hf.db.Connection;
-import edu.utdallas.hf.core.Note;
 
 public class Login extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
@@ -42,11 +40,11 @@ public class Login extends Activity implements OnClickListener{
     
     
     private void initControls(){
-    	//when database end complete remove this subset of buttons----------------------
+    	/*//when database end complete remove this subset of buttons----------------------
     	doctorViewButton = (Button)findViewById(R.id.goToDoctorView);
     	test = (Button)findViewById(R.id.test);
     	//------------------------------------------------------------------------------
-    	
+    	 */    	
     	loginButton = (Button)findViewById(R.id.loginButton);
     	username = (EditText)findViewById(R.id.nameField);
     	password = (EditText)findViewById(R.id.passField);
@@ -57,10 +55,7 @@ public class Login extends Activity implements OnClickListener{
     }
 
 	public void onClick(View v) {
-		if(v.getId() == R.id.goToDoctorView){
-			Intent doctorViewIntent = new Intent(Login.this, DoctorView.class);
-			Login.this.startActivity(doctorViewIntent);
-		}else if(v.getId() == R.id.loginButton){
+		if(v.getId() == R.id.loginButton){
 			Connection con = new Connection();
 			String message = con.login(
 					username.getText().toString().trim(), 
@@ -84,7 +79,12 @@ public class Login extends Activity implements OnClickListener{
 						"OK");
 				blargh.show();
 			}
-		}else if(v.getId() == R.id.test){
+		}
+		/*else if(v.getId() == R.id.goToDoctorView){
+			Intent doctorViewIntent = new Intent(Login.this, DoctorView.class);
+			Login.this.startActivity(doctorViewIntent);
+		} */
+		/*else if(v.getId() == R.id.test){
 			Connection con = new Connection();
 			String testContent = "";
 			ArrayList<Note> patientList = con.getPatientNote(1);
@@ -99,6 +99,7 @@ public class Login extends Activity implements OnClickListener{
 			blargh.show();
 			
 		}
+		*/
 	}
     
 }
