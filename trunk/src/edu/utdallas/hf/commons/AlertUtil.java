@@ -62,6 +62,35 @@ public class AlertUtil {
 	}
 	
 	/**
+	 * Create an alert message that asks user to choose yes or no
+	 * when clicked on 'yes', finishes the activity
+	 * when clicked on 'no', dismisses the alert message
+	 * 
+	 * @param act The Activity that the user is on
+	 * @param con the context that the user is on
+	 * @param msg the message to show on the alert dialog
+	 * @return the Alert dialog
+	 */
+	public static AlertDialog createChoiceAlert(final Activity act, Context con, String msg){
+		AlertDialog.Builder builder = new AlertDialog.Builder(con);
+		builder.setMessage(msg)
+			.setCancelable(false)
+			.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+				public void onClick(DialogInterface dialog, int id) {
+					act.setResult(Activity.RESULT_OK);
+					act.finish();
+				}
+			})
+			.setNegativeButton("No", new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		                dialog.dismiss();
+		           }
+		       });
+		AlertDialog alert = builder.create();
+		return alert;
+	}
+	
+	/**
 	 * Creates an message to show the user that the activity is going to finish
 	 * @param act The activity to finish
 	 * @param con the context

@@ -33,4 +33,23 @@ public class DateUtil {
 				Integer.parseInt(dateParse[2]));
 		return cal; 
 	}
+	
+	/**
+	 * The date as a Calendar object based on a datetime string
+	 * @param dateTimeString The string representation of a date (yyyy-mm-dd hh:mm:ss)
+	 * @return the calendar obeject based on the dateString
+	 */
+	public static Calendar parseDateTimeString(String dateTimeString){
+		Calendar cal = new GregorianCalendar();
+		String [] initialParse = dateTimeString.split(" ");
+		String [] dateParse = initialParse[0].split("-");
+		String [] timeParse = initialParse[1].split(":");
+		cal.set(Integer.parseInt(dateParse[0]),
+				Integer.parseInt(dateParse[1])-1,
+				Integer.parseInt(dateParse[2]),
+				Integer.parseInt(timeParse[0]),
+				Integer.parseInt(timeParse[1]),
+				Integer.parseInt(timeParse[2]));
+		return cal;
+	}
 }

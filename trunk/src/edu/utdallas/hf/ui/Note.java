@@ -56,7 +56,7 @@ public class Note extends Activity implements OnClickListener {
 			note = noteView.getText().toString();
 			Connection con = new Connection();
 			con.updatePatientNote(noteId, note);
-			AlertDialog alert = AlertUtil.createFinishActivityMessage(this, this, "Note Saved.");
+			AlertDialog alert = AlertUtil.createChoiceAlert(this, this, "Are you sure you want to save?");
 			alert.show();
 		}
 		

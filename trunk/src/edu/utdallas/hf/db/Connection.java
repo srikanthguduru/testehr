@@ -19,10 +19,10 @@ import java.util.GregorianCalendar;
 import android.util.Log;
 import edu.utdallas.hf.commons.DateUtil;
 import edu.utdallas.hf.core.Medication;
-import edu.utdallas.hf.core.Patient;
-import edu.utdallas.hf.core.Vitals;
 import edu.utdallas.hf.core.Note;
-//import edu.utdallas.hf.core.Doctor;
+import edu.utdallas.hf.core.Patient;
+import edu.utdallas.hf.core.Schedule;
+import edu.utdallas.hf.core.Vitals;
 
 
 public class Connection
@@ -459,12 +459,11 @@ public class Connection
 
    }
 
-   public ArrayList getDoctorSchedule(int id, String date)
+   public ArrayList<Schedule> getDoctorSchedule(int id, String date)
    {
    	   String cmd = "getDoctorSchedule";
-	   String result = "";
-	   ArrayList docSchedule = new ArrayList();
-
+	   ArrayList<Schedule> docScheduleList = new ArrayList<Schedule>();
+	   Schedule docSchedule = new Schedule();
 	   try
 	   {
 		   connect();
@@ -474,8 +473,6 @@ public class Connection
 			URLEncoder.encode(""+id, "UTF-8") + "&" +
 		    URLEncoder.encode("date", "UTF-8") + "=" +
 			URLEncoder.encode(date+"%", "UTF-8");
-
-
 
 		    OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
             wr.write(data);
@@ -490,16 +487,13 @@ public class Connection
 		    	//This arraylist holds a title or a name at every even index and a datetime at every odd index
 		    	Calendar date1 = new GregorianCalendar();
 		    	String[] bufferString = buffer.split(",");
-				date1 = DateUtil.parseDateString(bufferString[1]);
-				if (bufferString[0].equals("Office Visit"))
-				{
-					docSchedule.add(bufferString[2]+" "+bufferString[3]);
+		    	String event = bufferString[0];
+				date1 = DateUtil.parseDateTimeString(bufferString[1]);
+				if (bufferString[0].equals("Office Visit")){
+					event = bufferString[2] +" "+ bufferString[3];
 				}
-				else
-				{
-					docSchedule.add(bufferString[0]);
-				}
-				docSchedule.add(bufferString[1]);
+				docSchedule = new Schedule(id, date1, event);
+				docScheduleList.add(docSchedule);
 		    }
 	   }
 	   catch (Exception blah)
@@ -507,7 +501,7 @@ public class Connection
 		   Log.i("Connection", "Exception: " + blah);
 	   }
 
-	   return docSchedule;
+	   return docScheduleList;
    }
 
 
