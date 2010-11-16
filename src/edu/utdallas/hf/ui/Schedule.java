@@ -7,6 +7,7 @@ package edu.utdallas.hf.ui;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.ViewUtil;
@@ -32,6 +33,7 @@ public class Schedule extends Activity implements OnClickListener{
 						"2:15", "2:30", "2:45", "3:00", "3:15", "3:30", "3:45",
 						"4:00", "4:15", "4:30", "4:45", "5:00", "5:15", "5:30", 
 						"5:45"};
+	ArrayList<Calendar> calendars = new ArrayList<Calendar>();
 	TableLayout table;
 	ScrollView scrollView;
 	TableRow row;
@@ -60,8 +62,7 @@ public class Schedule extends Activity implements OnClickListener{
     public void initValues(){
     	//pulls doctor id from intent
     	Bundle extras = getIntent().getExtras();
-    	if(extras != null)
-    	{
+    	if(extras != null){
     		DoctorID = (extras.getInt("did"));
     	}
     	
@@ -70,10 +71,52 @@ public class Schedule extends Activity implements OnClickListener{
     	year = c.get(Calendar.YEAR);
     	day = c.get(Calendar.DAY_OF_MONTH);
     	
+    	for(int i = 0; i < times.length; i++){
+    		Calendar cal = new GregorianCalendar();
+    		cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(times[i].split(":")[0]));
+    		cal.set(Calendar.MINUTE, Integer.parseInt(times[i].split(":")[1]));
+    		calendars.add(cal);
+    	}
     	//pull schedule list
+    	setEvents();
+    }
+    
+
+	public void onClick(View v) {
+		if(v.getId() == R.id.datePickerButton){
+			showDialog(DATE_DIALOG_ID);
+		}
+	}
+	
+	// the callback received when the user "sets" the date in the dialog
+    private DatePickerDialog.OnDateSetListener mDateSetListener =
+            new DatePickerDialog.OnDateSetListener() {
+
+                public void onDateSet(DatePicker view, int year_, 
+                                      int monthOfYear, int dayOfMonth) {
+                    year = year_;
+                    month = monthOfYear;
+                    day = dayOfMonth;
+                    timeButton.setText(month+1+"/"+day+"/"+year);
+                    setEvents();
+                }
+            };
+            
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+        case DATE_DIALOG_ID:
+        	DatePickerDialog pickerDialog = new DatePickerDialog(
+        										this, mDateSetListener, year, month, day);
+        	
+            return pickerDialog;
+        }
+        return null;
+    }
+    
+    private void setEvents(){
     	con = new Connection();
-    	scheduleList = con.getDoctorSchedule(DoctorID, "" + year + month + day);//obtain list of all schedules for date
-    	
+    	scheduleList = con.getDoctorSchedule(DoctorID, year+"-"+(month+1)+"-"+day);//obtain list of all schedules for date
     	//fill table with list
     	timeButton.setText(month+1+"/"+day+"/"+year);
     	for(int i =0; i < times.length; i++){
@@ -94,48 +137,22 @@ public class Schedule extends Activity implements OnClickListener{
 							this, times[i], (float).30, j*100+i);
 	    			row.addView(text);
 	    		}else{
+	    			String event = "";
+    				for(int l=0; l < scheduleList.size(); l++){
+    					if(calendars.get(i).get(Calendar.HOUR_OF_DAY) < scheduleList.get(l).getCal().get(Calendar.HOUR_OF_DAY)){
+    						if(calendars.get(i).get(Calendar.MINUTE) < scheduleList.get(l).getCal().get(Calendar.MINUTE)){
+    							event = scheduleList.get(l).getEvent();
+    							break;
+    						}
+    					}
+	    			}
 	    			TextView text = ViewUtil.createTextView(
-							this, "event"+i, (float).70, j*100+i);
+							this, event, (float).70, j*100+i);
 	    			row.addView(text);
 	    		}
     		}
     		table.addView(row);
     	}
-    	
-    }
-    
-
-	public void onClick(View v) {
-		if(v.getId() == R.id.datePickerButton){
-			showDialog(DATE_DIALOG_ID);
-		}
-		
-		//initValues();//calls init values again to re-fill a new table with new values
-	}
-	
-	// the callback received when the user "sets" the date in the dialog
-    private DatePickerDialog.OnDateSetListener mDateSetListener =
-            new DatePickerDialog.OnDateSetListener() {
-
-                public void onDateSet(DatePicker view, int year_, 
-                                      int monthOfYear, int dayOfMonth) {
-                    year = year_;
-                    month = monthOfYear;
-                    day = dayOfMonth;
-                    timeButton.setText(month+1+"/"+day+"/"+year);
-                }
-            };
-            
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-        case DATE_DIALOG_ID:
-        	DatePickerDialog pickerDialog = new DatePickerDialog(
-        										this, mDateSetListener, year, month, day);
-        	
-            return pickerDialog;
-        }
-        return null;
     }
     
 }
