@@ -42,7 +42,7 @@ public class Schedule extends Activity implements OnClickListener{
 	final Calendar c = Calendar.getInstance();
 	
 	private int DoctorID = 0;
-	ArrayList<Object> scheduleList = new ArrayList<Object>();
+	ArrayList<edu.utdallas.hf.core.Schedule> scheduleList = new ArrayList<edu.utdallas.hf.core.Schedule>();
 	Connection con;
 	
     @Override

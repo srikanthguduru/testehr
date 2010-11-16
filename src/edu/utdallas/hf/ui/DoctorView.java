@@ -7,7 +7,6 @@ package edu.utdallas.hf.ui;
 
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.AlertUtil;
-import edu.utdallas.hf.core.Doctor;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
