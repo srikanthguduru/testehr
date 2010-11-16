@@ -73,48 +73,17 @@ public class Schedule extends Activity implements OnClickListener{
     	
     	for(int i = 0; i < times.length; i++){
     		Calendar cal = new GregorianCalendar();
-    		cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(times[i].split(":")[0]));
-    		cal.set(Calendar.MINUTE, Integer.parseInt(times[i].split(":")[1]));
+    		if(Integer.parseInt(times[i].split(":")[0]) < 8){
+    			cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(times[i].split(":")[0])+12);
+	    		cal.set(Calendar.MINUTE, Integer.parseInt(times[i].split(":")[1]));
+    		}else{
+	    		cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(times[i].split(":")[0]));
+	    		cal.set(Calendar.MINUTE, Integer.parseInt(times[i].split(":")[1]));
+    		}
     		calendars.add(cal);
     	}
+    	
     	//pull schedule list
-    	setEvents();
-    }
-    
-
-	public void onClick(View v) {
-		if(v.getId() == R.id.datePickerButton){
-			showDialog(DATE_DIALOG_ID);
-		}
-	}
-	
-	// the callback received when the user "sets" the date in the dialog
-    private DatePickerDialog.OnDateSetListener mDateSetListener =
-            new DatePickerDialog.OnDateSetListener() {
-
-                public void onDateSet(DatePicker view, int year_, 
-                                      int monthOfYear, int dayOfMonth) {
-                    year = year_;
-                    month = monthOfYear;
-                    day = dayOfMonth;
-                    timeButton.setText(month+1+"/"+day+"/"+year);
-                    setEvents();
-                }
-            };
-            
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-        case DATE_DIALOG_ID:
-        	DatePickerDialog pickerDialog = new DatePickerDialog(
-        										this, mDateSetListener, year, month, day);
-        	
-            return pickerDialog;
-        }
-        return null;
-    }
-    
-    private void setEvents(){
     	con = new Connection();
     	scheduleList = con.getDoctorSchedule(DoctorID, year+"-"+(month+1)+"-"+day);//obtain list of all schedules for date
     	//fill table with list
@@ -152,6 +121,62 @@ public class Schedule extends Activity implements OnClickListener{
 	    		}
     		}
     		table.addView(row);
+    	}
+    }
+    
+
+	public void onClick(View v) {
+		if(v.getId() == R.id.datePickerButton){
+			showDialog(DATE_DIALOG_ID);
+		}
+	}
+	
+	// the callback received when the user "sets" the date in the dialog
+    private DatePickerDialog.OnDateSetListener mDateSetListener =
+            new DatePickerDialog.OnDateSetListener() {
+
+                public void onDateSet(DatePicker view, int year_, 
+                                      int monthOfYear, int dayOfMonth) {
+                    year = year_;
+                    month = monthOfYear;
+                    day = dayOfMonth;
+                    timeButton.setText(month+1+"/"+day+"/"+year);
+                    setEvents();
+                }
+            };
+            
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+        case DATE_DIALOG_ID:
+        	DatePickerDialog pickerDialog = new DatePickerDialog(
+        										this, mDateSetListener, year, month, day);
+        	
+            return pickerDialog;
+        }
+        return null;
+    }
+    
+    private void setEvents(){
+    	con = new Connection();
+    	String dateStirng = year+"-"+(month+1)+"-"+day;
+    	System.out.println(dateStirng);
+    	scheduleList = con.getDoctorSchedule(DoctorID, dateStirng);//obtain list of all schedules for date
+    	//fill table with list
+    	timeButton.setText(month+1+"/"+day+"/"+year);
+    	for(int i =0; i < times.length; i++){
+    		row = (TableRow) table.getChildAt(i);
+			String event = "No Event";
+			for(int l=0; l < scheduleList.size(); l++){
+				if(calendars.get(i).get(Calendar.HOUR_OF_DAY) < scheduleList.get(l).getCal().get(Calendar.HOUR_OF_DAY)){
+					if(calendars.get(i).get(Calendar.MINUTE) < scheduleList.get(l).getCal().get(Calendar.MINUTE)){
+						event = scheduleList.get(l).getEvent();
+						break;
+					}
+				}
+			}
+			System.out.println(event);
+			((TextView)row.getChildAt(2)).setText(event);
     	}
     }
     
