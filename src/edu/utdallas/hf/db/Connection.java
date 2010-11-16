@@ -322,7 +322,7 @@ public class Connection
 
     	String cmd = "patientNotes";
     	Log.i("Connection", "Sending message");
-
+		int size = 12000;
 		try
 		{
 			connect();
@@ -340,7 +340,7 @@ public class Connection
             Log.i("Connection", "Sending message to web");
 			String buffer;
 
-			BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+			BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()), size);
 			while ((buffer = rd.readLine()) != null)
 			{
 
