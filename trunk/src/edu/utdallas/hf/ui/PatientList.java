@@ -78,6 +78,8 @@ public class PatientList extends Activity implements OnClickListener{
     		}
     		table.addView(row);
     	}
+    	
+    	
     }
     
 

@@ -23,8 +23,8 @@ import edu.utdallas.hf.db.Connection;
 public class Login extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
 	private Button loginButton;
-	private Button doctorViewButton;
-	private Button test;
+	//private Button doctorViewButton;
+	//private Button test;
 	private EditText username;
 	private EditText password;
 	NumberFormat formatter = new DecimalFormat("#00.##");
@@ -50,8 +50,8 @@ public class Login extends Activity implements OnClickListener{
     	password = (EditText)findViewById(R.id.passField);
     	
     	loginButton.setOnClickListener(this);
-    	doctorViewButton.setOnClickListener(this);
-    	test.setOnClickListener(this);
+    	//doctorViewButton.setOnClickListener(this);
+    	//test.setOnClickListener(this);
     }
 
 	public void onClick(View v) {
