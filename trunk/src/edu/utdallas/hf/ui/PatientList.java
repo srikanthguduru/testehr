@@ -2,7 +2,7 @@ package edu.utdallas.hf.ui;
 
 /** 
  * As part of the final documentation, Code Comments will be included, as specified by Razo
- * 
+ * List all patients in database system in order by table id
  * */
 
 import java.util.ArrayList;
@@ -45,9 +45,11 @@ public class PatientList extends Activity implements OnClickListener{
     	//populate table with list entries
     	for(int i =0; i < patientList.size(); i++){
     		row = new TableRow(this);
+    		
     		if(i%2 == 0){
     			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
     		}
+    		
     		for(int j=0; j<3; j++){
     			if(j==1){
     				TextView border;
@@ -59,8 +61,8 @@ public class PatientList extends Activity implements OnClickListener{
     			}else if(j==0){
     				TextView text = ViewUtil.createTextView(
     						this, 
-    						patientList.get(i).getFName()+ " "+
-    						patientList.get(i).getLName(), 
+    						patientList.get(i).getFName()+ " " +
+    							patientList.get(i).getLName(), 
     						(float).7, 
     						patientList.get(i).getId(), 
     						this);

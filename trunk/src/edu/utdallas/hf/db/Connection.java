@@ -2,7 +2,7 @@ package edu.utdallas.hf.db;
 
 /**
  * As part of the final documentation, Code Comments will be included, as specified by Razo
- *
+ *Functions for pulling and pushing data streams on to a server side php file.
  * */
 
 import java.io.BufferedReader;

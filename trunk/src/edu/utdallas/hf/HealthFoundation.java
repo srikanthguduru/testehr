@@ -8,7 +8,7 @@ import android.os.Bundle;
 public class HealthFoundation extends Activity{
     /** 
      * As part of the final documentation, Code Comments will be included, as specified by Razo
-     * 
+     * Creates a new intent, intents are the equivalent of a new frame within the application.
      * */
 
     @Override

@@ -2,7 +2,7 @@ package edu.utdallas.hf.ui;
 
 /** 
  * As part of the final documentation, Code Comments will be included, as specified by Razo
- * 
+ * Doctors schedule and patients within system are accessable from this point.
  * */
 
 import edu.utdallas.hf.R;
