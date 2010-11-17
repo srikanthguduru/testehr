@@ -323,6 +323,7 @@ public class Connection
     	String cmd = "patientNotes";
     	Log.i("Connection", "Sending message");
 		int size = 12000;
+		String regex = "`";
 		try
 		{
 			connect();
@@ -345,7 +346,8 @@ public class Connection
 			{
 
 				Log.i("Connection", "Retrieving message buffer is " + buffer);
-				String[] bufferString = buffer.split(",");
+				Log.i("Connection", "My regex is " + regex);
+				String[] bufferString = buffer.split(regex);
 
 				//0 >> 3
 				//Log.e("Connection", "Drug: "+bufferString[2]);
