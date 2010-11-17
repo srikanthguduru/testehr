@@ -269,13 +269,13 @@ public class Connection
 				URLEncoder.encode(cmd, "UTF-8");
 
 			Log.i("Connection", "Sending message: " + data);
-
+			
 		    OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
             wr.write(data);
             wr.flush();
             Log.i("Connection", "Sending message to web");
 			String buffer;
-
+			//load messages into buffer and parse
 			BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 			while ((buffer = rd.readLine()) != null)
 			{
