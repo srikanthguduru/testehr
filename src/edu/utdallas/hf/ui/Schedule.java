@@ -42,7 +42,7 @@ public class Schedule extends Activity implements OnClickListener{
 	static final int DATE_DIALOG_ID = 0;
 	final Calendar c = Calendar.getInstance();
 	
-	private int DoctorID = 0;
+	private int DoctorID = 1;
 	ArrayList<edu.utdallas.hf.core.Schedule> scheduleList = new ArrayList<edu.utdallas.hf.core.Schedule>();
 	Connection con;
 	
@@ -65,6 +65,8 @@ public class Schedule extends Activity implements OnClickListener{
     	if(extras != null){
     		DoctorID = (extras.getInt("did"));
     	}
+    	
+    	DoctorID = 1;
     	
     	//init calender
     	month = c.get(Calendar.MONTH);
@@ -160,8 +162,13 @@ public class Schedule extends Activity implements OnClickListener{
     private void setEvents(){
     	con = new Connection();
     	String dateStirng = year+"-"+(month+1)+"-"+day;
-    	System.out.println(dateStirng);
+    	System.out.println("DocID: "+DoctorID + " Date: "+dateStirng);
     	scheduleList = con.getDoctorSchedule(DoctorID, dateStirng);//obtain list of all schedules for date
+    	System.out.println("Schedule Size: "+scheduleList.size());
+    	for(int i =0; i<scheduleList.size(); i++){
+    		System.out.println("Time: "+scheduleList.get(i).getCal().toString());
+    		System.out.println("Event: "+scheduleList.get(i).getEvent());
+    	}
     	//fill table with list
     	timeButton.setText(month+1+"/"+day+"/"+year);
     	for(int i =0; i < times.length; i++){
@@ -175,8 +182,8 @@ public class Schedule extends Activity implements OnClickListener{
 					}
 				}
 			}
-			System.out.println(event);
-			((TextView)row.getChildAt(2)).setText(event);
+			//System.out.println(event);
+			//((TextView)row.getChildAt(2)).setText(event);
     	}
     }
     

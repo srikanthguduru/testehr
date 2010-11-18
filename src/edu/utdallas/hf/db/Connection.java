@@ -56,6 +56,7 @@ public class Connection
     {
     	int id = 0;
     	String cmd = "hasLoggedIn";
+    	Log.i("Connection", "UserName in getDoctorId: "+username); 
     	try
     	{
     		connect();
@@ -422,6 +423,8 @@ public class Connection
 	   String cmd = "createPatientNote";
 	   String result = "";
 
+	   
+	   Log.i("Connection", "Pid: "+pid);
 	   try
 	   {
 		   connect();
