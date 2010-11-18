@@ -469,6 +469,7 @@ public class Connection
    	   String cmd = "getDoctorSchedule";
 	   ArrayList<Schedule> docScheduleList = new ArrayList<Schedule>();
 	   Schedule docSchedule = new Schedule();
+	   int size = 20000;
 	   try
 	   {
 		   connect();
@@ -477,18 +478,19 @@ public class Connection
 			URLEncoder.encode("aid", "UTF-8") + "=" +
 			URLEncoder.encode(""+id, "UTF-8") + "&" +
 		    URLEncoder.encode("date", "UTF-8") + "=" +
-			URLEncoder.encode(date+"%", "UTF-8");
+			URLEncoder.encode(date, "UTF-8");
 
 		    OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
             wr.write(data);
             wr.flush();
 
 
-            BufferedReader rd =  new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            BufferedReader rd =  new BufferedReader(new InputStreamReader(urlConnection.getInputStream()), size);
             String buffer;
 
             while ((buffer = rd.readLine()) != null)
 		    {
+            	Log.i("connection", "buffer is : " + buffer);
 		    	//This arraylist holds a title or a name at every even index and a datetime at every odd index
 		    	Calendar date1 = new GregorianCalendar();
 		    	String[] bufferString = buffer.split(",");
