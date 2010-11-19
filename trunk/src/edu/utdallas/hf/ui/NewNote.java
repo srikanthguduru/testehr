@@ -6,6 +6,7 @@ package edu.utdallas.hf.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import edu.utdallas.hf.R;
-import edu.utdallas.hf.commons.AlertUtil;
 import edu.utdallas.hf.db.Connection;
 
 /*
@@ -54,13 +54,25 @@ public class NewNote extends Activity implements OnClickListener {
 	}
 	public void onClick(View v) {
 		if(v.getId() == R.id.newNoteSaveButton){
-			Connection con = new Connection();
-			String title = noteTitle.getText().toString();
-			String body = noteView.getText().toString();
-			//AlertDialog alert = AlertUtil.createAlertMessage(this, "Title: "+title+"\nBody: "+body, "OK");
-			//alert.show();
-			con.createPatientNote(pid, title, body);
-			AlertDialog alert = AlertUtil.createChoiceAlert(this, this, "Are you sure you want to save?");
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("Are you sure you want to save this note?")
+				.setCancelable(false)
+				.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+					public void onClick(DialogInterface dialog, int id) {
+						Connection con = new Connection();
+						String title = noteTitle.getText().toString();
+						String body = noteView.getText().toString();
+						con.createPatientNote(pid, title, body);
+						setResult(Activity.RESULT_OK);
+						finish();
+					}
+				})
+				.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			                dialog.dismiss();
+			           }
+			       });
+			AlertDialog alert = builder.create();
 			alert.show();
 		}
 		
