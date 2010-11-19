@@ -329,10 +329,10 @@ public class Connection
 		{
 			connect();
 			//Encode the string combination into a url to send to the php page
-			String data = URLEncoder.encode("pid", "UTF-8") + "=" +
-				URLEncoder.encode(""+pid, "UTF-8") + "&" +
-				URLEncoder.encode("cmd", "UTF-8") + "=" +
-				URLEncoder.encode(cmd, "UTF-8");
+			String data = URLEncoder.encode("cmd", "UTF-8") + "=" +
+				URLEncoder.encode(cmd, "UTF-8") + "&" +
+				URLEncoder.encode("pid", "UTF-8") + "=" +
+				URLEncoder.encode(""+pid, "UTF-8");
 
 			Log.i("Connection", "Sending message: " + data);
 
