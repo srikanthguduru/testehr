@@ -60,10 +60,10 @@ public class Connection
     	try
     	{
     		connect();
-    		String data = URLEncoder.encode("username", "UTF-8") + "=" +
-    				URLEncoder.encode(username, "UTF-8") + "&" +
-    				URLEncoder.encode("cmd", "UTF-8") + "=" +
-    				URLEncoder.encode(cmd, "UTF-8");
+    		String data = URLEncoder.encode("cmd", "UTF-8") + "=" +
+    				URLEncoder.encode(cmd, "UTF-8") + "&" +
+    				URLEncoder.encode("username", "UTF-8") + "=" +
+    				URLEncoder.encode(username, "UTF-8");
 
     		OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
             wr.write(data);
