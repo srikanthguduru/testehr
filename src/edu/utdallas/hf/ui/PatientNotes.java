@@ -82,41 +82,32 @@ public class PatientNotes extends Activity implements OnClickListener {
     	}
     	
     	con = new Connection();
-    	
     	pNotes = con.getPatientNote(pid);
     	
-    	for(int i = 0; i < pNotes.size(); i++)
-    	{
+    	for(int i = 1; i < pNotes.size()+1; i++){
     		TableRow row = new TableRow(this);
-    		if(i%2 == 0)
-    		{
+    		if(i%2 == 1){
     			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
     		}
-    		for(int j = 0; j < 3; j++)
-    		{	
-    			if(j==1)
-    			{
+    		for(int j = 0; j < 3; j++){	
+    			if(j==1){
     				TextView border = new TextView(this);
-    				if(i%2==0)
+    				if(i%2==1)
     					border = ViewUtil.createTableBorder(this, R.color.blackBorder);
     				else
     					border = ViewUtil.createTableBorder(this, R.color.borderColor);
     				row.addView(border);
-    			}
-    			else if(j==0)
-    			{
+    			}else if(j==0){
     				TextView text = ViewUtil.createTextView(
     						this, 
-    						pNotes.get(i).getTitle(), 
+    						pNotes.get(i-1).getTitle(), 
     						(float).70, 
-    						pNotes.get(i).getId(),
+    						pNotes.get(i-1).getId(),
     						this);
         			row.addView(text);
-    			}
-    			else if(j==2)
-    			{
+    			}else if(j==2){
     				TextView text = ViewUtil.createTextView(
-    						this, pNotes.get(i).getDateString(), (float).30, pNotes.get(i).getId());
+    						this, pNotes.get(i-1).getDateString(), (float).30, pNotes.get(i-1).getId());
         			row.addView(text);
     			}
     		}
@@ -127,6 +118,49 @@ public class PatientNotes extends Activity implements OnClickListener {
     	
 	}
 	
+    public void onResume(){
+    	super.onResume();
+    	updateNotes();
+    }
+    
+    private void updateNotes(){
+    	con = new Connection();
+    	pNotes = con.getPatientNote(pid);
+    	if(pNotes.size() > table.getChildCount()-1){
+	    	TableRow row = new TableRow(this);
+	    	for(int j = 0; j < 3; j++){	
+				if(j==1){
+					TextView border = new TextView(this);
+					if(pNotes.size()%2==0)
+						border = ViewUtil.createTableBorder(this, R.color.blackBorder);
+					else
+						border = ViewUtil.createTableBorder(this, R.color.borderColor);
+					row.addView(border);
+				}else if(j==0){
+					TextView text = ViewUtil.createTextView(
+							this, 
+							pNotes.get(pNotes.size()-1).getTitle(), 
+							(float).70, 
+							pNotes.get(pNotes.size()-1).getId(),
+							this);
+	    			row.addView(text);
+				}else if(j==2){
+					TextView text = ViewUtil.createTextView(
+							this, pNotes.get(pNotes.size()-1).getDateString(), (float).30, pNotes.get(pNotes.size()-1).getId());
+	    			row.addView(text);
+				}
+			}
+			row.setOnClickListener(this);
+			table.addView(row);
+    	}else{
+    		TableRow lastRow;
+    		lastRow = (TableRow)(table.getChildAt(pNotes.size()-1));
+    		TextView noteDate = (TextView)lastRow.getChildAt(2);
+    		noteDate.setText(pNotes.get(pNotes.size()-1).getDateString());
+    	}
+    	
+    }
+    
     //Based on what row is clicked, different data will be loaded into Note.class
 	public void onClick(View v) {
 		pNotes = con.getPatientNote(pid);
