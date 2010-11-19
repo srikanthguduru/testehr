@@ -128,10 +128,13 @@ public class PatientNotes extends Activity implements OnClickListener {
     	pNotes = con.getPatientNote(pid);
     	if(pNotes.size() > table.getChildCount()-1){
 	    	TableRow row = new TableRow(this);
+	    	if(pNotes.size()%2 == 1){
+    			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
+    		}
 	    	for(int j = 0; j < 3; j++){	
 				if(j==1){
 					TextView border = new TextView(this);
-					if(pNotes.size()%2==0)
+					if(pNotes.size()%2==1)
 						border = ViewUtil.createTableBorder(this, R.color.blackBorder);
 					else
 						border = ViewUtil.createTableBorder(this, R.color.borderColor);
@@ -153,10 +156,12 @@ public class PatientNotes extends Activity implements OnClickListener {
 			row.setOnClickListener(this);
 			table.addView(row);
     	}else{
-    		TableRow lastRow;
-    		lastRow = (TableRow)(table.getChildAt(pNotes.size()-1));
-    		TextView noteDate = (TextView)lastRow.getChildAt(2);
-    		noteDate.setText(pNotes.get(pNotes.size()-1).getDateString());
+    		if(table.getChildCount()>1){
+	    		TableRow lastRow;
+	    		lastRow = (TableRow)(table.getChildAt(pNotes.size()-1));
+	    		TextView noteDate = (TextView)lastRow.getChildAt(2);
+	    		noteDate.setText(pNotes.get(pNotes.size()-1).getDateString());
+    		}
     	}
     	
     }
