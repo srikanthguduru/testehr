@@ -53,6 +53,11 @@ public class Login extends Activity implements OnClickListener{
     	//doctorViewButton.setOnClickListener(this);
     	//test.setOnClickListener(this);
     }
+    
+    public void onResume(){
+    	super.onResume();
+    	password.setText("");
+    }
 
 	public void onClick(View v) {
 		if(v.getId() == R.id.loginButton){
