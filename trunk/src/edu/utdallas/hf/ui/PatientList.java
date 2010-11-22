@@ -7,10 +7,6 @@ package edu.utdallas.hf.ui;
 
 import java.util.ArrayList;
 
-import edu.utdallas.hf.R;
-import edu.utdallas.hf.commons.ViewUtil;
-import edu.utdallas.hf.core.*;
-import edu.utdallas.hf.db.Connection;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +16,10 @@ import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import edu.utdallas.hf.R;
+import edu.utdallas.hf.commons.ViewUtil;
+import edu.utdallas.hf.core.Patient;
+import edu.utdallas.hf.db.PatientDAO;
 
 public class PatientList extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
@@ -27,7 +27,6 @@ public class PatientList extends Activity implements OnClickListener{
 	ScrollView scrollView;
 	TableRow row;
 	ArrayList<Patient> patientList = new ArrayList<Patient>();
-	Connection con;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +37,7 @@ public class PatientList extends Activity implements OnClickListener{
     }
     
     public void initValues(){
-    	con = new Connection();
-    	patientList = con.getPatientList();//obtain list of all patients
+    	patientList = PatientDAO.getPatientList();//obtain list of all patients
     	table = (TableLayout)findViewById(R.id.patientListRootLayout);
     	
     	//populate table with list entries

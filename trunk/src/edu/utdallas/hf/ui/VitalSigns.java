@@ -7,10 +7,6 @@ package edu.utdallas.hf.ui;
 
 import java.util.ArrayList;
 
-import edu.utdallas.hf.R;
-import edu.utdallas.hf.commons.ViewUtil;
-import edu.utdallas.hf.core.Vitals;
-import edu.utdallas.hf.db.Connection;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,6 +19,10 @@ import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import edu.utdallas.hf.R;
+import edu.utdallas.hf.commons.ViewUtil;
+import edu.utdallas.hf.core.Vitals;
+import edu.utdallas.hf.db.PatientDAO;
 
 public class VitalSigns extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
@@ -33,7 +33,6 @@ public class VitalSigns extends Activity implements OnClickListener{
 	TableLayout table;
 	ScrollView scroll;
 	//connection-----------
-	Connection con;
 	int pid = 0;//patient id, this is values should be passed from patientView
 	ArrayList<Vitals> patientVitals = new ArrayList<Vitals>();
 	//----------------------
@@ -51,8 +50,7 @@ public class VitalSigns extends Activity implements OnClickListener{
     		pid = extras.getInt("pid");
     	}
     	//connection----------------------
-    	con = new Connection();
-    	patientVitals = con.getPatientVitals(pid);
+    	patientVitals = PatientDAO.getPatientVitals(pid);
     	//--------------------------------
     	scroll = (ScrollView)findViewById(R.id.vitalSignsScrollView);
     	checkImage =  BitmapFactory.decodeResource(getResources(),R.drawable.check);

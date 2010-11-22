@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import edu.utdallas.hf.R;
-import edu.utdallas.hf.commons.ViewUtil;
-import edu.utdallas.hf.db.Connection;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -24,6 +21,9 @@ import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import edu.utdallas.hf.R;
+import edu.utdallas.hf.commons.ViewUtil;
+import edu.utdallas.hf.db.DoctorDAO;
 
 public class Schedule extends Activity implements OnClickListener{
 	String [] times = {"8:00", "8:15", "8:30", "8:45", "9:00", "9:15",
@@ -44,7 +44,6 @@ public class Schedule extends Activity implements OnClickListener{
 	
 	private int DoctorID = 1;
 	ArrayList<edu.utdallas.hf.core.Schedule> scheduleList = new ArrayList<edu.utdallas.hf.core.Schedule>();
-	Connection con;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,8 +85,7 @@ public class Schedule extends Activity implements OnClickListener{
     	}
     	
     	//pull schedule list
-    	con = new Connection();
-    	scheduleList = con.getDoctorSchedule(DoctorID, year+"-"+(month+1)+"-"+day);//obtain list of all schedules for date
+    	scheduleList = DoctorDAO.getDoctorSchedule(DoctorID, year+"-"+(month+1)+"-"+day);//obtain list of all schedules for date
     	//fill table with list
     	timeButton.setText(month+1+"/"+day+"/"+year);
     	for(int i =2; i < times.length+2; i++){
@@ -160,10 +158,9 @@ public class Schedule extends Activity implements OnClickListener{
     }
     
     private void setEvents(){
-    	con = new Connection();
     	String dateStirng = year+"-"+(month+1)+"-"+day;
     	System.out.println("DocID: "+DoctorID + " Date: "+dateStirng);
-    	scheduleList = con.getDoctorSchedule(DoctorID, dateStirng);//obtain list of all schedules for date
+    	scheduleList = DoctorDAO.getDoctorSchedule(DoctorID, dateStirng);//obtain list of all schedules for date
     	System.out.println("Schedule Size: "+scheduleList.size());
     	for(int i =0; i<scheduleList.size(); i++){
     		System.out.println("Time: "+scheduleList.get(i).getCal().get(Calendar.HOUR_OF_DAY)+scheduleList.get(i).getCal().get(Calendar.MINUTE));

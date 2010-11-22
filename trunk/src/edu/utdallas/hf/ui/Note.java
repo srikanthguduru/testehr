@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import edu.utdallas.hf.R;
-import edu.utdallas.hf.db.Connection;
+import edu.utdallas.hf.db.PatientDAO;
 
 /*
  * This class is called from within Doctor View and will display a list of all notes taken by doctor.
@@ -59,8 +59,7 @@ public class Note extends Activity implements OnClickListener {
 				.setCancelable(false)
 				.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
 					public void onClick(DialogInterface dialog, int id) {
-						Connection con = new Connection();
-						con.updatePatientNote(noteId, note);
+						PatientDAO.updatePatientNote(noteId, note);
 						setResult(Activity.RESULT_OK);
 						finish();
 					}
