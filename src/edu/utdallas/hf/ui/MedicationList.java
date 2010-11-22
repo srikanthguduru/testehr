@@ -16,7 +16,7 @@ import android.widget.TextView;
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.ViewUtil;
 import edu.utdallas.hf.core.Medication;
-import edu.utdallas.hf.db.Connection;
+import edu.utdallas.hf.db.PatientDAO;
 
 public class MedicationList extends Activity{
     /** Called when the activity is first created. */
@@ -24,7 +24,6 @@ public class MedicationList extends Activity{
 	TableLayout table;
 	ScrollView scrollView;
 	TableRow row;
-	Connection con;
 	int pid = 0;//patient id, this is values should be passed from patientView
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,10 +39,8 @@ public class MedicationList extends Activity{
     	if(extras !=null){
     		pid = extras.getInt("pid");
     	}
-    	//create a new connection to get data from database
-    	con = new Connection();
     	//get the medication list from the database
-    	medications = con.getPatientMedication(pid);
+    	medications = PatientDAO.getPatientMedication(pid);
     	table = (TableLayout)findViewById(R.id.medicationListRootLayout);
     	//loop through all the medications in the list
     	for(int i =0; i < medications.size(); i++){

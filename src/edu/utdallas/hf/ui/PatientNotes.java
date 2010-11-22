@@ -21,7 +21,7 @@ import android.widget.TextView;
 import edu.utdallas.hf.R;
 import edu.utdallas.hf.commons.ViewUtil;
 import edu.utdallas.hf.core.Note;
-import edu.utdallas.hf.db.Connection;
+import edu.utdallas.hf.db.PatientDAO;
 
 /*
  * This class is called from within Doctor View and will display a list of all notes taken by doctor.
@@ -34,7 +34,6 @@ public class PatientNotes extends Activity implements OnClickListener {
 	/** Called when the activity is first created. */
 	ArrayList<Note> pNotes = new ArrayList<Note>();
 	TableLayout table;
-	Connection con;
 	int pid = 0;
 	ScrollView scroll;
 	
@@ -81,8 +80,7 @@ public class PatientNotes extends Activity implements OnClickListener {
     		pid = extras.getInt("pid");
     	}
     	
-    	con = new Connection();
-    	pNotes = con.getPatientNote(pid);
+    	pNotes = PatientDAO.getPatientNote(pid);
     	
     	for(int i = 1; i < pNotes.size()+1; i++){
     		TableRow row = new TableRow(this);
@@ -124,8 +122,7 @@ public class PatientNotes extends Activity implements OnClickListener {
     }
     
     private void updateNotes(){
-    	con = new Connection();
-    	pNotes = con.getPatientNote(pid);
+    	pNotes = PatientDAO.getPatientNote(pid);
     	if(pNotes.size() > table.getChildCount()-1){
 	    	TableRow row = new TableRow(this);
 	    	if(pNotes.size()%2 == 1){
@@ -168,7 +165,7 @@ public class PatientNotes extends Activity implements OnClickListener {
     
     //Based on what row is clicked, different data will be loaded into Note.class
 	public void onClick(View v) {
-		pNotes = con.getPatientNote(pid);
+		pNotes = PatientDAO.getPatientNote(pid);
 		for(int i = 0; i < pNotes.size(); i ++){
 			if(v.getId() == pNotes.get(i).getId()){
 				Intent patientNotesIntent = new Intent(PatientNotes.this, edu.utdallas.hf.ui.Note.class);
