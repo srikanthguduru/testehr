@@ -24,8 +24,6 @@ import edu.utdallas.hf.db.LoginDAO;
 public class Login extends Activity implements OnClickListener{
     /** Called when the activity is first created. */
 	private Button loginButton;
-	//private Button doctorViewButton;
-	//private Button test;
 	private EditText username;
 	private EditText password;
 	NumberFormat formatter = new DecimalFormat("#00.##");
@@ -40,21 +38,15 @@ public class Login extends Activity implements OnClickListener{
     
     
     
-    private void initControls(){
-    	/*//when database end complete remove this subset of buttons----------------------
-    	doctorViewButton = (Button)findViewById(R.id.goToDoctorView);
-    	test = (Button)findViewById(R.id.test);
-    	//------------------------------------------------------------------------------
-    	 */    	
+    private void initControls(){  	
     	loginButton = (Button)findViewById(R.id.loginButton);
     	username = (EditText)findViewById(R.id.nameField);
     	password = (EditText)findViewById(R.id.passField);
     	
     	loginButton.setOnClickListener(this);
+    	//show the waiting dialog when the user clicks login
     	waiting = ProgressDialog.show(this, "", 
                 "Loading. Please wait...", true);
-    	//doctorViewButton.setOnClickListener(this);
-    	//test.setOnClickListener(this);
     }
     
     public void onResume(){
@@ -68,6 +60,7 @@ public class Login extends Activity implements OnClickListener{
 			System.out.println("Login clicked");
 			waiting = ProgressDialog.show(this, "", 
 	                "Loading. Please wait...", true);
+			//creates another thread to log in to the database
 			LoginThread searchThread = new LoginThread();
 		    searchThread.start();
 		}
@@ -80,11 +73,13 @@ public class Login extends Activity implements OnClickListener{
 			String message = LoginDAO.login(
 					username.getText().toString().trim(), 
 					password.getText().toString().trim());
+			//if the log in was successful, go to the doctor view
 			if(message.equals("success")){
 				int docId = LoginDAO.getDoctorId(username.getText().toString().trim());
 				Intent doctorViewIntent = new Intent(Login.this, DoctorView.class);
 				doctorViewIntent.putExtra("did", docId);
 				Login.this.startActivity(doctorViewIntent);
+			//if the log in failed, display the fail message
 			}else if (message.equals("fail")){
 				waiting.dismiss();
 				AlertDialog alert = AlertUtil.createAlertMessage(

@@ -14,8 +14,10 @@ import android.util.Log;
 
 public class Connection
 {
-	
-
+	/**
+	 * Makes the connection to the php page
+	 * @return the url connection to php page
+	 */
     public static URLConnection connect()
     {
     	URL url;

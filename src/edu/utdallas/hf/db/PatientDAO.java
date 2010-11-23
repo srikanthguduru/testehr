@@ -18,7 +18,10 @@ import edu.utdallas.hf.core.Vitals;
 
 public class PatientDAO {
 
-	
+	/**
+	 * Gets the list of patients for the logged in doctor
+	 * @return the list of patients
+	 */
 	public static ArrayList<Patient> getPatientList()
     {
     	ArrayList<Patient> patientList = new ArrayList<Patient>();
@@ -72,7 +75,11 @@ public class PatientDAO {
 
     }
 
-
+	/**
+	 * Gets the patient's vitals based on the patient id
+	 * @param pid the patient's id
+	 * @return the list of vitals for the patient with id pid
+	 */
     public static ArrayList<Vitals> getPatientVitals(int pid)
     {
     	ArrayList<Vitals> vList = new ArrayList<Vitals>();
@@ -125,7 +132,12 @@ public class PatientDAO {
 		return vList;
 
     }
-
+    
+    /**
+     * Gets the the patient's medication based on the patient's id
+     * @param pid the patient's id
+     * @return the medication list for the patient with patient id pid
+     */
     public static ArrayList<Medication> getPatientMedication(int pid)
     {
     	ArrayList<Medication> mList = new ArrayList<Medication>();
@@ -189,6 +201,11 @@ public class PatientDAO {
 
     }
 
+    /**
+     * Gets the patient's notes based on the patient's id
+     * @param pid the patient's id
+     * @return the patient's notes
+     */
     public static ArrayList<Note> getPatientNote(int pid)
     {
     	ArrayList<Note> pNotes = new ArrayList<Note>();
@@ -248,6 +265,12 @@ public class PatientDAO {
 		return pNotes;
    }
 
+    /**
+     * Updates a patient's note with the new body msg
+     * @param id the patient's id
+     * @param msg the new note to be updated
+     * @return success if the note is upated
+     */
    public static String updatePatientNote(int id, String msg)
    {
 	   String cmd = "updatePatientNote";
@@ -292,7 +315,13 @@ public class PatientDAO {
 	   return result;
    }
 
-   //creates new patient in database
+   /**
+    * Creates a new note with the title title and body msg
+    * @param pid the patient's id
+    * @param title the new notes title
+    * @param msg the new notes body
+    * @return success if the note was created successfully, fail other wise
+    */
    public static String createPatientNote(int pid, String title, String msg)
    {
 	   String cmd = "createPatientNote";

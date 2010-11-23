@@ -14,6 +14,12 @@ import edu.utdallas.hf.commons.DateUtil;
 import edu.utdallas.hf.core.Schedule;
 
 public class DoctorDAO {
+	/**
+	 * Gets the doctor schedule based on the doctor id and date
+	 * @param id the doctor's id
+	 * @param date the date that we want to get the schedule for
+	 * @return The doctor's schedule for the day
+	 */
 	public static ArrayList<Schedule> getDoctorSchedule(int id, String date)
 	   {
 	   	   String cmd = "getDoctorSchedule";

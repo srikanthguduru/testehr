@@ -44,6 +44,7 @@ public class NewNote extends Activity implements OnClickListener {
     	Bundle extras = getIntent().getExtras(); 
     	if(extras !=null)
     	{
+    		//gets the pid from PatientNotes
     		pid = extras.getInt("pid");
     	}
     	
@@ -54,6 +55,8 @@ public class NewNote extends Activity implements OnClickListener {
 	}
 	public void onClick(View v) {
 		if(v.getId() == R.id.newNoteSaveButton){
+			//when the save button is clicked,
+			//ask the user if he/she wants to save the note for sure
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage("Are you sure you want to save this note?")
 				.setCancelable(false)
