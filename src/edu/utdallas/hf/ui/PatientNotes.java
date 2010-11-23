@@ -124,6 +124,7 @@ public class PatientNotes extends Activity implements OnClickListener {
     private void updateNotes(){
     	pNotes = PatientDAO.getPatientNote(pid);
     	if(pNotes.size() > table.getChildCount()-1){
+    		System.out.println("If added new Note");
 	    	TableRow row = new TableRow(this);
 	    	if(pNotes.size()%2 == 1){
     			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
@@ -153,12 +154,13 @@ public class PatientNotes extends Activity implements OnClickListener {
 			row.setOnClickListener(this);
 			table.addView(row);
     	}else{
-    		if(table.getChildCount()>1){
+    		//If updated a note
+    		/*if(table.getChildCount()>1){
 	    		TableRow lastRow;
 	    		lastRow = (TableRow)(table.getChildAt(pNotes.size()-1));
 	    		TextView noteDate = (TextView)lastRow.getChildAt(2);
 	    		noteDate.setText(pNotes.get(pNotes.size()-1).getDateString());
-    		}
+    		}*/
     	}
     	
     }
