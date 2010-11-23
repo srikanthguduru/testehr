@@ -68,7 +68,6 @@ public class Login extends Activity implements OnClickListener{
 			System.out.println("Login clicked");
 			waiting = ProgressDialog.show(this, "", 
 	                "Loading. Please wait...", true);
-
 			LoginThread searchThread = new LoginThread();
 		    searchThread.start();
 		}

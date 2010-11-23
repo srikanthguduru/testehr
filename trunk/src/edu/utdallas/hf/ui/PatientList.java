@@ -36,13 +36,13 @@ public class PatientList extends Activity implements OnClickListener{
         initValues();
     }
     
-    public void initValues(){
+    private void initValues(){
     	patientList = PatientDAO.getPatientList();//obtain list of all patients
     	table = (TableLayout)findViewById(R.id.patientListRootLayout);
     	
     	//populate table with list entries
     	for(int i =0; i < patientList.size(); i++){
-    		row = new TableRow(this);
+    		row = new TableRow(PatientList.this);
     		
     		if(i%2 == 0){
     			row.setBackgroundColor(getResources().getColor(R.color.borderColor));
@@ -52,23 +52,23 @@ public class PatientList extends Activity implements OnClickListener{
     			if(j==1){
     				TextView border;
     				if(i%2==0)
-    					border = ViewUtil.createTableBorder(this, R.color.blackBorder);
+    					border = ViewUtil.createTableBorder(PatientList.this, R.color.blackBorder);
     				else
-    					border = ViewUtil.createTableBorder(this, R.color.borderColor);
+    					border = ViewUtil.createTableBorder(PatientList.this, R.color.borderColor);
     				row.addView(border);
     			}else if(j==0){
     				TextView text = ViewUtil.createTextView(
-    						this, 
+    						PatientList.this, 
     						patientList.get(i).getFName()+ " " +
     							patientList.get(i).getLName(), 
     						(float).7, 
     						patientList.get(i).getId(), 
-    						this);
+    						PatientList.this);
     				text.setPadding(0, 5, 0, 5);
         			row.addView(text);
     			}else if(j==2){
     				TextView text = ViewUtil.createTextView(
-    						this,
+    						PatientList.this,
     						patientList.get(i).getDobString(), 
     						(float).3, 
     						patientList.get(i).getId());
@@ -78,10 +78,7 @@ public class PatientList extends Activity implements OnClickListener{
     		}
     		table.addView(row);
     	}
-    	
-    	
     }
-    
 
 	public void onClick(View v) {
 		for(int i =0; i < patientList.size(); i++){
