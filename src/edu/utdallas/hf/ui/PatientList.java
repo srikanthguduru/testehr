@@ -57,6 +57,7 @@ public class PatientList extends Activity implements OnClickListener{
     					border = ViewUtil.createTableBorder(PatientList.this, R.color.borderColor);
     				row.addView(border);
     			}else if(j==0){
+    				//add the patient's first and last name to the first column
     				TextView text = ViewUtil.createTextView(
     						PatientList.this, 
     						patientList.get(i).getFName()+ " " +
@@ -67,6 +68,7 @@ public class PatientList extends Activity implements OnClickListener{
     				text.setPadding(0, 5, 0, 5);
         			row.addView(text);
     			}else if(j==2){
+    				//add the patient's date of birth to the second column
     				TextView text = ViewUtil.createTextView(
     						PatientList.this,
     						patientList.get(i).getDobString(), 
@@ -84,6 +86,7 @@ public class PatientList extends Activity implements OnClickListener{
 		for(int i =0; i < patientList.size(); i++){
 			for(int j=0; j<3; j++){
 				if(v.getId()==patientList.get(i).getId()){
+					//when the patient's name is clicked on, go to the patient's info page
 					Intent patientViewIntent = new Intent(PatientList.this, PatientView.class);
 					patientViewIntent.putExtra("patientId", v.getId());//passes patient id through the intent.putExtra
 					PatientList.this.startActivity(patientViewIntent);

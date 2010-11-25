@@ -36,6 +36,7 @@ public class Note extends Activity implements OnClickListener {
     }
     
     public void initValues(){
+    	//the save button in note view
     	saveButton = (Button)findViewById(R.id.noteSaveButton);
     	noteView = (EditText)findViewById(R.id.noteTextView);
     	scroll = (ScrollView)findViewById(R.id.noteScrollView);
@@ -44,6 +45,7 @@ public class Note extends Activity implements OnClickListener {
     	Bundle extras = getIntent().getExtras(); 
     	if(extras !=null)
     	{
+    		//get the noteId and note content from PatientNotes class
     		noteId = extras.getInt("noteId");
     		note = extras.getString("text");
     	}
@@ -52,6 +54,8 @@ public class Note extends Activity implements OnClickListener {
     	
 	}
 	public void onClick(View v) {
+		//When the save button is pushed
+		//display the confirmation message, saves the note if yes, does nothing other wise
 		if(v.getId() == R.id.noteSaveButton){
 			note = noteView.getText().toString();
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
