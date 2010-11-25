@@ -23,10 +23,6 @@ import edu.utdallas.hf.commons.ViewUtil;
 import edu.utdallas.hf.core.Note;
 import edu.utdallas.hf.db.PatientDAO;
 
-/*
- * This class is called from within Doctor View and will display a list of all notes taken by doctor.
- * A option to add new notes or delete old notes will be present through buttons.
- */
 public class PatientNotes extends Activity implements OnClickListener {
 	
 	
@@ -46,6 +42,7 @@ public class PatientNotes extends Activity implements OnClickListener {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+    	//add the add note menu item
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.notesmenu, menu);
         return true;
@@ -54,6 +51,7 @@ public class PatientNotes extends Activity implements OnClickListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
+    	// when the user chooses add new note
         switch (item.getItemId()) {
         case R.id.newNote:
         	createNewNote();
@@ -64,6 +62,7 @@ public class PatientNotes extends Activity implements OnClickListener {
     }
     
     public void createNewNote(){
+    	//creates a newnote page when the add note button is clicked on
     	Intent newPatientNotesIntent = new Intent(PatientNotes.this, NewNote.class);
     	newPatientNotesIntent.putExtra("pid", pid);
 		PatientNotes.this.startActivity(newPatientNotesIntent);
@@ -96,6 +95,7 @@ public class PatientNotes extends Activity implements OnClickListener {
     					border = ViewUtil.createTableBorder(this, R.color.borderColor);
     				row.addView(border);
     			}else if(j==0){
+    				//add the note title to the table's first column
     				TextView text = ViewUtil.createTextView(
     						this, 
     						pNotes.get(i-1).getTitle(), 
@@ -104,6 +104,7 @@ public class PatientNotes extends Activity implements OnClickListener {
     						this);
         			row.addView(text);
     			}else if(j==2){
+    				//add the creation date of the note to the second column of the table
     				TextView text = ViewUtil.createTextView(
     						this, pNotes.get(i-1).getDateString(), (float).30, pNotes.get(i-1).getId());
         			row.addView(text);
@@ -121,6 +122,7 @@ public class PatientNotes extends Activity implements OnClickListener {
     	updateNotes();
     }
     
+    // update notes table after a new note has been added
     private void updateNotes(){
     	pNotes = PatientDAO.getPatientNote(pid);
     	if(pNotes.size() > table.getChildCount()-1){
@@ -153,16 +155,7 @@ public class PatientNotes extends Activity implements OnClickListener {
 			}
 			row.setOnClickListener(this);
 			table.addView(row);
-    	}else{
-    		//If updated a note
-    		/*if(table.getChildCount()>1){
-	    		TableRow lastRow;
-	    		lastRow = (TableRow)(table.getChildAt(pNotes.size()-1));
-	    		TextView noteDate = (TextView)lastRow.getChildAt(2);
-	    		noteDate.setText(pNotes.get(pNotes.size()-1).getDateString());
-    		}*/
     	}
-    	
     }
     
     //Based on what row is clicked, different data will be loaded into Note.class

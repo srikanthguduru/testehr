@@ -32,10 +32,9 @@ public class VitalSigns extends Activity implements OnClickListener{
 	Bitmap exImage;
 	TableLayout table;
 	ScrollView scroll;
-	//connection-----------
 	int pid = 0;//patient id, this is values should be passed from patientView
 	ArrayList<Vitals> patientVitals = new ArrayList<Vitals>();
-	//----------------------
+
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
