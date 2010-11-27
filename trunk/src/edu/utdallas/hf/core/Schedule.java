@@ -4,9 +4,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Schedule {
-	int did;
+	int did;//doctor id
 	Calendar cal;
-	String event;
+	String event;//Schedule text entry
 	
 	public Schedule(){
 		did = 0;

@@ -10,9 +10,9 @@ import edu.utdallas.hf.commons.DateUtil;
  * 
  * */
 public class Note {
-	private int id;
-	private String title;
-	private String text;
+	private int id;//note id
+	private String title;//header text for note
+	private String text;//Body of note
 	private Calendar date;
 
 	public Note(){

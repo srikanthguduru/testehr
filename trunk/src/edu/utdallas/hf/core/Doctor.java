@@ -5,13 +5,14 @@ import java.util.Calendar;
 /** 
  * As part of the final documentation, Code Comments will be included, as specified by Razo
  * 
+ * 
  * */
 public class Doctor {
-	private String fName;
+	private String fName;//first name,last name
 	private String lName;
-	private Calendar dob;
-	private int id;
-	private ArrayList<Patient> patients;
+	private Calendar dob;//date of birth
+	private int id;//index id for tables
+	private ArrayList<Patient> patients;//patients for doctor
 	public Doctor(){
 		fName = "";
 		lName ="";
