@@ -4,12 +4,12 @@ package edu.utdallas.hf.core;
  * 
  * */
 public class Medication {
-	private int id;
-	private int pid;
-	private String drug;
-	private int dosage;
-	private int unit;
-	private boolean active;
+	private int id;//prescription id in table
+	private int pid;//patient id
+	private String drug;//drug name
+	private int dosage;//amount per unit
+	private int unit;//unit is the measurement of drugs, like UL, MG...
+	private boolean active;//if drug is currently prescribed
 	
 
 

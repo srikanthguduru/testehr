@@ -12,10 +12,10 @@ import edu.utdallas.hf.commons.DateUtil;
 public class Patient {
 	private String fName; 
 	private String lName;
-	private int id;
-	private Calendar dob;
-	private Vitals vitals;
-	private ArrayList<Note> notes;
+	private int id;//patient id
+	private Calendar dob;//date of birth
+	private Vitals vitals;//patient vital signs
+	private ArrayList<Note> notes;//patient notes
 	
 	public Patient(){
 		fName = "";
