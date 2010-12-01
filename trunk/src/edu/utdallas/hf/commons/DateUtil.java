@@ -17,6 +17,30 @@ public class DateUtil {
 					cal.get(Calendar.YEAR);
 		return dateString;
 	}
+
+	/**
+	 * The Date as a String that is going to be passed to the database
+	 * @param cal the calendar object
+	 * @return the date string
+	 */
+	public static String getDateStringDB(Calendar cal){
+		String dateString ="";
+		String monthString="", dayString="";
+		if(cal.get(Calendar.MONTH) < 10){
+			monthString = "0"+cal.get(Calendar.MONTH);
+		}else{
+			monthString = cal.get(Calendar.MONTH)+"";
+		}
+		if(cal.get(Calendar.DAY_OF_MONTH) < 10){
+			dayString = "0"+cal.get(Calendar.DAY_OF_MONTH);
+		}else{
+			dayString = cal.get(Calendar.DAY_OF_MONTH)+"";
+		}
+		dateString += cal.get(Calendar.YEAR)+"-"+
+					  monthString+
+					  dayString;
+		return dateString;
+	}
 	
 	/**
 	 * The date as a Calendar object based on a date string
