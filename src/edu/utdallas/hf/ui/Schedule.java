@@ -22,6 +22,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import edu.utdallas.hf.R;
+import edu.utdallas.hf.commons.DateUtil;
 import edu.utdallas.hf.commons.ViewUtil;
 import edu.utdallas.hf.db.DoctorDAO;
 
@@ -39,6 +40,7 @@ public class Schedule extends Activity implements OnClickListener{
 	TableRow row;
 	Button timeButton;
 	int month, year, day;
+	String monthString, dayString; 
 	static final int DATE_DIALOG_ID = 0;
 	final Calendar c = Calendar.getInstance();
 	
@@ -65,8 +67,6 @@ public class Schedule extends Activity implements OnClickListener{
     		DoctorID = (extras.getInt("did"));
     	}
     	
-    	DoctorID = 1;
-    	
     	//init calender
     	month = c.get(Calendar.MONTH);
     	year = c.get(Calendar.YEAR);
@@ -85,7 +85,7 @@ public class Schedule extends Activity implements OnClickListener{
     	}
     	
     	//pull schedule list
-    	scheduleList = DoctorDAO.getDoctorSchedule(DoctorID, year+"-"+(month+1)+"-"+day);//obtain list of all schedules for date
+    	scheduleList = DoctorDAO.getDoctorSchedule(DoctorID, DateUtil.getDateStringDB(c));//obtain list of all schedules for date
     	//fill table with list
     	timeButton.setText(month+1+"/"+day+"/"+year);
     	for(int i =2; i < times.length+2; i++){
@@ -158,7 +158,8 @@ public class Schedule extends Activity implements OnClickListener{
     }
     
     private void setEvents(){
-    	String dateStirng = year+"-"+(month+1)+"-"+day;
+    	
+    	String dateStirng = DateUtil.getDateStringDB(c);
     	System.out.println("DocID: "+DoctorID + " Date: "+dateStirng);
     	scheduleList = DoctorDAO.getDoctorSchedule(DoctorID, dateStirng);//obtain list of all schedules for date
     	System.out.println("Schedule Size: "+scheduleList.size());
