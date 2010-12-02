@@ -62,6 +62,7 @@ public class LoginDAO {
 		catch (Exception ex)
 		{
 			Log.i("Connection", "Exception: " + ex);
+			return "bad";
 			//System.out.println(ex.toString());
 		}
 		return output;

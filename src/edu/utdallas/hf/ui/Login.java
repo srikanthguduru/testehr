@@ -28,6 +28,7 @@ public class Login extends Activity implements OnClickListener{
 	private EditText password;
 	NumberFormat formatter = new DecimalFormat("#00.##");
 	ProgressDialog waiting;
+	String message = "";
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,59 +45,42 @@ public class Login extends Activity implements OnClickListener{
     	password = (EditText)findViewById(R.id.passField);
     	
     	loginButton.setOnClickListener(this);
-    	//show the waiting dialog when the user clicks login
-    	waiting = ProgressDialog.show(this, "", 
-                "Loading. Please wait...", true);
     }
     
     public void onResume(){
     	super.onResume();
     	password.setText("");
-    	waiting.dismiss();
+    	message = "";
     }
 
 	public void onClick(View v) {
 		if(v.getId() == R.id.loginButton){
 			System.out.println("Login clicked");
-			waiting = ProgressDialog.show(this, "", 
-	                "Loading. Please wait...", true);
-			//creates another thread to log in to the database
-			LoginThread searchThread = new LoginThread();
-		    searchThread.start();
-		}
-		
-	}
-	
-	private class LoginThread extends Thread {
-		@Override
-        public void run() {         
-			String message = LoginDAO.login(
+			message = LoginDAO.login(
 					username.getText().toString().trim(), 
 					password.getText().toString().trim());
-			//if the log in was successful, go to the doctor view
-			if(message.equals("success")){
+		    if(message.equals("success")){
 				int docId = LoginDAO.getDoctorId(username.getText().toString().trim());
-				Intent doctorViewIntent = new Intent(Login.this, DoctorView.class);
+				Intent doctorViewIntent = new Intent(this, DoctorView.class);
 				doctorViewIntent.putExtra("did", docId);
-				Login.this.startActivity(doctorViewIntent);
+				this.startActivity(doctorViewIntent);
 			//if the log in failed, display the fail message
 			}else if (message.equals("fail")){
-				waiting.dismiss();
 				AlertDialog alert = AlertUtil.createAlertMessage(
-						Login.this, 
+						this, 
 						"Login failed, username or password incorrect.", 
 						"OK"
 						);
 				alert.show();
 			} else {
-				waiting.dismiss();
-				AlertDialog blargh = AlertUtil.createAlertMessage(
-						Login.this, 
+				AlertDialog alert = AlertUtil.createAlertMessage(
+						this, 
 						"Login failed, check your network connection.", 
 						"OK");
-				blargh.show();
+				alert.show();
 			}
-        }
-    }
+		}
+		
+	}
     
 }
