@@ -19,4 +19,10 @@ public class HealthFoundation extends Activity{
         HealthFoundation.this.startActivity(login);
     }
     
+    public void onResume(){
+    	super.onResume();
+    	Intent login = new Intent(HealthFoundation.this, Login.class);
+        HealthFoundation.this.startActivity(login);
+    }
+    
 }
