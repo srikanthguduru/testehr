@@ -42,7 +42,7 @@ public class Schedule extends Activity implements OnClickListener{
 	int month, year, day;
 	String monthString, dayString; 
 	static final int DATE_DIALOG_ID = 0;
-	final Calendar c = Calendar.getInstance();
+	Calendar c = Calendar.getInstance();
 	
 	private int DoctorID = 1;
 	ArrayList<edu.utdallas.hf.core.Schedule> scheduleList = new ArrayList<edu.utdallas.hf.core.Schedule>();
@@ -71,18 +71,7 @@ public class Schedule extends Activity implements OnClickListener{
     	month = c.get(Calendar.MONTH);
     	year = c.get(Calendar.YEAR);
     	day = c.get(Calendar.DAY_OF_MONTH);
-    	
-    	for(int i = 0; i < times.length; i++){
-    		Calendar cal = new GregorianCalendar();
-    		if(Integer.parseInt(times[i].split(":")[0]) < 8){
-    			cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(times[i].split(":")[0])+12);
-	    		cal.set(Calendar.MINUTE, Integer.parseInt(times[i].split(":")[1]));
-    		}else{
-	    		cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(times[i].split(":")[0]));
-	    		cal.set(Calendar.MINUTE, Integer.parseInt(times[i].split(":")[1]));
-    		}
-    		calendars.add(cal);
-    	}
+    	resetCalendar();
     	
     	//pull schedule list
     	scheduleList = DoctorDAO.getDoctorSchedule(DoctorID, DateUtil.getDateStringDB(c));//obtain list of all schedules for date
@@ -108,12 +97,10 @@ public class Schedule extends Activity implements OnClickListener{
 	    		}else{
 	    			String event = "No Event";
     				for(int l=0; l < scheduleList.size(); l++){
-    					if(calendars.get(i-2).get(Calendar.HOUR_OF_DAY) >= scheduleList.get(l).getCal().get(Calendar.HOUR_OF_DAY)){
-    						if(calendars.get(i-2).get(Calendar.MINUTE) >= scheduleList.get(l).getCal().get(Calendar.MINUTE)){
-    							event = scheduleList.get(l).getEvent();
-    							break;
-    						}
-    					}
+						if(calendars.get(i-2).getTimeInMillis() >= scheduleList.get(l).getCal().getTimeInMillis()){
+							event = scheduleList.get(l).getEvent();
+							//break;
+						}
 	    			}
 	    			TextView text = ViewUtil.createTextView(
 							this, event, (float).70, j*100+i);
@@ -141,6 +128,10 @@ public class Schedule extends Activity implements OnClickListener{
                     month = monthOfYear;
                     day = dayOfMonth;
                     timeButton.setText(month+1+"/"+day+"/"+year);
+                    c.set(Calendar.MONTH, month);
+                    c.set(Calendar.DAY_OF_MONTH, day);
+                    c.set(Calendar.YEAR, year);
+                    resetCalendar();
                     setEvents();
                 }
             };
@@ -158,13 +149,13 @@ public class Schedule extends Activity implements OnClickListener{
     }
     
     private void setEvents(){
-    	
-    	String dateStirng = DateUtil.getDateStringDB(c);
-    	System.out.println("DocID: "+DoctorID + " Date: "+dateStirng);
-    	scheduleList = DoctorDAO.getDoctorSchedule(DoctorID, dateStirng);//obtain list of all schedules for date
+    	String dateString = DateUtil.getDateStringDB(c);
+    	System.out.println("DocID: "+DoctorID + " Date: "+dateString);
+    	scheduleList = DoctorDAO.getDoctorSchedule(DoctorID, dateString);//obtain list of all schedules for date
+    	System.out.println("Date String sent to DB: "+dateString); 
     	System.out.println("Schedule Size: "+scheduleList.size());
     	for(int i =0; i<scheduleList.size(); i++){
-    		System.out.println("Time: "+scheduleList.get(i).getCal().get(Calendar.HOUR_OF_DAY)+scheduleList.get(i).getCal().get(Calendar.MINUTE));
+    		System.out.println("Time: "+scheduleList.get(i).getCal().get(Calendar.HOUR_OF_DAY)+":"+scheduleList.get(i).getCal().get(Calendar.MINUTE));
     		System.out.println("Event: "+scheduleList.get(i).getEvent());
     	}
     	//fill table with list
@@ -174,16 +165,32 @@ public class Schedule extends Activity implements OnClickListener{
     		row = (TableRow) table.getChildAt(i);
     		String event = "No Event";
 			for(int l=0; l < scheduleList.size(); l++){
-				if(calendars.get(i-2).get(Calendar.HOUR_OF_DAY) >= scheduleList.get(l).getCal().get(Calendar.HOUR_OF_DAY)){
-					if(calendars.get(i-2).get(Calendar.MINUTE) >= scheduleList.get(l).getCal().get(Calendar.MINUTE)){
-						System.out.println("in the double if statement " + calendars.get(i-2).get(Calendar.HOUR_OF_DAY)+":"+calendars.get(i-2).get(Calendar.MINUTE));
-						event = scheduleList.get(l).getEvent();
-						System.out.println("Event: "+event);
-						break;
-					}
+				if(calendars.get(i-2).getTimeInMillis() >= scheduleList.get(l).getCal().getTimeInMillis()){
+					System.out.println("in the double if statement " + calendars.get(i-2).get(Calendar.HOUR_OF_DAY)+":"+calendars.get(i-2).get(Calendar.MINUTE));
+					event = scheduleList.get(l).getEvent();
+					System.out.println("Event: "+event);
+					//break;
 				}
 			}
 			((TextView)(row.getChildAt(2))).setText(event);
+    	}
+    }
+    
+    private void resetCalendar(){
+    	calendars.clear();
+    	for(int i = 0; i < times.length; i++){
+    		Calendar cal = new GregorianCalendar();
+    		cal.set(Calendar.YEAR, year);
+    		cal.set(Calendar.MONTH, month);
+    		cal.set(Calendar.DAY_OF_MONTH, day);
+    		if(Integer.parseInt(times[i].split(":")[0]) < 8){
+    			cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(times[i].split(":")[0])+12);
+	    		cal.set(Calendar.MINUTE, Integer.parseInt(times[i].split(":")[1]));
+    		}else{
+	    		cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(times[i].split(":")[0]));
+	    		cal.set(Calendar.MINUTE, Integer.parseInt(times[i].split(":")[1]));
+    		}
+    		calendars.add(cal);
     	}
     }
     

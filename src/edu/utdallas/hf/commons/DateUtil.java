@@ -27,9 +27,9 @@ public class DateUtil {
 		String dateString ="";
 		String monthString="", dayString="";
 		if(cal.get(Calendar.MONTH) < 10){
-			monthString = "0"+cal.get(Calendar.MONTH);
+			monthString = "0"+cal.get(Calendar.MONTH)+1;
 		}else{
-			monthString = cal.get(Calendar.MONTH)+"";
+			monthString = 1+cal.get(Calendar.MONTH)+"";
 		}
 		if(cal.get(Calendar.DAY_OF_MONTH) < 10){
 			dayString = "0"+cal.get(Calendar.DAY_OF_MONTH);
@@ -37,7 +37,7 @@ public class DateUtil {
 			dayString = cal.get(Calendar.DAY_OF_MONTH)+"";
 		}
 		dateString += cal.get(Calendar.YEAR)+"-"+
-					  monthString+
+					  monthString+"-"+
 					  dayString;
 		return dateString;
 	}
